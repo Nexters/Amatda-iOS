@@ -1,0 +1,591 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1A47DE721E1E9EA0067D46B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47DE621E1E9EA0067D46B /* AppDelegate.swift */; };
+		A1A47DE921E1E9EA0067D46B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47DE821E1E9EA0067D46B /* ViewController.swift */; };
+		A1A47DEC21E1E9EA0067D46B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A47DEA21E1E9EA0067D46B /* Main.storyboard */; };
+		A1A47DEE21E1E9EB0067D46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1A47DED21E1E9EB0067D46B /* Assets.xcassets */; };
+		A1A47DF121E1E9EB0067D46B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A47DEF21E1E9EB0067D46B /* LaunchScreen.storyboard */; };
+		A1A47DFC21E1E9EC0067D46B /* Amatda_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47DFB21E1E9EC0067D46B /* Amatda_iOSTests.swift */; };
+		A1A47E0721E1E9EC0067D46B /* Amatda_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47E0621E1E9EC0067D46B /* Amatda_iOSUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A1A47DF821E1E9EC0067D46B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1A47DDB21E1E9EA0067D46B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1A47DE221E1E9EA0067D46B;
+			remoteInfo = "Amatda-iOS";
+		};
+		A1A47E0321E1E9EC0067D46B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1A47DDB21E1E9EA0067D46B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1A47DE221E1E9EA0067D46B;
+			remoteInfo = "Amatda-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A1A47DE321E1E9EA0067D46B /* Amatda-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amatda-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1A47DE621E1E9EA0067D46B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A1A47DE821E1E9EA0067D46B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A1A47DEB21E1E9EA0067D46B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A1A47DED21E1E9EB0067D46B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1A47DF021E1E9EB0067D46B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A1A47DF221E1E9EB0067D46B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1A47DF721E1E9EC0067D46B /* Amatda-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Amatda-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1A47DFB21E1E9EC0067D46B /* Amatda_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amatda_iOSTests.swift; sourceTree = "<group>"; };
+		A1A47DFD21E1E9EC0067D46B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1A47E0221E1E9EC0067D46B /* Amatda-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Amatda-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1A47E0621E1E9EC0067D46B /* Amatda_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amatda_iOSUITests.swift; sourceTree = "<group>"; };
+		A1A47E0821E1E9EC0067D46B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1A47DE021E1E9EA0067D46B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1A47DF421E1E9EC0067D46B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1A47DFF21E1E9EC0067D46B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A1A47DDA21E1E9EA0067D46B = {
+			isa = PBXGroup;
+			children = (
+				A1A47DE521E1E9EA0067D46B /* Amatda-iOS */,
+				A1A47DFA21E1E9EC0067D46B /* Amatda-iOSTests */,
+				A1A47E0521E1E9EC0067D46B /* Amatda-iOSUITests */,
+				A1A47DE421E1E9EA0067D46B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A1A47DE421E1E9EA0067D46B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1A47DE321E1E9EA0067D46B /* Amatda-iOS.app */,
+				A1A47DF721E1E9EC0067D46B /* Amatda-iOSTests.xctest */,
+				A1A47E0221E1E9EC0067D46B /* Amatda-iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1A47DE521E1E9EA0067D46B /* Amatda-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A1A47DE621E1E9EA0067D46B /* AppDelegate.swift */,
+				A1A47DE821E1E9EA0067D46B /* ViewController.swift */,
+				A1A47DEA21E1E9EA0067D46B /* Main.storyboard */,
+				A1A47DED21E1E9EB0067D46B /* Assets.xcassets */,
+				A1A47DEF21E1E9EB0067D46B /* LaunchScreen.storyboard */,
+				A1A47DF221E1E9EB0067D46B /* Info.plist */,
+			);
+			path = "Amatda-iOS";
+			sourceTree = "<group>";
+		};
+		A1A47DFA21E1E9EC0067D46B /* Amatda-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				A1A47DFB21E1E9EC0067D46B /* Amatda_iOSTests.swift */,
+				A1A47DFD21E1E9EC0067D46B /* Info.plist */,
+			);
+			path = "Amatda-iOSTests";
+			sourceTree = "<group>";
+		};
+		A1A47E0521E1E9EC0067D46B /* Amatda-iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A1A47E0621E1E9EC0067D46B /* Amatda_iOSUITests.swift */,
+				A1A47E0821E1E9EC0067D46B /* Info.plist */,
+			);
+			path = "Amatda-iOSUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1A47DE221E1E9EA0067D46B /* Amatda-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1A47E0B21E1E9EC0067D46B /* Build configuration list for PBXNativeTarget "Amatda-iOS" */;
+			buildPhases = (
+				A1A47DDF21E1E9EA0067D46B /* Sources */,
+				A1A47DE021E1E9EA0067D46B /* Frameworks */,
+				A1A47DE121E1E9EA0067D46B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Amatda-iOS";
+			productName = "Amatda-iOS";
+			productReference = A1A47DE321E1E9EA0067D46B /* Amatda-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A1A47DF621E1E9EC0067D46B /* Amatda-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1A47E0E21E1E9EC0067D46B /* Build configuration list for PBXNativeTarget "Amatda-iOSTests" */;
+			buildPhases = (
+				A1A47DF321E1E9EC0067D46B /* Sources */,
+				A1A47DF421E1E9EC0067D46B /* Frameworks */,
+				A1A47DF521E1E9EC0067D46B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1A47DF921E1E9EC0067D46B /* PBXTargetDependency */,
+			);
+			name = "Amatda-iOSTests";
+			productName = "Amatda-iOSTests";
+			productReference = A1A47DF721E1E9EC0067D46B /* Amatda-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A1A47E0121E1E9EC0067D46B /* Amatda-iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1A47E1121E1E9EC0067D46B /* Build configuration list for PBXNativeTarget "Amatda-iOSUITests" */;
+			buildPhases = (
+				A1A47DFE21E1E9EC0067D46B /* Sources */,
+				A1A47DFF21E1E9EC0067D46B /* Frameworks */,
+				A1A47E0021E1E9EC0067D46B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1A47E0421E1E9EC0067D46B /* PBXTargetDependency */,
+			);
+			name = "Amatda-iOSUITests";
+			productName = "Amatda-iOSUITests";
+			productReference = A1A47E0221E1E9EC0067D46B /* Amatda-iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1A47DDB21E1E9EA0067D46B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = JHH;
+				TargetAttributes = {
+					A1A47DE221E1E9EA0067D46B = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					A1A47DF621E1E9EC0067D46B = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = A1A47DE221E1E9EA0067D46B;
+					};
+					A1A47E0121E1E9EC0067D46B = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = A1A47DE221E1E9EA0067D46B;
+					};
+				};
+			};
+			buildConfigurationList = A1A47DDE21E1E9EA0067D46B /* Build configuration list for PBXProject "Amatda-iOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1A47DDA21E1E9EA0067D46B;
+			productRefGroup = A1A47DE421E1E9EA0067D46B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1A47DE221E1E9EA0067D46B /* Amatda-iOS */,
+				A1A47DF621E1E9EC0067D46B /* Amatda-iOSTests */,
+				A1A47E0121E1E9EC0067D46B /* Amatda-iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1A47DE121E1E9EA0067D46B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1A47DF121E1E9EB0067D46B /* LaunchScreen.storyboard in Resources */,
+				A1A47DEE21E1E9EB0067D46B /* Assets.xcassets in Resources */,
+				A1A47DEC21E1E9EA0067D46B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1A47DF521E1E9EC0067D46B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1A47E0021E1E9EC0067D46B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1A47DDF21E1E9EA0067D46B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1A47DE921E1E9EA0067D46B /* ViewController.swift in Sources */,
+				A1A47DE721E1E9EA0067D46B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1A47DF321E1E9EC0067D46B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1A47DFC21E1E9EC0067D46B /* Amatda_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1A47DFE21E1E9EC0067D46B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1A47E0721E1E9EC0067D46B /* Amatda_iOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1A47DF921E1E9EC0067D46B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1A47DE221E1E9EA0067D46B /* Amatda-iOS */;
+			targetProxy = A1A47DF821E1E9EC0067D46B /* PBXContainerItemProxy */;
+		};
+		A1A47E0421E1E9EC0067D46B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1A47DE221E1E9EA0067D46B /* Amatda-iOS */;
+			targetProxy = A1A47E0321E1E9EC0067D46B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A1A47DEA21E1E9EA0067D46B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1A47DEB21E1E9EA0067D46B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A1A47DEF21E1E9EB0067D46B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1A47DF021E1E9EB0067D46B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A1A47E0921E1E9EC0067D46B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A1A47E0A21E1E9EC0067D46B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1A47E0C21E1E9EC0067D46B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 594TR8CRP9;
+				INFOPLIST_FILE = "Amatda-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1A47E0D21E1E9EC0067D46B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 594TR8CRP9;
+				INFOPLIST_FILE = "Amatda-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A1A47E0F21E1E9EC0067D46B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 594TR8CRP9;
+				INFOPLIST_FILE = "Amatda-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Amatda-iOS.app/Amatda-iOS";
+			};
+			name = Debug;
+		};
+		A1A47E1021E1E9EC0067D46B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 594TR8CRP9;
+				INFOPLIST_FILE = "Amatda-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Amatda-iOS.app/Amatda-iOS";
+			};
+			name = Release;
+		};
+		A1A47E1221E1E9EC0067D46B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 594TR8CRP9;
+				INFOPLIST_FILE = "Amatda-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Amatda-iOS";
+			};
+			name = Debug;
+		};
+		A1A47E1321E1E9EC0067D46B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 594TR8CRP9;
+				INFOPLIST_FILE = "Amatda-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Amatda-iOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A1A47DDE21E1E9EA0067D46B /* Build configuration list for PBXProject "Amatda-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1A47E0921E1E9EC0067D46B /* Debug */,
+				A1A47E0A21E1E9EC0067D46B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1A47E0B21E1E9EC0067D46B /* Build configuration list for PBXNativeTarget "Amatda-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1A47E0C21E1E9EC0067D46B /* Debug */,
+				A1A47E0D21E1E9EC0067D46B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1A47E0E21E1E9EC0067D46B /* Build configuration list for PBXNativeTarget "Amatda-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1A47E0F21E1E9EC0067D46B /* Debug */,
+				A1A47E1021E1E9EC0067D46B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1A47E1121E1E9EC0067D46B /* Build configuration list for PBXNativeTarget "Amatda-iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1A47E1221E1E9EC0067D46B /* Debug */,
+				A1A47E1321E1E9EC0067D46B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A1A47DDB21E1E9EA0067D46B /* Project object */;
+}
