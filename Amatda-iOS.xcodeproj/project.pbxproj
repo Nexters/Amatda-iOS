@@ -14,6 +14,9 @@
 		A1A47DF121E1E9EB0067D46B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A47DEF21E1E9EB0067D46B /* LaunchScreen.storyboard */; };
 		A1A47DFC21E1E9EC0067D46B /* Amatda_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47DFB21E1E9EC0067D46B /* Amatda_iOSTests.swift */; };
 		A1A47E0721E1E9EC0067D46B /* Amatda_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47E0621E1E9EC0067D46B /* Amatda_iOSUITests.swift */; };
+		BAD622C521EC73FD00BA2C27 /* AMPresentAnimateSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD622C221EC73FC00BA2C27 /* AMPresentAnimateSetting.swift */; };
+		BAD622C621EC73FD00BA2C27 /* AMPresentAnimateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD622C321EC73FD00BA2C27 /* AMPresentAnimateViewController.swift */; };
+		BAD622C721EC73FD00BA2C27 /* AMActionAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD622C421EC73FD00BA2C27 /* AMActionAnimate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		A1A47E0221E1E9EC0067D46B /* Amatda-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Amatda-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A47E0621E1E9EC0067D46B /* Amatda_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amatda_iOSUITests.swift; sourceTree = "<group>"; };
 		A1A47E0821E1E9EC0067D46B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAD622C221EC73FC00BA2C27 /* AMPresentAnimateSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPresentAnimateSetting.swift; sourceTree = "<group>"; };
+		BAD622C321EC73FD00BA2C27 /* AMPresentAnimateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPresentAnimateViewController.swift; sourceTree = "<group>"; };
+		BAD622C421EC73FD00BA2C27 /* AMActionAnimate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMActionAnimate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 		A1A47DE521E1E9EA0067D46B /* Amatda-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				BAD622C121EC73D100BA2C27 /* Animate */,
 				A1A47DE621E1E9EA0067D46B /* AppDelegate.swift */,
 				A1A47DE821E1E9EA0067D46B /* ViewController.swift */,
 				A1A47DEA21E1E9EA0067D46B /* Main.storyboard */,
@@ -123,6 +130,16 @@
 				A1A47E0821E1E9EC0067D46B /* Info.plist */,
 			);
 			path = "Amatda-iOSUITests";
+			sourceTree = "<group>";
+		};
+		BAD622C121EC73D100BA2C27 /* Animate */ = {
+			isa = PBXGroup;
+			children = (
+				BAD622C421EC73FD00BA2C27 /* AMActionAnimate.swift */,
+				BAD622C221EC73FC00BA2C27 /* AMPresentAnimateSetting.swift */,
+				BAD622C321EC73FD00BA2C27 /* AMPresentAnimateViewController.swift */,
+			);
+			path = Animate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +273,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAD622C521EC73FD00BA2C27 /* AMPresentAnimateSetting.swift in Sources */,
+				BAD622C621EC73FD00BA2C27 /* AMPresentAnimateViewController.swift in Sources */,
 				A1A47DE921E1E9EA0067D46B /* ViewController.swift in Sources */,
 				A1A47DE721E1E9EA0067D46B /* AppDelegate.swift in Sources */,
+				BAD622C721EC73FD00BA2C27 /* AMActionAnimate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
