@@ -8,13 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: AMBaseViewController, AMViewControllerUISetAble {
+    var titleLabel: UILabel?
+    var rightBarButtonItem: UIBarButtonItem?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        setupNavigation()
     }
-
-
+    
+    
 }
 
