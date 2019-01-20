@@ -8,24 +8,24 @@
 
 import UIKit
 
-class AMPresentAnimateViewController: UIViewController {
+class AMPresentAnimateViewController: AMBaseViewController {
     fileprivate var isPresenting     = false
     lazy var animateSetting : AMPresentAnimateSetting = AMPresentAnimateSetting()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.transitioningDelegate  = self
     }
     
+//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+//
+//    }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
