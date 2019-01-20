@@ -21,22 +21,18 @@ class AMWriteViewController: AMPresentAnimateViewController {
     }
     
     override func onWillPresentView(){
-        //overide
-        
+        v.onWillPresentView()
     }
     
     override func onWillDismissView(){
-        //overide
-        
+        v.onWillDismissView()
     }
     
     override func performCustomPresentationAnimation(){
-        //overide
-        
+        v.performCustomPresentationAnimation()
     }
     
     override func performCustomDismissingAnimation(){
-        //overide
-        
+        v.performCustomDismissingAnimation()
     }
 }
