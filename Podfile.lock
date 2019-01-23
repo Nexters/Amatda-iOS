@@ -1,6 +1,6 @@
 PODS:
-  - Alamofire (4.8.0)
-  - Kingfisher (4.10.1)
+  - Alamofire (4.8.1)
+  - Kingfisher (5.1.0)
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
@@ -18,8 +18,8 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
-  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973

@@ -36,4 +36,8 @@ class AMBaseView: UIView {
     deinit {
 
     }
+    
+    @objc func pressedBackView(_ gestureRecognizer: UIPanGestureRecognizer){
+        vc.dismiss(animated: true, completion: nil)
+    }
 }
