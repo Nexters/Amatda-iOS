@@ -20,13 +20,12 @@ class ViewController: AMBaseViewController, AMViewControllerUISetAble {
     
     
     @IBAction func pressedButton(_ sender: Any) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController2 = mainStoryboard.instantiateViewController(withIdentifier: "AMWriteViewController") as! AMWriteViewController
-        self.modalPresentationStyle = .overCurrentContext
-        viewController2.providesPresentationContextTransitionStyle = true
-        viewController2.definesPresentationContext = true
+//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let viewController2 = mainStoryboard.instantiateViewController(withIdentifier: "AMWriteViewController") as! AMWriteViewController
         //    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-
+        
+        let viewController2 = AMWriteViewController()
+        viewController2.modalPresentationStyle = .overCurrentContext
         self.present(viewController2, animated: true, completion: nil)
     }
 }
