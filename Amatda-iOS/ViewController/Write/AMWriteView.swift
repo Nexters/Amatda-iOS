@@ -31,7 +31,8 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
     
     override func setupUI(){
         setupView()
-        self.backgroundColor = .white
+        self.layoutIfNeeded()
+        self.backgroundColor = .clear
     }
     
     @objc private func dragView(_ gesture : UIGestureRecognizer){
