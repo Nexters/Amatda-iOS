@@ -25,7 +25,7 @@ class ViewController: AMBaseViewController, AMViewControllerUISetAble {
         //    self.modalPresentationStyle = UIModalPresentationCurrentContext;
         
         let viewController2 = AMWriteViewController()
-        viewController2.modalPresentationStyle = .currentContext
+        viewController2.modalPresentationStyle = .overCurrentContext
         viewController2.view.backgroundColor    = .clear
         self.present(viewController2, animated: true, completion: nil)
     }

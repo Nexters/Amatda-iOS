@@ -13,12 +13,12 @@ class AMWriteViewController: AMPresentAnimateViewController {
     private lazy var v = AMWriteView(controlBy : self)
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.modalPresentationStyle = .currentContext
+        self.modalPresentationStyle = .overCurrentContext
     }
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.modalPresentationStyle = .currentContext
+        self.modalPresentationStyle = .overCurrentContext
     }
     
     required init?(coder aDecoder: NSCoder) {
