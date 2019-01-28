@@ -10,6 +10,8 @@ import UIKit
 
 class AMWriteViewController: AMPresentAnimateViewController {
     
+    
+    
     private lazy var v = AMWriteView(controlBy : self)
     override func viewDidLoad() {
         super.viewDidLoad()

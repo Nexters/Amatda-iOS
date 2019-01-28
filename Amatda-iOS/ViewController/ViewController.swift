@@ -8,14 +8,24 @@
 
 import UIKit
 
-class ViewController: AMBaseViewController, AMViewControllerUISetAble {
-    var titleLabel: UILabel?
-    var rightBarButtonItem: UIBarButtonItem?
+class ViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewControllerBottomUISetAble {
+    
+    
+    var titleLabel: UILabel? = UILabel()
+    var subTitleLabel           : UILabel? = UILabel()
+    var rightBarButtonItem: UIBarButtonItem? = UIBarButtonItem()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func setupUI() {
+        super.setupUI()
+        titleLabel?.text = "나고야"
+        subTitleLabel?.text = "햇빵이에\n무엇을 챙길까요?"
         setupNavigation()
+        setupBottom()
     }
     
     
@@ -24,6 +34,13 @@ class ViewController: AMBaseViewController, AMViewControllerUISetAble {
 //        let viewController2 = mainStoryboard.instantiateViewController(withIdentifier: "AMWriteViewController") as! AMWriteViewController
         //    self.modalPresentationStyle = UIModalPresentationCurrentContext;
         
+        let viewController2 = AMWriteViewController()
+        viewController2.modalPresentationStyle = .overCurrentContext
+        viewController2.view.backgroundColor    = .clear
+        self.present(viewController2, animated: true, completion: nil)
+    }
+    
+    @objc func pressedCenterButton() {
         let viewController2 = AMWriteViewController()
         viewController2.modalPresentationStyle = .overCurrentContext
         viewController2.view.backgroundColor    = .clear

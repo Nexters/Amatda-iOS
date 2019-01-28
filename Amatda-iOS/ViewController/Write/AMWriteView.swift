@@ -14,14 +14,14 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
     
     lazy var backgroundView : UIView? = {
         let backView = UIView()
-        backView.backgroundColor = .blue
+        backView.backgroundColor = .black
         backView.alpha = 0.2
         return backView
     }()
     
     lazy var contentView : UIView? = {
         let contentView = UIView()
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .red
         
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(dragView(_:)))
         contentView.addGestureRecognizer(gesture)
