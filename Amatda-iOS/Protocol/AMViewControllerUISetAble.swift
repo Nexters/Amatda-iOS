@@ -53,6 +53,10 @@ extension AMViewControllerNaviSetAble{
 protocol AMViewControllerBottomUISetAble where Self : AMBaseViewController {
     func setupBottom()
     func pressedCenterButton()
+    var leftButton : UIButton? { get set }
+    var rightButton : UIButton? { get set }
+    var centerButton : AMPlustButton? { get set }
+    
 }
 
 
@@ -60,9 +64,13 @@ extension AMViewControllerBottomUISetAble {
     func setupBottom(){
         let bottomBackgroundView = UIView()
         let bottomToolbar                 = UIView()
-        let centerButton                   = AMPlustButton()
-        let leftButton                        = UIButton()
-        let rightButton                      = UIButton()
+        
+        guard let centerButton = centerButton,
+                   let leftButton = leftButton,
+                   let rightButton = rightButton
+            else {
+                return
+        }
         
         
 
@@ -76,7 +84,7 @@ extension AMViewControllerBottomUISetAble {
         bottomToolbar.addSubview(leftButton)
         bottomToolbar.addSubview(rightButton)
         
-        centerButton.addTarget(self, action: #selector(ViewController.pressedCenterButton), for: .touchDown)
+//        centerButton.addTarget(self, action: #selector(ViewController.pressedCenterButton), for: .touchDown)
         
         
         bottomBackgroundView.snp.makeConstraints{

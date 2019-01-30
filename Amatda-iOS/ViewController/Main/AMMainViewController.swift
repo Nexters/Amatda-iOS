@@ -7,15 +7,21 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class ViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewControllerBottomUISetAble {
-    
+
+class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewControllerBottomUISetAble {
+    var leftButton: UIButton? = UIButton()
+    var rightButton: UIButton? = UIButton()
+    var centerButton: AMPlustButton? = AMPlustButton()
     
     var titleLabel: UILabel? = UILabel()
     var subTitleLabel           : UILabel? = UILabel()
     var rightBarButtonItem: UIBarButtonItem? = UIBarButtonItem()
     
-
+    var disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,20 +30,28 @@ class ViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewC
         super.setupUI()
         titleLabel?.text = "나고야"
         subTitleLabel?.text = "햇빵이에\n무엇을 챙길까요?"
+
         setupNavigation()
         setupBottom()
     }
     
-    
-    @IBAction func pressedButton(_ sender: Any) {
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let viewController2 = mainStoryboard.instantiateViewController(withIdentifier: "AMWriteViewController") as! AMWriteViewController
-        //    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    override func setupBind() {
+        super.setupBind()
+
+        let viewModel = AMMainViewModel()
         
-        let viewController2 = AMWriteViewController()
-        viewController2.modalPresentationStyle = .overCurrentContext
-        viewController2.view.backgroundColor    = .clear
-        self.present(viewController2, animated: true, completion: nil)
+        self.centerButton?.rx.tap
+            .asObservable()
+            .bind (to:viewModel.didTap)
+            .disposed(by: disposeBag)
+        
+        viewModel.didTap
+            .subscribe( onNext : { [weak self] in
+            self?.pressedCenterButton()
+            }).disposed(by: disposeBag)
+        
+        
+        
     }
     
     @objc func pressedCenterButton() {
