@@ -20,39 +20,50 @@ protocol AMViewControllerNaviSetAble  where Self : AMBaseViewController{
 
 extension AMViewControllerNaviSetAble{
     func setupNavigation(){
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        navigationController?.navigationBar.shadowImage = UIImage()
+//        navigationController?.navigationBar.isTranslucent = true
+        
+        
         guard let titleLabel = titleLabel,
             let rightBarButtonItem = rightBarButtonItem else { return }
         
-        titleLabel.backgroundColor = UIColor.clear
+        titleLabel.backgroundColor = UIColor.red
         titleLabel.numberOfLines = 0
-        titleLabel.textAlignment = NSTextAlignment.center
+        titleLabel.textAlignment = NSTextAlignment.left
+        self.navigationItem.titleView = titleLabel
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
+
         
-        self.view.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(33.5)
-            $0.left.equalToSuperview().offset(24)
-        }
+        /*
+         UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectMake(0,0,200,40)];
+         lbl.textAlignment = NSTextAlignmentLeft;
+         lbl.text = @"My Title";
+         self.navigationItem.titleView = lbl;
+ */
         
-        if let subTitleLabel = subTitleLabel {
-            subTitleLabel.numberOfLines = 0
-            subTitleLabel.font = UIFont.systemFont(ofSize: 24)
-            self.view.addSubview(subTitleLabel)
-            subTitleLabel.snp.makeConstraints{
-                $0.top.equalTo(titleLabel.snp.bottom)
-                $0.left.equalTo(titleLabel)
-            }
-        }
+        self.navigationItem.titleView = titleLabel
+//        titleLabel.snp.makeConstraints{
+//            $0.top.equalToSuperview().offset(33.5)
+//            $0.left.equalToSuperview().offset(24)
+//        }
+//
+//        if let subTitleLabel = subTitleLabel {
+//            subTitleLabel.numberOfLines = 0
+//            subTitleLabel.font = UIFont.systemFont(ofSize: 24)
+//            self.view.addSubview(subTitleLabel)
+//            subTitleLabel.snp.makeConstraints{
+//                $0.top.equalTo(titleLabel.snp.bottom)
+//                $0.left.equalTo(titleLabel)
+//            }
+//        }
         
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
     }
 }
 
 protocol AMViewControllerBottomUISetAble where Self : AMBaseViewController {
     func setupBottom()
-    func pressedCenterButton()
     var leftButton : UIButton? { get set }
     var rightButton : UIButton? { get set }
     var centerButton : AMPlustButton? { get set }
@@ -84,7 +95,6 @@ extension AMViewControllerBottomUISetAble {
         bottomToolbar.addSubview(leftButton)
         bottomToolbar.addSubview(rightButton)
         
-//        centerButton.addTarget(self, action: #selector(ViewController.pressedCenterButton), for: .touchDown)
         
         
         bottomBackgroundView.snp.makeConstraints{

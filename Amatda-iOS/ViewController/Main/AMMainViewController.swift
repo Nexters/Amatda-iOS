@@ -12,53 +12,139 @@ import RxCocoa
 
 
 class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewControllerBottomUISetAble {
-    var leftButton: UIButton? = UIButton()
-    var rightButton: UIButton? = UIButton()
-    var centerButton: AMPlustButton? = AMPlustButton()
+    @IBOutlet private weak var collectionView: UICollectionView!
     
-    var titleLabel: UILabel? = UILabel()
-    var subTitleLabel           : UILabel? = UILabel()
-    var rightBarButtonItem: UIBarButtonItem? = UIBarButtonItem()
+    var leftButton                  : UIButton? = UIButton()
+    var rightButton                : UIButton? = UIButton()
+    var titleLabel                   : UILabel? = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+    var subTitleLabel            : UILabel? = UILabel()
+    var rightBarButtonItem  : UIBarButtonItem? = UIBarButtonItem()
+    var centerButton            : AMPlustButton? = AMPlustButton()
     
-    var disposeBag = DisposeBag()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private let viewModel   = AMMainViewModel()
+    var disposeBag : DisposeBag  {
+        return viewModel.disposeBag
     }
+    
     
     override func setupUI() {
         super.setupUI()
-        titleLabel?.text = "나고야"
-        subTitleLabel?.text = "햇빵이에\n무엇을 챙길까요?"
-
+        titleLabel?.text = "ㅋㅋㅋ"
         setupNavigation()
         setupBottom()
+        setupCollectionView()
+        setupCollectionViewLayout()
     }
+    
     
     override func setupBind() {
         super.setupBind()
-
-        let viewModel = AMMainViewModel()
-        
-        self.centerButton?.rx.tap
+        bindInput()
+        bindOutput()
+    }
+    
+    
+    private func bindInput(){
+        self.centerButton?
+            .rx
+            .tap
             .asObservable()
             .bind (to:viewModel.didTap)
             .disposed(by: disposeBag)
         
-        viewModel.didTap
-            .subscribe( onNext : { [weak self] in
-            self?.pressedCenterButton()
-            }).disposed(by: disposeBag)
-        
-        
-        
     }
     
-    @objc func pressedCenterButton() {
+    private func bindOutput(){
+        viewModel
+            .didTap
+            .subscribe( onNext : { [weak self] in
+                self?.pressedCenterButton()
+            }).disposed(by: disposeBag)
+    }
+    
+    
+    private func pressedCenterButton() {
         let viewController2 = AMWriteViewController()
         viewController2.modalPresentationStyle = .overCurrentContext
         viewController2.view.backgroundColor    = .clear
         self.present(viewController2, animated: true, completion: nil)
+    }
+}
+
+
+
+extension AMMainViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    
+    private func setupCollectionView() {
+        if #available(iOS 11.0, *) {
+            collectionView.contentInsetAdjustmentBehavior = .never
+        }
+        collectionView.backgroundColor = .white
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellID")
+        collectionView.register(AMMainHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: mainHeaderView)
+    }
+    
+    
+    private func setupCollectionViewLayout() {
+        let layout = AMMainHeaderLayout()
+        layout.delegate = self
+        collectionView.collectionViewLayout = layout
+    }
+}
+
+
+extension AMMainViewController : AMMainHeaderDelegate {
+    func recognizeHeaderContentOffset(_: AMMainHeaderLayout, contentOffSetY: CGFloat) {
+        let differ = 200 - contentOffSetY
+        if differ > 0 {
+            titleLabel?.alpha = 1 - (differ/100 - 1)
+        }
+    }
+}
+
+
+extension AMMainViewController : UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+}
+
+
+
+extension AMMainViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 200)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 100)
+    }
+}
+
+
+
+extension AMMainViewController : UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 18
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath)
+        cell.backgroundColor = .black
+        return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: mainHeaderView, for: indexPath)
+        return header
     }
 }
 

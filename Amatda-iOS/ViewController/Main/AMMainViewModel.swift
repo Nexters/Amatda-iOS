@@ -12,7 +12,7 @@ import RxCocoa
 
 class AMMainViewModel{
     let didTap = PublishSubject<Void>()
-    
+    let disposeBag = DisposeBag()
     init() {
         setup()
     }
