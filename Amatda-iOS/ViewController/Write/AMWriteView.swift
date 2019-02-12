@@ -12,6 +12,7 @@ import SnapKit
 class AMWriteView: AMBaseView, AMViewAnimatable {
     var contentViewHeight: CGFloat? = 400
     
+    
     lazy var backgroundView : UIView? = {
         let backView = UIView()
         backView.backgroundColor = .black
@@ -19,21 +20,43 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
         return backView
     }()
     
+    
     lazy var contentView : UIView? = {
         let contentView = UIView()
-        contentView.backgroundColor = .red
+        contentView.backgroundColor = .white
         
+        contentView.clipsToBounds = true
+        contentView.layer.cornerRadius = 10
+        contentView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(dragView(_:)))
         contentView.addGestureRecognizer(gesture)
         
         return contentView
     }()
     
+    
+    lazy var checkInputTextField : UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "체크리스트를 입력해주세요"
+        return tf
+    }()
+    
+    
+    lazy var labelTitleLabel : UILabel = {
+        let label = UILabel()
+        label.text = "라벨"
+        return label
+    }()
+    
+    
     override func setupUI(){
-        setupView()
+        setupBaseView()
         self.layoutIfNeeded()
         self.backgroundColor = .clear
     }
+    
+    
     
     @objc private func dragView(_ gesture : UIGestureRecognizer){
         onDragContentView(gesture)

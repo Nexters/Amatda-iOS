@@ -14,12 +14,12 @@ protocol AMViewAnimatable where Self : AMBaseView {
     var contentView       : UIView?  { get set }
     var backgroundView    : UIView?  { get set }
     
-    func setupView()
+    func setupBaseView()
     func onDragContentView(_ gesture : UIGestureRecognizer)
 }
 
 extension AMViewAnimatable{
-    func setupView(){
+    func setupBaseView(){
         guard let backgroundView = self.backgroundView,
             let contentView = self.contentView else { return; }
         
@@ -69,24 +69,13 @@ extension AMViewAnimatable{
             print("end")
             print("differ : \((height - contentViewHeight) * 5 / 10)")
             print("endPosition : \(point.y)")
-            if point.y > (height - contentViewHeight) * 5 / 10{
-                
-                UIView.animate(withDuration: 0.3) {
-                    contentView.snp.updateConstraints({ (make) in
-                        make.height.equalTo(contentViewHeight)
-                    })
-                    self.layoutIfNeeded()
-                }
-            }else{
-                UIView.animate(withDuration: 0.3) {
-                    contentView.snp.updateConstraints({ (make) in
-                        make.height.equalTo(height)
-                    })
-                    self.layoutIfNeeded()
-                }
-                
-            }
             
+            UIView.animate(withDuration: 0.3) {
+                contentView.snp.updateConstraints({ (make) in
+                    make.height.equalTo(contentViewHeight)
+                })
+                self.layoutIfNeeded()
+            }
         }
     }
 }

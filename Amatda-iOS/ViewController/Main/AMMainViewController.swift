@@ -14,12 +14,12 @@ import RxCocoa
 class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewControllerBottomUISetAble {
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    var leftButton                  : UIButton? = UIButton()
-    var rightButton                : UIButton? = UIButton()
-    var titleLabel                   : UILabel? = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-    var subTitleLabel            : UILabel? = UILabel()
-    var rightBarButtonItem  : UIBarButtonItem? = UIBarButtonItem()
-    var centerButton            : AMPlustButton? = AMPlustButton()
+    var leftButton              : UIButton? = UIButton()
+    var rightButton             : UIButton? = UIButton()
+    var titleLabel              : UILabel?  = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+    var subTitleLabel           : UILabel?  = UILabel()
+    var rightBarButtonItem      : UIBarButtonItem? = UIBarButtonItem()
+    var centerButton            : AMPlustButton?   = AMPlustButton()
     
     private let viewModel   = AMMainViewModel()
     var disposeBag : DisposeBag  {
