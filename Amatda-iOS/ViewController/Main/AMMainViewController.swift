@@ -79,6 +79,12 @@ extension AMMainViewController {
     }
     
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        self.collectionView.reloadData()
+    }
+    
+    
     private func setupCollectionView() {
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
@@ -94,6 +100,8 @@ extension AMMainViewController {
     private func setupCollectionViewLayout() {
         let layout = AMMainHeaderLayout()
         layout.delegate = self
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1
         collectionView.collectionViewLayout = layout
     }
 }
@@ -123,7 +131,14 @@ extension AMMainViewController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 100)
+        var width = collectionView.frame.width
+        if UIApplication.shared.statusBarOrientation == .landscapeRight ||
+            UIApplication.shared.statusBarOrientation == .landscapeLeft{
+            width = (width - 1) / 2
+        }else{
+            
+        }
+        return CGSize(width: width, height: 100)
     }
 }
 
