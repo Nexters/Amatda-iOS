@@ -10,6 +10,7 @@ target 'Amatda-iOS' do
   pod 'Kingfisher'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'DLRadioButton', '~> 1.4'
 
   # Pods for Amatda-iOS
 

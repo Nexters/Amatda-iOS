@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import DLRadioButton
 
 class AMWriteView: AMBaseView, AMViewAnimatable {
     var contentViewHeight: CGFloat? = 400
@@ -56,6 +57,7 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
         self.layoutIfNeeded()
         self.backgroundColor = .clear
         setupInputTextField()
+        setupLabelStackView()
     }
     
     
@@ -104,8 +106,9 @@ extension AMWriteView{
         self.checkInputTextField.snp.makeConstraints{
             $0.top.equalToSuperview().offset(26)
             $0.left.equalToSuperview().offset(24)
+            $0.right.equalToSuperview().offset(-26)
         }
-        
+
         let lineView = UIView()
         self.contentView?.addSubview(lineView)
         lineView.backgroundColor = .red
@@ -118,6 +121,33 @@ extension AMWriteView{
     }
     
     
-    
+    private func setupLabelStackView(){
+        let titleLabel = UILabel()
+        titleLabel.text = "라벨"
+        
+        let labelStackView          = UIStackView()
+        labelStackView.axis         = .horizontal;
+        labelStackView.distribution = .equalSpacing;
+        labelStackView.alignment    = .center;
+        labelStackView.spacing      = 30;
+        
+        labelStackView.addArrangedSubview(titleLabel)
+        let redRadio   = DLRadioButton()
+        let blueRadio  = DLRadioButton()
+        let greenRadio = DLRadioButton()
+        
+        redRadio.createRadioButton(size: 30, color: .red, superView: labelStackView)
+        blueRadio.createRadioButton(size: 30, color: .blue, superView: labelStackView)
+        greenRadio.createRadioButton(size: 30, color: .green, superView: labelStackView)
+        
+        redRadio.isSelected = true
+        redRadio.otherButtons = [blueRadio, greenRadio]
+        
+        self.contentView?.addSubview(labelStackView)
+        labelStackView.snp.makeConstraints{
+            $0.top.equalTo(self.checkInputTextField.snp.bottom).offset(33)
+            $0.left.equalTo(self.checkInputTextField.snp.left)
+        }
+    }
     
 }

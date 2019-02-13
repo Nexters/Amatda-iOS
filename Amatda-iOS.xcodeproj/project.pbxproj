@@ -25,6 +25,7 @@
 		A1A47DF121E1E9EB0067D46B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A47DEF21E1E9EB0067D46B /* LaunchScreen.storyboard */; };
 		A1A47DFC21E1E9EC0067D46B /* Amatda_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47DFB21E1E9EC0067D46B /* Amatda_iOSTests.swift */; };
 		A1A47E0721E1E9EC0067D46B /* Amatda_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47E0621E1E9EC0067D46B /* Amatda_iOSUITests.swift */; };
+		A1D89AC4221485E00036C4BC /* DLRadioButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D89AC3221485E00036C4BC /* DLRadioButton+.swift */; };
 		BABB4F0D21F811FF00616FD7 /* AMViewAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABB4F0C21F811FF00616FD7 /* AMViewAnimatable.swift */; };
 		BAD622C521EC73FD00BA2C27 /* AMPresentAnimateSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD622C221EC73FC00BA2C27 /* AMPresentAnimateSetting.swift */; };
 		BAD622C621EC73FD00BA2C27 /* AMPresentAnimateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD622C321EC73FD00BA2C27 /* AMPresentAnimateViewController.swift */; };
@@ -80,6 +81,7 @@
 		A1A47E0221E1E9EC0067D46B /* Amatda-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Amatda-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A47E0621E1E9EC0067D46B /* Amatda_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amatda_iOSUITests.swift; sourceTree = "<group>"; };
 		A1A47E0821E1E9EC0067D46B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1D89AC3221485E00036C4BC /* DLRadioButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DLRadioButton+.swift"; sourceTree = "<group>"; };
 		BABB4F0C21F811FF00616FD7 /* AMViewAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMViewAnimatable.swift; sourceTree = "<group>"; };
 		BAD622C221EC73FC00BA2C27 /* AMPresentAnimateSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPresentAnimateSetting.swift; sourceTree = "<group>"; };
 		BAD622C321EC73FD00BA2C27 /* AMPresentAnimateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPresentAnimateViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		A1D89ABC221328EC0036C4BC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A1D89AC3221485E00036C4BC /* DLRadioButton+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOS/Pods-Amatda-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -547,6 +551,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
@@ -593,6 +598,7 @@
 				A13F22D221FF685F006675FC /* AMPlusButton.swift in Sources */,
 				A10D31A421F4574F006132C5 /* AMWriteViewController.swift in Sources */,
 				BAD622C721EC73FD00BA2C27 /* AMActionAnimate.swift in Sources */,
+				A1D89AC4221485E00036C4BC /* DLRadioButton+.swift in Sources */,
 				A120640E220DAA3B001EC1EF /* AMMainHeaderView.swift in Sources */,
 				A1206410220DB1DA001EC1EF /* AMMainHeaderLayout.swift in Sources */,
 				A13F22CF21FF643F006675FC /* AMDeviceInfo.swift in Sources */,
