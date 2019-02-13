@@ -39,6 +39,7 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
     lazy var checkInputTextField : UITextField = {
         let tf = UITextField()
         tf.placeholder = "체크리스트를 입력해주세요"
+        
         return tf
     }()
     
@@ -54,6 +55,7 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
         setupBaseView()
         self.layoutIfNeeded()
         self.backgroundColor = .clear
+        setupInputTextField()
     }
     
     
@@ -91,4 +93,31 @@ extension AMWriteView : AMActionAnimate {
             make.height.equalTo(0)
         }
     }
+}
+
+
+extension AMWriteView{
+    private func setupInputTextField(){
+        self.contentView?.addSubview(self.checkInputTextField)
+        self.contentView?.addSubview(self.labelTitleLabel)
+        
+        self.checkInputTextField.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(26)
+            $0.left.equalToSuperview().offset(24)
+        }
+        
+        let lineView = UIView()
+        self.contentView?.addSubview(lineView)
+        lineView.backgroundColor = .red
+        lineView.snp.makeConstraints{
+            $0.top.equalTo(self.checkInputTextField.snp.bottom).offset(3)
+            $0.left.equalTo(self.checkInputTextField.snp.left)
+            $0.right.equalTo(self.checkInputTextField.snp.right)
+            $0.height.equalTo(1)
+        }
+    }
+    
+    
+    
+    
 }
