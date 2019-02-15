@@ -18,6 +18,7 @@ protocol AMViewAnimatable where Self : AMBaseView {
     func onDragContentView(_ gesture : UIGestureRecognizer)
 }
 
+
 extension AMViewAnimatable{
     func setupBaseView(){
         guard let backgroundView = self.backgroundView,

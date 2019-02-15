@@ -7,8 +7,13 @@
 //
 
 import UIKit
-import SnapKit
+
 import DLRadioButton
+import RxCocoa
+import RxSwift
+import SnapKit
+
+
 
 class AMWriteView: AMBaseView, AMViewAnimatable {
     var contentViewHeight: CGFloat? {
@@ -39,16 +44,37 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
     }()
     
     
-    lazy var checkInputTextField : UITextField = {
+    private lazy var controller : AMWriteViewController? = {
+        if self.vc is AMWriteViewController{
+            return (self.vc as! AMWriteViewController)
+        }
+        
+        return nil
+    }()
+    
+    
+    private lazy var checkInputTextField : UITextField = {
         let tf = UITextField()
         tf.placeholder = "준비물을 입력해주세요"
         tf.font = UIFont.notoSansCJKKr_regular(fontSize: 16)
         tf.becomeFirstResponder()
+        
+        if let controller = controller {
+            tf.rx.text.orEmpty.scan("") {
+                if $1.count > 10 {
+                    return $0 ?? String($1.prefix(10))
+                }else{
+                    return $1
+                }
+                }.subscribe(tf.rx.text)
+                .disposed(by: controller.disposeBag)
+        }
+
         return tf
     }()
     
     
-    lazy var labelStackView : UIStackView = {
+    private lazy var labelStackView : UIStackView = {
         let labelStackView          = UIStackView()
         labelStackView.axis         = .horizontal;
         labelStackView.distribution = .equalSpacing;
@@ -60,7 +86,7 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
     }()
     
     
-    lazy var completeButton : UIButton = {
+    private lazy var completeButton : UIButton = {
         let button = UIButton()
         button.setTitle("완료", for: .normal)
         button.titleLabel?.font = UIFont.notoSansCJKKr_bold(fontSize: 15)
@@ -120,12 +146,10 @@ extension AMWriteView : AMActionAnimate {
 extension AMWriteView{
     private func setupInputTextField(){
         self.contentView?.addSubview(self.checkInputTextField)
-
         
         self.checkInputTextField.snp.makeConstraints{
             $0.top.equalToSuperview().offset(26)
             $0.left.equalToSuperview().offset(24)
-            $0.right.equalToSuperview().offset(-26)
         }
 
         let lineView = UIView()
@@ -134,7 +158,7 @@ extension AMWriteView{
         lineView.snp.makeConstraints{
             $0.top.equalTo(self.checkInputTextField.snp.bottom).offset(3)
             $0.left.equalTo(self.checkInputTextField.snp.left)
-            $0.right.equalTo(self.checkInputTextField.snp.right)
+            $0.right.equalTo(self.checkInputTextField.snp.right).offset(50)
             $0.height.equalTo(1)
         }
     }
@@ -165,6 +189,7 @@ extension AMWriteView{
             $0.left.equalTo(self.checkInputTextField.snp.left)
         }
     }
+    
     
     private func setupCompleteButton(){
         self.contentView?.addSubview(self.completeButton)

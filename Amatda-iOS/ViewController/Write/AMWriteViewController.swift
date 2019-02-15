@@ -8,11 +8,14 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 class AMWriteViewController: AMPresentAnimateViewController {
     
-    
-    
     private lazy var writeView = AMWriteView(controlBy : self)
+    lazy var disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
