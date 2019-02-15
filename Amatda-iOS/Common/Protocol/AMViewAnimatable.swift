@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol AMViewAnimatable where Self : AMBaseView {
-    var contentViewHeight : CGFloat? { get set }
+    var contentViewHeight : CGFloat? { get }
     var contentView       : UIView?  { get set }
     var backgroundView    : UIView?  { get set }
     

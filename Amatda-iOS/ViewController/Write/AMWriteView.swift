@@ -11,7 +11,9 @@ import SnapKit
 import DLRadioButton
 
 class AMWriteView: AMBaseView, AMViewAnimatable {
-    var contentViewHeight: CGFloat? = 400
+    var contentViewHeight: CGFloat? {
+        return (appDelegate?.keyboardHeight ?? 0) + 190
+    }
     
     
     lazy var backgroundView : UIView? = {
@@ -40,30 +42,41 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
     lazy var checkInputTextField : UITextField = {
         let tf = UITextField()
         tf.placeholder = "준비물을 입력해주세요"
+        tf.font = UIFont.notoSansCJKKr_regular(fontSize: 16)
         tf.becomeFirstResponder()
         return tf
     }()
     
     
-    lazy var labelTitleLabel : UILabel = {
-        let label = UILabel()
-        label.text = "라벨"
-        return label
+    lazy var labelStackView : UIStackView = {
+        let labelStackView          = UIStackView()
+        labelStackView.axis         = .horizontal;
+        labelStackView.distribution = .equalSpacing;
+        labelStackView.alignment    = .center;
+        labelStackView.spacing      = 30;
+        labelStackView.backgroundColor = .red
+        
+        return labelStackView
     }()
+    
     
     lazy var completeButton : UIButton = {
         let button = UIButton()
         button.setTitle("완료", for: .normal)
+        button.titleLabel?.font = UIFont.notoSansCJKKr_bold(fontSize: 15)
+        button.setTitleColor(UIColor.init(red: 255, green: 84, blue: 0), for: .normal)
         return button
     }()
     
     
     override func setupUI(){
         setupBaseView()
-        self.layoutIfNeeded()
-        self.backgroundColor = .clear
         setupInputTextField()
         setupLabelStackView()
+        setupCompleteButton()
+        
+        self.layoutIfNeeded()
+        self.backgroundColor = .clear
     }
     
     
@@ -107,7 +120,7 @@ extension AMWriteView : AMActionAnimate {
 extension AMWriteView{
     private func setupInputTextField(){
         self.contentView?.addSubview(self.checkInputTextField)
-        self.contentView?.addSubview(self.labelTitleLabel)
+
         
         self.checkInputTextField.snp.makeConstraints{
             $0.top.equalToSuperview().offset(26)
@@ -117,7 +130,7 @@ extension AMWriteView{
 
         let lineView = UIView()
         self.contentView?.addSubview(lineView)
-        lineView.backgroundColor = .red
+        lineView.backgroundColor = UIColor(red: 179, green: 179, blue: 179)
         lineView.snp.makeConstraints{
             $0.top.equalTo(self.checkInputTextField.snp.bottom).offset(3)
             $0.left.equalTo(self.checkInputTextField.snp.left)
@@ -130,14 +143,11 @@ extension AMWriteView{
     private func setupLabelStackView(){
         let titleLabel = UILabel()
         titleLabel.text = "라벨"
+        titleLabel.font = UIFont.notoSansCJKKr_regular(fontSize: 16)
+        titleLabel.textColor = UIColor(red: 155, green: 155, blue: 155)
         
-        let labelStackView          = UIStackView()
-        labelStackView.axis         = .horizontal;
-        labelStackView.distribution = .equalSpacing;
-        labelStackView.alignment    = .center;
-        labelStackView.spacing      = 30;
+        self.labelStackView.addArrangedSubview(titleLabel)
         
-        labelStackView.addArrangedSubview(titleLabel)
         let redRadio   = DLRadioButton()
         let blueRadio  = DLRadioButton()
         let greenRadio = DLRadioButton()
@@ -157,7 +167,13 @@ extension AMWriteView{
     }
     
     private func setupCompleteButton(){
+        self.contentView?.addSubview(self.completeButton)
         
+        self.completeButton.snp.makeConstraints{
+            $0.right.equalToSuperview().offset(-23)
+            $0.size.equalTo(40)
+            $0.top.equalTo(self.labelStackView.snp.bottom).offset(28)
+        }
     }
     
 }

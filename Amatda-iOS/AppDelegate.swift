@@ -8,18 +8,21 @@
 
 import UIKit
 
+let appDelegate = UIApplication.shared.delegate as? AppDelegate
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var keyboardHeight : CGFloat = 0.0
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         window?.makeKeyAndVisible()
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         window?.rootViewController = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         return true
     }
@@ -46,6 +49,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    
+    @objc private func keyboardWillShow(notification : Notification){
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let height = keyboardRectangle.height
+            self.keyboardHeight = height
+        }
+    }
+    
+    @objc private func keyboardWillHide(notification : Notification){
+        self.keyboardHeight = 0
+    }
 }
 

@@ -12,38 +12,44 @@ class AMWriteViewController: AMPresentAnimateViewController {
     
     
     
-    private lazy var v = AMWriteView(controlBy : self)
+    private lazy var writeView = AMWriteView(controlBy : self)
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.modalPresentationStyle = .overCurrentContext
     }
+    
     
     init() {
         super.init(nibName: nil, bundle: nil)
         self.modalPresentationStyle = .overCurrentContext
     }
     
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     override func loadView() {
-        view = v
+        view = self.writeView
     }
+    
     
     override func onWillPresentView(){
-        v.onWillPresentView()
+        self.writeView.onWillPresentView()
     }
+    
     
     override func onWillDismissView(){
-        v.onWillDismissView()
+        self.writeView.onWillDismissView()
     }
+    
     
     override func performCustomPresentationAnimation(){
-        v.performCustomPresentationAnimation()
+        self.writeView.performCustomPresentationAnimation()
     }
     
+    
     override func performCustomDismissingAnimation(){
-        v.performCustomDismissingAnimation()
+        self.writeView.performCustomDismissingAnimation()
     }
 }
