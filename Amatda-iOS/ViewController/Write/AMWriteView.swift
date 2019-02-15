@@ -39,8 +39,8 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
     
     lazy var checkInputTextField : UITextField = {
         let tf = UITextField()
-        tf.placeholder = "체크리스트를 입력해주세요"
-        
+        tf.placeholder = "준비물을 입력해주세요"
+        tf.becomeFirstResponder()
         return tf
     }()
     
@@ -49,6 +49,12 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
         let label = UILabel()
         label.text = "라벨"
         return label
+    }()
+    
+    lazy var completeButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("완료", for: .normal)
+        return button
     }()
     
     
@@ -148,6 +154,10 @@ extension AMWriteView{
             $0.top.equalTo(self.checkInputTextField.snp.bottom).offset(33)
             $0.left.equalTo(self.checkInputTextField.snp.left)
         }
+    }
+    
+    private func setupCompleteButton(){
+        
     }
     
 }
