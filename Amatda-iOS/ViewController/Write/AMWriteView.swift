@@ -15,7 +15,7 @@ import SnapKit
 
 
 
-class AMWriteView: AMBaseView, AMViewAnimatable {
+class AMWriteView: AMBaseView, AMViewAnimatable, AMCanShowAlert {
     var contentViewHeight: CGFloat? {
         return (appDelegate?.keyboardHeight ?? 0) + 190
     }
@@ -79,7 +79,7 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
         labelStackView.axis         = .horizontal;
         labelStackView.distribution = .equalSpacing;
         labelStackView.alignment    = .center;
-        labelStackView.spacing      = 30;
+        labelStackView.spacing      = 28;
         labelStackView.backgroundColor = .red
         
         return labelStackView
@@ -106,9 +106,36 @@ class AMWriteView: AMBaseView, AMViewAnimatable {
     }
     
     
+    override func setupBinding() {
+        bindInput()
+        bindOutput()
+    }
+    
     
     @objc private func dragView(_ gesture : UIGestureRecognizer){
         onDragContentView(gesture)
+    }
+}
+
+extension AMWriteView  {
+    func bindInput(){
+        guard let controller = controller else { return }
+        self.checkInputTextField.rx.text.orEmpty
+            .bind(to:controller.checkInputText)
+            .disposed(by: controller.disposeBag)
+        
+        
+        self.completeButton.rx.tap
+            .bind(to:controller.didTapCompleteButton)
+            .disposed(by: controller.disposeBag)
+    }
+    
+    func bindOutput(){
+        guard let controller = controller else { return }
+        controller.isEmptyInputText
+            .subscribe(onNext:{ s1 in
+            self.showAlert(title: "", message: String.emptyCheckItem)
+        }).disposed(by: controller.disposeBag)
     }
 }
 
@@ -158,7 +185,7 @@ extension AMWriteView{
         lineView.snp.makeConstraints{
             $0.top.equalTo(self.checkInputTextField.snp.bottom).offset(3)
             $0.left.equalTo(self.checkInputTextField.snp.left)
-            $0.right.equalTo(self.checkInputTextField.snp.right).offset(50)
+            $0.right.equalTo(self.checkInputTextField.snp.right).offset(70)
             $0.height.equalTo(1)
         }
     }
@@ -170,18 +197,35 @@ extension AMWriteView{
         titleLabel.font = UIFont.notoSansCJKKr_regular(fontSize: 16)
         titleLabel.textColor = UIColor(red: 155, green: 155, blue: 155)
         
-        self.labelStackView.addArrangedSubview(titleLabel)
+        let radioStackView = UIStackView()
+        radioStackView.axis         = .horizontal;
+        radioStackView.distribution = .equalSpacing;
+        radioStackView.alignment    = .center;
+        radioStackView.spacing      = 34;
         
         let redRadio   = DLRadioButton()
         let blueRadio  = DLRadioButton()
         let greenRadio = DLRadioButton()
         
-        redRadio.createRadioButton(size: 30, color: .red, superView: labelStackView)
-        blueRadio.createRadioButton(size: 30, color: .blue, superView: labelStackView)
-        greenRadio.createRadioButton(size: 30, color: .green, superView: labelStackView)
-        
+        redRadio.createRadioButton(size: 30, color: .red, superView: radioStackView)
+        blueRadio.createRadioButton(size: 30, color: .blue, superView: radioStackView)
+        greenRadio.createRadioButton(size: 30, color: .green, superView: radioStackView)
+
         redRadio.isSelected = true
         redRadio.otherButtons = [blueRadio, greenRadio]
+        
+        if let controller = controller {
+            Observable.of(redRadio.rx.tap.map{ _ in 0 },
+                          blueRadio.rx.tap.map{ _ in 1 },
+                          greenRadio.rx.tap.map{ _ in 2 }
+                )
+                .merge()
+                .bind(to: controller.labelColorTag)
+                .disposed(by: controller.disposeBag)
+        }
+        
+        self.labelStackView.addArrangedSubview(titleLabel)
+        self.labelStackView.addArrangedSubview(radioStackView)
         
         self.contentView?.addSubview(labelStackView)
         labelStackView.snp.makeConstraints{

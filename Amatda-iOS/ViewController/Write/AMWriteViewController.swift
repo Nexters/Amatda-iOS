@@ -16,6 +16,15 @@ class AMWriteViewController: AMPresentAnimateViewController {
     private lazy var writeView = AMWriteView(controlBy : self)
     lazy var disposeBag = DisposeBag()
     
+    //input
+    let didTapCompleteButton = PublishSubject<Void>()
+    let checkInputText       = BehaviorSubject(value: "")
+    let labelColorTag        = BehaviorSubject(value: 0)
+    
+    //output
+    var registerCheckItem    : Driver<String>?
+    var isEmptyInputText     = PublishSubject<Bool>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,7 +32,27 @@ class AMWriteViewController: AMPresentAnimateViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        setupObservable()
         self.modalPresentationStyle = .overCurrentContext
+    }
+    
+    
+    private func setupObservable(){
+        let register = Observable.combineLatest(self.labelColorTag, self.checkInputText) { ($0,$1) }
+        let emptyObservable = self.checkInputText.map{ $0.count == 0 }
+        
+        self.didTapCompleteButton
+            .withLatestFrom(register)
+            .subscribe(onNext:{ s1 in
+                print("s1 : \(s1)")
+            }).disposed(by: disposeBag)
+        
+        
+        self.didTapCompleteButton
+            .withLatestFrom(emptyObservable)
+            .filter{$0}
+            .bind(to: self.isEmptyInputText)
+            .disposed(by: disposeBag)
     }
     
     
