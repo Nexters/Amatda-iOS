@@ -86,6 +86,7 @@ class AMCarrierTimeViewController: AMBaseViewController {
             } )
             .disposed(by: disposeBag)
         
+        
         Observable
             .combineLatest(superPageVC.dayOfCarrier,
                            superPageVC.timeOfCarrier){($0,$1)}
@@ -183,7 +184,11 @@ extension AMCarrierTimeViewController{
                 .map{
                     self.hidePickerView()
                     self.dayOfCarrier.text = self.pickerDate
-                    return self.pickerDate
+                    
+                    let dateformatter = DateFormatter()
+                    dateformatter.dateFormat = "yy-MM-dd"
+                    let date = dateformatter.string(from: self.datePickerView.date)
+                    return date
                 }.bind(to: superPageVC.dayOfCarrier)
                 .disposed(by: disposeBag)
         
@@ -193,7 +198,12 @@ extension AMCarrierTimeViewController{
                 .map{
                     self.hidePickerView()
                     self.timeOfCarrier.text = self.pickerTime
-                    return self.pickerTime
+                    
+                    let dateformatter = DateFormatter()
+                    dateformatter.dateFormat = "HH:mm:ss"
+                    let time = dateformatter.string(from: self.timePickerView.date)
+                    
+                    return time
                 }.bind(to: superPageVC.timeOfCarrier)
                 .disposed(by: disposeBag)
     }

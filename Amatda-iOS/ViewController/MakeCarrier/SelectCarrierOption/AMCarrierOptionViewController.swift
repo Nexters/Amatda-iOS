@@ -94,17 +94,32 @@ class AMCarrierOptionViewController: AMBaseViewController {
         campingLabel.text        = "캠핑"
         businessTripLabel.text   = "출장"
         babyLabel.text           = "영유아 동반"
+        
+        self.nextButton.isEnabled = false
+        self.nextButton.backgroundColor = UIColor(red: 231, green: 231, blue: 231)
     }
     
     override func setupBind() {
-        
         guard let disposeBag = disposeBag,
             let superPageVC = self.superPageVC
             else {
                 return
         }
         
-        bindButton()
+        let ob = self.nonSelectButton.rx.tap.map{ self.nonSelectButton.tag}
+        let ob1 = self.essentialButton.rx.tap.map{ self.essentialButton.tag }
+        let ob2 = self.swimmingButton.rx.tap.map{ self.swimmingButton.tag }
+        let ob3 = self.winterSportsButton.rx.tap.map{ self.winterSportsButton.tag }
+        let ob4 = self.campingButton.rx.tap.map{ self.campingButton.tag }
+        let ob5 = self.businessTripButton.rx.tap.map{ self.businessTripButton.tag }
+        let ob6 = self.babyButton.rx.tap.map{ self.babyButton.tag }
+        
+        
+        Observable.merge(ob,ob1,ob2,ob3,ob4,ob5,ob6)
+            .subscribe(onNext: convertSelectionOption)
+            .disposed(by: disposeBag)
+        
+        
         nextButton.rx.tap
             .map{self.options
                 .filter{ $0.isSelected }
@@ -117,26 +132,6 @@ class AMCarrierOptionViewController: AMBaseViewController {
 
 
 extension AMCarrierOptionViewController{
-    private func bindButton(){
-        
-        let ob = self.nonSelectButton.rx.tap.map{ self.nonSelectButton.tag}
-        let ob1 = self.essentialButton.rx.tap.map{ self.essentialButton.tag }
-        let ob2 = self.swimmingButton.rx.tap.map{ self.swimmingButton.tag }
-        let ob3 = self.winterSportsButton.rx.tap.map{ self.winterSportsButton.tag }
-        let ob4 = self.campingButton.rx.tap.map{ self.campingButton.tag }
-        let ob5 = self.businessTripButton.rx.tap.map{ self.businessTripButton.tag }
-        let ob6 = self.babyButton.rx.tap.map{ self.babyButton.tag }
-        
-        
-        Observable.merge(ob,ob1,ob2,ob3,ob4,ob5,ob6)
-            .subscribe(onNext:
-                convertSelectionOption
-            )
-            .disposed(by: disposeBag!)
-    }
-    
-    
-    
     
     private func convertSelectionOption(_ index : Int){
         if index == 0 {
@@ -163,6 +158,15 @@ extension AMCarrierOptionViewController{
                 self.options[index].label.textColor = selectedLabelColor
                 self.options[index].isSelected = true
             }
+        }
+        
+        let tempArr = self.options.filter{ $0.isSelected }
+        if tempArr.count > 0 {
+            self.nextButton.isEnabled = true
+            self.nextButton.backgroundColor = UIColor(red: 255, green: 87, blue: 54)
+        }else{
+            self.nextButton.isEnabled = false
+            self.nextButton.backgroundColor = UIColor(red: 231, green: 231, blue: 231)
         }
     }
 }
