@@ -19,7 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        window?.rootViewController = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController)
+        window?.rootViewController = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController") as! AMMakeCarrierViewController)
+   
+        /*
+         window?.rootViewController = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController)
+         */
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)

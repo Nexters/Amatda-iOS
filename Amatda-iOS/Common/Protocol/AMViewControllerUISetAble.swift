@@ -20,11 +20,6 @@ protocol AMViewControllerNaviSetAble  where Self : AMBaseViewController{
 
 extension AMViewControllerNaviSetAble{
     func setupNavigation(){
-//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        navigationController?.navigationBar.shadowImage = UIImage()
-//        navigationController?.navigationBar.isTranslucent = true
-        
-        
         guard let titleLabel = titleLabel,
             let rightBarButtonItem = rightBarButtonItem else { return }
         
@@ -32,32 +27,6 @@ extension AMViewControllerNaviSetAble{
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = NSTextAlignment.left
         self.navigationItem.titleView = titleLabel
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
-
-        
-        /*
-         UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectMake(0,0,200,40)];
-         lbl.textAlignment = NSTextAlignmentLeft;
-         lbl.text = @"My Title";
-         self.navigationItem.titleView = lbl;
- */
-        
-        self.navigationItem.titleView = titleLabel
-//        titleLabel.snp.makeConstraints{
-//            $0.top.equalToSuperview().offset(33.5)
-//            $0.left.equalToSuperview().offset(24)
-//        }
-//
-//        if let subTitleLabel = subTitleLabel {
-//            subTitleLabel.numberOfLines = 0
-//            subTitleLabel.font = UIFont.systemFont(ofSize: 24)
-//            self.view.addSubview(subTitleLabel)
-//            subTitleLabel.snp.makeConstraints{
-//                $0.top.equalTo(titleLabel.snp.bottom)
-//                $0.left.equalTo(titleLabel)
-//            }
-//        }
-        
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
 }

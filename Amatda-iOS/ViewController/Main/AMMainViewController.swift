@@ -131,6 +131,7 @@ extension AMMainViewController : UICollectionViewDelegateFlowLayout {
         return CGSize(width: view.frame.width, height: 200)
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var width = collectionView.frame.width
         if UIApplication.shared.statusBarOrientation == .landscapeRight ||
@@ -147,7 +148,21 @@ extension AMMainViewController : UICollectionViewDelegateFlowLayout {
 
 extension AMMainViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 18
+        switch section {
+        case 0:
+            return 0
+        case 1:
+            return 18
+        case 2:
+            return 18
+        default:
+            return 0
+        }
+    }
+    
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
     }
     
     

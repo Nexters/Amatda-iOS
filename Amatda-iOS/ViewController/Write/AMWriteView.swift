@@ -14,7 +14,6 @@ import RxSwift
 import SnapKit
 
 
-
 class AMWriteView: AMBaseView, AMViewAnimatable, AMCanShowAlert {
     var contentViewHeight: CGFloat? {
         return (appDelegate?.keyboardHeight ?? 0) + 190
@@ -117,6 +116,7 @@ class AMWriteView: AMBaseView, AMViewAnimatable, AMCanShowAlert {
     }
 }
 
+
 extension AMWriteView  {
     func bindInput(){
         guard let controller = controller else { return }
@@ -138,6 +138,7 @@ extension AMWriteView  {
         }).disposed(by: controller.disposeBag)
     }
 }
+
 
 extension AMWriteView : AMActionAnimate {
     func onWillPresentView(){
