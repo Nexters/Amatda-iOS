@@ -356,7 +356,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="jFd-kb-pcc">
-                                <rect key="frame" x="24" y="246.5" width="260" height="253.5"/>
+                                <rect key="frame" x="24" y="246.5" width="267.5" height="253.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UBW-cY-z05">
                                         <rect key="frame" x="0.0" y="0.0" width="56" height="66.5"/>
@@ -365,8 +365,8 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="39"/>
                                                 <state key="normal" image="notselected"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOn-Og-cBE">
-                                                <rect key="frame" x="11.5" y="47" width="33.5" height="19.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선택안함" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOn-Og-cBE">
+                                                <rect key="frame" x="4" y="47" width="48" height="19.5"/>
                                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="13"/>
                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -374,7 +374,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="l4f-YO-uOZ">
-                                        <rect key="frame" x="0.0" y="94.5" width="260" height="65.5"/>
+                                        <rect key="frame" x="0.0" y="94.5" width="267.5" height="65.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="dU6-ep-yrv">
                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="65.5"/>
@@ -383,8 +383,8 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="56" height="43"/>
                                                         <state key="normal" image="icEssential"/>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTV-u2-Ykx">
-                                                        <rect key="frame" x="11.5" y="46" width="33.5" height="19.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="필수품" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTV-u2-Ykx">
+                                                        <rect key="frame" x="10" y="46" width="36" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="13"/>
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -398,8 +398,8 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="56" height="38"/>
                                                         <state key="normal" image="icSwimming"/>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgd-eo-IWT">
-                                                        <rect key="frame" x="11.5" y="46" width="33.5" height="19.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="물놀이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgd-eo-IWT">
+                                                        <rect key="frame" x="10" y="46" width="36" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="13"/>
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -407,14 +407,14 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="5Z1-aD-49g">
-                                                <rect key="frame" x="204" y="0.0" width="56" height="65.5"/>
+                                                <rect key="frame" x="204" y="0.0" width="63.5" height="65.5"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edh-d3-I0G">
-                                                        <rect key="frame" x="0.0" y="0.0" width="56" height="39"/>
+                                                        <rect key="frame" x="4" y="0.0" width="56" height="39"/>
                                                         <state key="normal" image="icWintersports"/>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXL-2g-9rp">
-                                                        <rect key="frame" x="11.5" y="46" width="33.5" height="19.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="겨울 스포츠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXL-2g-9rp">
+                                                        <rect key="frame" x="0.0" y="46" width="63.5" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="13"/>
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -424,7 +424,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="tCc-Nf-Dcv">
-                                        <rect key="frame" x="0.0" y="188" width="260" height="65.5"/>
+                                        <rect key="frame" x="0.0" y="188" width="267.5" height="65.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gl4-Uk-TDX">
                                                 <rect key="frame" x="0.0" y="0.0" width="56" height="65.5"/>
@@ -433,8 +433,8 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="56" height="38"/>
                                                         <state key="normal" image="icCamping"/>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WkA-GA-ASu">
-                                                        <rect key="frame" x="11.5" y="46" width="33.5" height="19.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="캠핑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WkA-GA-ASu">
+                                                        <rect key="frame" x="16" y="46" width="24" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="13"/>
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -448,8 +448,8 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="56" height="38"/>
                                                         <state key="normal" image="icBusinesstrip"/>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcI-2f-Ixe">
-                                                        <rect key="frame" x="11.5" y="46" width="33.5" height="19.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출장" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcI-2f-Ixe">
+                                                        <rect key="frame" x="16" y="46" width="24" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="13"/>
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -457,14 +457,14 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b5h-yl-hHk">
-                                                <rect key="frame" x="204" y="0.0" width="56" height="65.5"/>
+                                                <rect key="frame" x="204" y="0.0" width="63.5" height="65.5"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Omc-HO-eMw">
-                                                        <rect key="frame" x="0.0" y="0.0" width="56" height="38"/>
+                                                        <rect key="frame" x="4" y="0.0" width="56" height="38"/>
                                                         <state key="normal" image="icBaby"/>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ML-Zc-vHS">
-                                                        <rect key="frame" x="11.5" y="46" width="33.5" height="19.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="영유아 동반" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ML-Zc-vHS">
+                                                        <rect key="frame" x="0.0" y="46" width="63.5" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="13"/>
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>

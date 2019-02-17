@@ -82,22 +82,17 @@ class AMCarrierOptionViewController: AMBaseViewController {
     var superPageVC : AMMakeCarrierViewController?
     var disposeBag : DisposeBag?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    
     override func setupUI() {
-        nonSelectLabel.text      = "선택안함"
-        essentialLabel.text      = "필수품"
-        swimminLabel.text        = "물놀이"
-        winterSportsLabel.text   = "겨울 스포츠"
-        campingLabel.text        = "캠핑"
-        businessTripLabel.text   = "출장"
-        babyLabel.text           = "영유아 동반"
-        
         self.nextButton.isEnabled = false
         self.nextButton.backgroundColor = UIColor(red: 231, green: 231, blue: 231)
     }
+    
     
     override func setupBind() {
         guard let disposeBag = disposeBag,

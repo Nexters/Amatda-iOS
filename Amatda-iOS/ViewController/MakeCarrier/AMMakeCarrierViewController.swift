@@ -71,7 +71,6 @@ class AMMakeCarrierViewController: AMBaseViewController{
     }
     
     private func bindOutput(){
-        
         let requiredCarrierInfo = Observable.combineLatest(cityOfCarrier,
                                                            timeOfCarrier,
                                                            dayOfCarrier,
@@ -85,7 +84,7 @@ class AMMakeCarrierViewController: AMBaseViewController{
         didTapRegister.withLatestFrom(requiredCarrierInfo)
             .subscribe(onNext:{ s1 in
                 print("tap : \(s1)")
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     
@@ -143,10 +142,6 @@ class AMMakeCarrierViewController: AMBaseViewController{
         }) { (finished) in
             
         }
-    }
-    
-    func registerCarrier(){
-        
     }
 }
 
