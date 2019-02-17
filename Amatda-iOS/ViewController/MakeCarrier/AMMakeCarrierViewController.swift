@@ -27,10 +27,11 @@ class AMMakeCarrierViewController: AMBaseViewController{
     private var zipperImageView  : UIImageView = UIImageView()
     private var disposeBag = DisposeBag()
     
-    var cityOfCarrier  = PublishSubject<String>()
-    var dayOfCarrier   = PublishSubject<String>()
-    var timeOfCarrier  = PublishSubject<String>()
-    
+    var cityOfCarrier     = BehaviorSubject<String>(value: "")
+    var dayOfCarrier      = BehaviorSubject<String>(value: "")
+    var timeOfCarrier     = BehaviorSubject<String>(value: "")
+    var optionCarrier     = BehaviorRelay<[Int]>(value: [])
+    let didTapRegister    = PublishSubject<[Int]>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,20 @@ class AMMakeCarrierViewController: AMBaseViewController{
     
     private func bindOutput(){
         
+        let requiredCarrierInfo = Observable.combineLatest(cityOfCarrier,
+                                                           timeOfCarrier,
+                                                           dayOfCarrier,
+                                                           optionCarrier){($0,$1,$2,$3)}
+        
+        didTapRegister
+            .bind(to: optionCarrier)
+            .disposed(by: disposeBag)
+        
+        
+        didTapRegister.withLatestFrom(requiredCarrierInfo)
+            .subscribe(onNext:{ s1 in
+                print("tap : \(s1)")
+        }).disposed(by: disposeBag)
     }
     
     
@@ -128,6 +143,10 @@ class AMMakeCarrierViewController: AMBaseViewController{
         }) { (finished) in
             
         }
+    }
+    
+    func registerCarrier(){
+        
     }
 }
 

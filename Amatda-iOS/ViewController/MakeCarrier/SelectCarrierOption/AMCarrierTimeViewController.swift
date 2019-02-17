@@ -79,7 +79,11 @@ class AMCarrierTimeViewController: AMBaseViewController {
               let superPageVC = superPageVC else { return }
         
         self.nextButton.rx.tap
-            .subscribe(onNext:{ superPageVC.pressedNextButton()} )
+            .take(1)
+            .subscribe(onNext:{
+                superPageVC.pressedNextButton()
+                self.nextButton.isEnabled = false
+            } )
             .disposed(by: disposeBag)
         
         Observable
