@@ -4,7 +4,8 @@
 target 'Amatda-iOS' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
- pod 'Alamofire'
+  pod 'Alamofire'
+  pod 'Alamofire-SwiftyJSON'	
   pod 'SwiftyJSON'
   pod 'SnapKit'
   pod 'Kingfisher'

@@ -43,6 +43,7 @@
 		A1A47E0721E1E9EC0067D46B /* Amatda_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47E0621E1E9EC0067D46B /* Amatda_iOSUITests.swift */; };
 		A1D89AC4221485E00036C4BC /* DLRadioButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D89AC3221485E00036C4BC /* DLRadioButton+.swift */; };
 		BA18BD16221C1C660062159E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA18BD15221C1C660062159E /* APIRouter.swift */; };
+		BA18BD18221C410F0062159E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA18BD17221C410F0062159E /* APIClient.swift */; };
 		BABB4F0D21F811FF00616FD7 /* AMViewAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABB4F0C21F811FF00616FD7 /* AMViewAnimatable.swift */; };
 		BAD622C521EC73FD00BA2C27 /* AMPresentAnimateSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD622C221EC73FC00BA2C27 /* AMPresentAnimateSetting.swift */; };
 		BAD622C621EC73FD00BA2C27 /* AMPresentAnimateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD622C321EC73FD00BA2C27 /* AMPresentAnimateViewController.swift */; };
@@ -116,6 +117,7 @@
 		A1A47E0821E1E9EC0067D46B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1D89AC3221485E00036C4BC /* DLRadioButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DLRadioButton+.swift"; sourceTree = "<group>"; };
 		BA18BD15221C1C660062159E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		BA18BD17221C410F0062159E /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		BABB4F0C21F811FF00616FD7 /* AMViewAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMViewAnimatable.swift; sourceTree = "<group>"; };
 		BAD622C221EC73FC00BA2C27 /* AMPresentAnimateSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPresentAnimateSetting.swift; sourceTree = "<group>"; };
 		BAD622C321EC73FD00BA2C27 /* AMPresentAnimateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPresentAnimateViewController.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				BA18BD15221C1C660062159E /* APIRouter.swift */,
+				BA18BD17221C410F0062159E /* APIClient.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOS/Pods-Amatda-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
@@ -649,6 +653,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
@@ -699,6 +704,7 @@
 				A1A47DE721E1E9EA0067D46B /* AppDelegate.swift in Sources */,
 				A1511CB42217FBDC0051FA25 /* UIPageViewController+.swift in Sources */,
 				A13F22D221FF685F006675FC /* AMPlusButton.swift in Sources */,
+				BA18BD18221C410F0062159E /* APIClient.swift in Sources */,
 				A13A74582216F3B10062A9E8 /* UIFont+.swift in Sources */,
 				A10D31A421F4574F006132C5 /* AMWriteViewController.swift in Sources */,
 				BAD622C721EC73FD00BA2C27 /* AMActionAnimate.swift in Sources */,
@@ -890,10 +896,7 @@
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -910,10 +913,7 @@
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -930,11 +930,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -952,11 +948,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -973,11 +965,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -994,11 +982,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

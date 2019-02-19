@@ -64,7 +64,7 @@ enum APIRouter : URLRequestConvertible {
     case detailCarrier(carrierID : Int)
     
     //캐리어 등록하기
-    case registerCarrier(countryID : Int, startDate : String options : [Int])
+    case registerCarrier(countryID : Int, startDate : String ,options : [Int])
     
     //캐리어 삭제하기
     case deleteCarrier(carrierID : Int)
