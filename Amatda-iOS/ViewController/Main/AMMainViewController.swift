@@ -94,6 +94,7 @@ extension AMMainViewController {
         collectionView.dataSource = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellID")
         collectionView.register(AMMainHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: mainHeaderView)
+        collectionView.register(UINib(nibName: "AMPackageHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AMPackageHeaderView")
     }
     
     
@@ -109,7 +110,7 @@ extension AMMainViewController {
 
 extension AMMainViewController : AMMainHeaderDelegate {
     func recognizeHeaderContentOffset(_: AMMainHeaderLayout, contentOffSetY: CGFloat) {
-        let differ = 200 - contentOffSetY
+        let differ = 164 - contentOffSetY
         print("differ : \(differ)")
         if differ > 0 {
             titleLabel?.alpha = 1 - (differ/100)
@@ -128,7 +129,11 @@ extension AMMainViewController : UICollectionViewDelegate{
 
 extension AMMainViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 200)
+        if section == 0 {
+            return CGSize(width: view.frame.width, height: 164)
+        }
+        
+        return CGSize(width: view.frame.width, height: 38)
     }
     
     
@@ -140,7 +145,8 @@ extension AMMainViewController : UICollectionViewDelegateFlowLayout {
         }else{
             
         }
-        return CGSize(width: width, height: 100)
+        
+        return CGSize(width: width, height: 40)
     }
 }
 
@@ -150,11 +156,11 @@ extension AMMainViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 18
+            return 3
         case 1:
-            return 18
+            return 3
         case 2:
-            return 18
+            return 10
         default:
             return 0
         }
@@ -162,7 +168,7 @@ extension AMMainViewController : UICollectionViewDataSource{
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 3
     }
     
     
@@ -174,8 +180,14 @@ extension AMMainViewController : UICollectionViewDataSource{
     
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: mainHeaderView, for: indexPath)
-        return header
+        if indexPath.section == 0 {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: mainHeaderView, for: indexPath)
+            return header
+        }else{
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath)
+            return header
+        }
+        
     }
 }
 

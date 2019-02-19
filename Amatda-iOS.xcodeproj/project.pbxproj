@@ -41,6 +41,8 @@
 		A1A47DF121E1E9EB0067D46B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A47DEF21E1E9EB0067D46B /* LaunchScreen.storyboard */; };
 		A1A47DFC21E1E9EC0067D46B /* Amatda_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47DFB21E1E9EC0067D46B /* Amatda_iOSTests.swift */; };
 		A1A47E0721E1E9EC0067D46B /* Amatda_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47E0621E1E9EC0067D46B /* Amatda_iOSUITests.swift */; };
+		A1B9793D221C709B0054EA2F /* AMPackageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9793B221C709B0054EA2F /* AMPackageHeaderView.swift */; };
+		A1B9793E221C709B0054EA2F /* AMPackageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1B9793C221C709B0054EA2F /* AMPackageHeaderView.xib */; };
 		A1D89AC4221485E00036C4BC /* DLRadioButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D89AC3221485E00036C4BC /* DLRadioButton+.swift */; };
 		BA18BD16221C1C660062159E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA18BD15221C1C660062159E /* APIRouter.swift */; };
 		BA18BD18221C410F0062159E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA18BD17221C410F0062159E /* APIClient.swift */; };
@@ -115,6 +117,8 @@
 		A1A47E0221E1E9EC0067D46B /* Amatda-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Amatda-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A47E0621E1E9EC0067D46B /* Amatda_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amatda_iOSUITests.swift; sourceTree = "<group>"; };
 		A1A47E0821E1E9EC0067D46B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1B9793B221C709B0054EA2F /* AMPackageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMPackageHeaderView.swift; sourceTree = "<group>"; };
+		A1B9793C221C709B0054EA2F /* AMPackageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AMPackageHeaderView.xib; sourceTree = "<group>"; };
 		A1D89AC3221485E00036C4BC /* DLRadioButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DLRadioButton+.swift"; sourceTree = "<group>"; };
 		BA18BD15221C1C660062159E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		BA18BD17221C410F0062159E /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -270,9 +274,9 @@
 		A18841C92201C8F4009EC62E /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				A1B9793A221C705E0054EA2F /* HeaderView */,
 				A1A47DE821E1E9EA0067D46B /* AMMainViewController.swift */,
 				A18841CA2201C922009EC62E /* AMMainViewModel.swift */,
-				A120640D220DAA3B001EC1EF /* AMMainHeaderView.swift */,
 				A120640F220DB1DA001EC1EF /* AMMainHeaderLayout.swift */,
 			);
 			path = Main;
@@ -330,6 +334,16 @@
 				A1A47E0821E1E9EC0067D46B /* Info.plist */,
 			);
 			path = "Amatda-iOSUITests";
+			sourceTree = "<group>";
+		};
+		A1B9793A221C705E0054EA2F /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				A120640D220DAA3B001EC1EF /* AMMainHeaderView.swift */,
+				A1B9793B221C709B0054EA2F /* AMPackageHeaderView.swift */,
+				A1B9793C221C709B0054EA2F /* AMPackageHeaderView.xib */,
+			);
+			path = HeaderView;
 			sourceTree = "<group>";
 		};
 		A1D89ABC221328EC0036C4BC /* Extension */ = {
@@ -498,6 +512,7 @@
 				A1A47DEE21E1E9EB0067D46B /* Assets.xcassets in Resources */,
 				A1A47DEC21E1E9EA0067D46B /* Main.storyboard in Resources */,
 				A13A74522216F2C80062A9E8 /* NotoSansCJKkr-Bold.otf in Resources */,
+				A1B9793E221C709B0054EA2F /* AMPackageHeaderView.xib in Resources */,
 				A13A74542216F2CF0062A9E8 /* NotoSansCJKkr-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -706,6 +721,7 @@
 				A13F22D221FF685F006675FC /* AMPlusButton.swift in Sources */,
 				BA18BD18221C410F0062159E /* APIClient.swift in Sources */,
 				A13A74582216F3B10062A9E8 /* UIFont+.swift in Sources */,
+				A1B9793D221C709B0054EA2F /* AMPackageHeaderView.swift in Sources */,
 				A10D31A421F4574F006132C5 /* AMWriteViewController.swift in Sources */,
 				BAD622C721EC73FD00BA2C27 /* AMActionAnimate.swift in Sources */,
 				A1D89AC4221485E00036C4BC /* DLRadioButton+.swift in Sources */,
@@ -896,7 +912,10 @@
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -913,7 +932,10 @@
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -930,7 +952,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -948,7 +974,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -965,7 +995,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -982,7 +1016,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = "Amatda-iOSUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.Amatda-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
