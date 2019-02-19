@@ -87,9 +87,6 @@ enum APIRouter : URLRequestConvertible {
     //준비물 체크하기
     case checkPackage(packageID : Int, check : String)
     
-    //추천 준비물 조회하기
-    case readRecommendPackage(carrierID : Int)
-    
     //날씨 조회하기
     case weatherOfCity(cityID : Int, month : Int)
     
@@ -115,7 +112,7 @@ enum APIRouter : URLRequestConvertible {
     private var url : URL {
         switch self {
         default:
-            return URL(string: "13.125.237.4:8080/nexters_project")
+            return URL(string: "http://amatda.kro.kr:8080/nexters_project")
         }
     }
     
@@ -125,7 +122,6 @@ enum APIRouter : URLRequestConvertible {
         case .detailCarrier(_),
              .detailPackage(_),
              .packageList(_),
-             .readRecommendPackage(_),
              .weatherOfCity(_):
             return .get
             
@@ -150,8 +146,6 @@ enum APIRouter : URLRequestConvertible {
             return "/pack/list?pId=\(packageID)"
         case .packageList(let carrierID):
             return "/pack/listall?cId=\(carrierID)"
-        case .readRecommendPackage(let carrierID):
-            return "/checklist/recommend?cId=\(carrierID)"
         case .weatherOfCity(let cityID, let month):
             return "/weather/list?city_id=\(cityID)&month=\(month)"
         case .registerPackage(_,_,_,_):
