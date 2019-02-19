@@ -64,7 +64,7 @@ enum APIRouter : URLRequestConvertible {
     case detailCarrier(carrierID : Int)
     
     //캐리어 등록하기
-    case registerCarrier(countryID : Int, options : [Int])
+    case registerCarrier(countryID : Int, startDate : String options : [Int])
     
     //캐리어 삭제하기
     case deleteCarrier(carrierID : Int)
@@ -125,7 +125,7 @@ enum APIRouter : URLRequestConvertible {
              .weatherOfCity(_):
             return .get
             
-        case .registerCarrier(_, _),
+        case .registerCarrier(_,_,_),
              .registerPackage(_,_,_,_),
              .checkPackage(_, _):
             return .post
@@ -150,7 +150,7 @@ enum APIRouter : URLRequestConvertible {
             return "/weather/list?city_id=\(cityID)&month=\(month)"
         case .registerPackage(_,_,_,_):
             return "/pack/insert"
-        case .registerCarrier(_, _):
+        case .registerCarrier(_,_,_):
             return "/carrier/insert"
         case .checkPackage(_, _):
             return "/pack/update"
@@ -168,8 +168,9 @@ enum APIRouter : URLRequestConvertible {
         var param : Parameters = [:]
         
         switch self {
-        case .registerCarrier(let countryID ,let options):
+        case .registerCarrier(let countryID ,let startTime,let options):
             param["cCountry"]      = countryID
+            param["startTime"]     = startTime //"YY-MM-DD hh:mm:ss"
             param["category_list"] = options
             break
             
