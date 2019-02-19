@@ -10,16 +10,22 @@ import Foundation
 
 import SwiftyJSON
 import RxSwift
+import Alamofire
+import Alamofire_SwiftyJSON
 
 class APIClient {
-//    case registerCarrier(countryID : Int, startDate : String ,options : [Int])
     static func registerCarrier(countryID : Int,
                                 startDate : String,
                                 options   : [Int])->Observable<Bool>{
         return Observable.create{ emit in
-            
-            
-            return Disposable.create()
+            Alamofire.request(APIRouter.registerCarrier(countryID: countryID, startDate: startDate, options: options)).responseSwiftyJSON(completionHandler: { (jsonData) in
+                
+                print("result : \(jsonData.value)")
+                emit.onNext(true)
+                emit.onCompleted()
+                
+            })
+            return Disposables.create()
         }
     }
 }

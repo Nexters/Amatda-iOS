@@ -27,7 +27,7 @@ class AMMakeCarrierViewController: AMBaseViewController{
     private var zipperImageView  : UIImageView = UIImageView()
     private var disposeBag = DisposeBag()
     
-    var cityOfCarrier     = BehaviorSubject<String>(value: "")
+    var cityOfCarrier     = BehaviorSubject<Int>(value: 0)
     var dayOfCarrier      = BehaviorSubject<String>(value: "")
     var timeOfCarrier     = BehaviorSubject<String>(value: "")
     var optionCarrier     = BehaviorRelay<[Int]>(value: [])
@@ -66,25 +66,39 @@ class AMMakeCarrierViewController: AMBaseViewController{
         bindOutput()
     }
     
+    
     private func bindInput(){
         
     }
     
+    
     private func bindOutput(){
+        
+        let date = Observable.combineLatest(dayOfCarrier,timeOfCarrier, resultSelector:{ s1,s2 in
+            return "\(s1) \(s2)"
+        })
+        
         let requiredCarrierInfo = Observable.combineLatest(cityOfCarrier,
-                                                           timeOfCarrier,
-                                                           dayOfCarrier,
-                                                           optionCarrier){($0,$1,$2,$3)}
+                                                           date,
+                                                           optionCarrier){($0,$1,$2)}
         
         didTapRegister
             .bind(to: optionCarrier)
             .disposed(by: disposeBag)
         
+        let register = didTapRegister
+            .withLatestFrom(requiredCarrierInfo)
+            .flatMapLatest{
+                APIClient.registerCarrier(countryID: $0, startDate: $1, options: $2)
+            }.asDriver(onErrorJustReturn: false)
         
-        didTapRegister.withLatestFrom(requiredCarrierInfo)
-            .subscribe(onNext:{ s1 in
-                print("tap : \(s1)")
-            }).disposed(by: disposeBag)
+        
+        register.drive(onNext:{ result in
+            
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController)
+            appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)
+        }).disposed(by: disposeBag)
     }
     
     

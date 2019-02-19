@@ -112,7 +112,7 @@ enum APIRouter : URLRequestConvertible {
     private var url : URL {
         switch self {
         default:
-            return URL(string: "http://amatda.kro.kr:8080/nexters_project")
+            return URL(string: "http://amatda.kro.kr:8080/nexters_project")!
         }
     }
     
@@ -131,9 +131,8 @@ enum APIRouter : URLRequestConvertible {
             return .post
             
         case .deleteCarrier(_),
-             .deletePackage(_,_):
+             .deletePackage(_):
             return .delete
-        default: break
         }
     }
     
@@ -158,8 +157,6 @@ enum APIRouter : URLRequestConvertible {
             return "/carrier/delete?cId=\(carrierID)"
         case .deletePackage(let packageID):
             return "/pack/delete?pId = \(packageID)"
-        default:
-            break
         }
     }
     
@@ -170,7 +167,7 @@ enum APIRouter : URLRequestConvertible {
         switch self {
         case .registerCarrier(let countryID ,let startTime,let options):
             param["cCountry"]      = countryID
-            param["startTime"]     = startTime //"YY-MM-DD hh:mm:ss"
+            param["startDate"]     = startTime //"YY-MM-DD hh:mm:ss"
             param["category_list"] = options
             break
             
@@ -189,5 +186,7 @@ enum APIRouter : URLRequestConvertible {
         default:
             break
         }
+        
+        return param
     }
 }
