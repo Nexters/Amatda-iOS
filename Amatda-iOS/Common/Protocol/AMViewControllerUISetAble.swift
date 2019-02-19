@@ -28,6 +28,11 @@ extension AMViewControllerNaviSetAble{
         titleLabel.textAlignment = NSTextAlignment.left
         self.navigationItem.titleView = titleLabel
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().isTranslucent = false
     }
 }
 
@@ -43,7 +48,7 @@ protocol AMViewControllerBottomUISetAble where Self : AMBaseViewController {
 extension AMViewControllerBottomUISetAble {
     func setupBottom(){
         let bottomBackgroundView = UIView()
-        let bottomToolbar                 = UIView()
+        let bottomToolbar        = UIView()
         
         guard let centerButton = centerButton,
                    let leftButton = leftButton,
