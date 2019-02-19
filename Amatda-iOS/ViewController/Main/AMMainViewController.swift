@@ -150,7 +150,7 @@ extension AMMainViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 0
+            return 18
         case 1:
             return 18
         case 2:
@@ -162,7 +162,7 @@ extension AMMainViewController : UICollectionViewDataSource{
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 1
     }
     
     
