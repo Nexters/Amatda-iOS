@@ -13,7 +13,7 @@ import RxCocoa
 import SnapKit
 
 
-class AMMakeCarrierViewController: AMBaseViewController{
+class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
     private var pageIndex : Int = 0
     private var pageViewController : UIPageViewController!
     private(set) lazy var orderedViewControllers: [UIViewController] = {
@@ -32,6 +32,7 @@ class AMMakeCarrierViewController: AMBaseViewController{
     var timeOfCarrier     = BehaviorSubject<String>(value: "")
     var optionCarrier     = BehaviorRelay<[Int]>(value: [])
     let didTapRegister    = PublishSubject<[Int]>()
+    let registerError     = PublishSubject<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,17 +91,29 @@ class AMMakeCarrierViewController: AMBaseViewController{
             .withLatestFrom(requiredCarrierInfo)
             .flatMapLatest{
                 APIClient.registerCarrier(countryID: $0, startDate: $1, options: $2)
-            }.asDriver(onErrorJustReturn: false)
+                    .do(onError:{ error in
+                        self.registerError.onNext("")
+                    }).suppressError()
+            }.asDriver(onErrorJustReturn: 0)
         
         
         register.drive(onNext:{ result in
             
+            CarrierInfo.setCarrierID(carrierID: result)
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let root = mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
             root.isFirstAccess = true
             let vc = UINavigationController(rootViewController: root)
-            
+            print("carrier id : \(CarrierInfo.myCarrierID())")
             appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)
+        }).disposed(by: disposeBag)
+        
+        
+        
+        self.registerError
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext:{ _ in
+                self.showAlert(title: "오류", message: String.errorString)
         }).disposed(by: disposeBag)
     }
     

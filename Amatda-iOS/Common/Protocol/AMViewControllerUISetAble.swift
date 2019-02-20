@@ -23,10 +23,13 @@ extension AMViewControllerNaviSetAble{
         guard let titleLabel = titleLabel,
             let rightBarButtonItem = rightBarButtonItem else { return }
         
-        titleLabel.backgroundColor = UIColor.red
+        titleLabel.font = UIFont.notoSansCJKKr_medium(fontSize: 14)
+        titleLabel.textColor = UIColor(red: 255, green: 84, blue: 0)
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = NSTextAlignment.left
-        self.navigationItem.titleView = titleLabel
+        
+        let leftItem = UIBarButtonItem(customView: titleLabel)
+        self.navigationItem.leftBarButtonItem = leftItem
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")

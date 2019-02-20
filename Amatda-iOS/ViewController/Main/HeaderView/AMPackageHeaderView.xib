@@ -17,14 +17,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AMPackageHeaderView" id="U6b-Vx-4bR">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AMPackageHeaderView" id="U6b-Vx-4bR" customClass="AMPackageHeaderView" customModule="Amatda_iOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="439" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ufs-ij-wN6">
                     <rect key="frame" x="0.0" y="0.0" width="439" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="1" green="0.3294117647" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="1" green="0.96470588235294119" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rw-Hl-VgG">
                     <rect key="frame" x="0.0" y="0.0" width="439" height="50"/>
@@ -48,14 +48,24 @@
                             <color key="textColor" red="1" green="0.32941176470588235" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1An-BA-yPO">
+                            <rect key="frame" x="0.0" y="0.0" width="439" height="2"/>
+                            <color key="backgroundColor" red="1" green="0.32941176470588235" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="oiG-BO-kHQ"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="sLv-W2-CvJ" firstAttribute="leading" secondItem="8rw-Hl-VgG" secondAttribute="leading" constant="24" id="0RB-hf-C5h"/>
+                        <constraint firstAttribute="trailing" secondItem="1An-BA-yPO" secondAttribute="trailing" id="5L2-Qn-eu8"/>
                         <constraint firstAttribute="trailing" secondItem="nYQ-w9-zRz" secondAttribute="trailing" constant="24" id="APn-Vj-ZXE"/>
                         <constraint firstItem="sLv-W2-CvJ" firstAttribute="centerY" secondItem="8rw-Hl-VgG" secondAttribute="centerY" id="GJ7-Dm-5el"/>
                         <constraint firstItem="nYQ-w9-zRz" firstAttribute="centerY" secondItem="8rw-Hl-VgG" secondAttribute="centerY" id="Zy6-zR-keE"/>
                         <constraint firstItem="NYe-pt-qZw" firstAttribute="centerY" secondItem="8rw-Hl-VgG" secondAttribute="centerY" id="hNP-FQ-xop"/>
+                        <constraint firstItem="1An-BA-yPO" firstAttribute="top" secondItem="8rw-Hl-VgG" secondAttribute="top" id="oox-g8-vc9"/>
+                        <constraint firstItem="1An-BA-yPO" firstAttribute="leading" secondItem="8rw-Hl-VgG" secondAttribute="leading" id="wsy-Xl-nI1"/>
                         <constraint firstItem="nYQ-w9-zRz" firstAttribute="leading" secondItem="NYe-pt-qZw" secondAttribute="trailing" constant="4" id="yNJ-Q7-zod"/>
                     </constraints>
                 </view>
@@ -68,6 +78,12 @@
                 <constraint firstItem="8rw-Hl-VgG" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="Y5N-Zm-uku"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <connections>
+                <outlet property="headerTitle" destination="sLv-W2-CvJ" id="9Z1-Ji-Cf5"/>
+                <outlet property="lineView" destination="1An-BA-yPO" id="Y38-WV-YSg"/>
+                <outlet property="sortImageView" destination="NYe-pt-qZw" id="7ip-BL-ahJ"/>
+                <outlet property="sortLabel" destination="nYQ-w9-zRz" id="o08-07-jDr"/>
+            </connections>
             <point key="canvasLocation" x="236" y="154.72263868065968"/>
         </collectionReusableView>
     </objects>

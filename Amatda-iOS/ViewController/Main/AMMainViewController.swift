@@ -30,7 +30,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     override func setupUI() {
         super.setupUI()
-        titleLabel?.text = "ㅋㅋㅋ"
+        titleLabel?.text = "캐리어 1"
         setupNavigation()
         setupBottom()
         setupCollectionView()
@@ -167,7 +167,7 @@ extension AMMainViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 3
+            return 0
         case 1:
             return 3
         case 2:
@@ -195,8 +195,15 @@ extension AMMainViewController : UICollectionViewDataSource{
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: mainHeaderView, for: indexPath)
             return header
         }else{
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath)
-            return header
+            if indexPath.section == 1 {
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath)
+                (header as! AMPackageHeaderView).lineView.isHidden = false
+                return header
+            }else{
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath)
+                (header as! AMPackageHeaderView).lineView.isHidden = true
+                return header
+            }
         }
         
     }

@@ -164,10 +164,13 @@ enum APIRouter : URLRequestConvertible {
         var param : Parameters = [:]
         
         switch self {
-        case .registerCarrier(let countryID ,let startTime,let options):
+        case .registerCarrier(let countryID ,let startTime, let options):
+            param["cName"]         = "캐리어 1"
             param["cCountry"]      = countryID
             param["startDate"]     = startTime //"YY-MM-DD hh:mm:ss"
-            param["category_list"] = options
+            options.map{
+                param["category_list"] = $0
+            }
             break
             
         case .registerPackage(let carrierID, let packageName, let labelColor, let check):
