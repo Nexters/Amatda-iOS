@@ -67,9 +67,6 @@ extension AMViewAnimatable{
                 }
             }
         }else if gesture.state == .ended {
-            print("end")
-            print("differ : \((height - contentViewHeight) * 5 / 10)")
-            print("endPosition : \(point.y)")
             
             UIView.animate(withDuration: 0.3) {
                 contentView.snp.updateConstraints({ (make) in

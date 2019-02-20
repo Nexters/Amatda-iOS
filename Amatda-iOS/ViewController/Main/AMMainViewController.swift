@@ -122,7 +122,6 @@ extension AMMainViewController {
 extension AMMainViewController : AMMainHeaderDelegate {
     func recognizeHeaderContentOffset(_: AMMainHeaderLayout, contentOffSetY: CGFloat) {
         let differ = 164 - contentOffSetY
-        print("differ : \(differ)")
         if differ > 0 {
             titleLabel?.alpha = 1 - (differ/100)
         }

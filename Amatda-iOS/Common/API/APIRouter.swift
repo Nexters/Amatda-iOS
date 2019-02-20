@@ -69,11 +69,8 @@ enum APIRouter : URLRequestConvertible {
     //캐리어 삭제하기
     case deleteCarrier(carrierID : Int)
     
-    //준비물 상세정보 보기
-    case detailPackage(packageID : Int)
-    
-    //특정 캐리어에 대한 모든 준비물 출력
-    case packageList(carrierID : Int)
+    //특정 캐리어에 대한 모든 준비물 출력 sort : (0 등록순, 1 라벨순)
+    case packageList(carrierID : Int, sort: Int)
     
     //준비물 등록하기
     case registerPackage(carrierID : Int,
@@ -119,8 +116,7 @@ enum APIRouter : URLRequestConvertible {
     private var method: HTTPMethod{
         switch self {
         case .detailCarrier(_),
-             .detailPackage(_),
-             .packageList(_),
+             .packageList(_,_),
              .weatherOfCity(_):
             return .get
             
@@ -140,10 +136,8 @@ enum APIRouter : URLRequestConvertible {
         switch self {
         case .detailCarrier(let carrierID):
             return "/carrier/list?cId=\(carrierID)"
-        case .detailPackage(let packageID):
-            return "/pack/list?pId=\(packageID)"
-        case .packageList(let carrierID):
-            return "/pack/listall?cId=\(carrierID)"
+        case .packageList(let carrierID, let sort):
+            return "/pack/all?cId=\(carrierID)&sort=\(sort)"
         case .weatherOfCity(let cityID, let month):
             return "/weather/list?city_id=\(cityID)&month=\(month)"
         case .registerPackage(_,_,_,_):
