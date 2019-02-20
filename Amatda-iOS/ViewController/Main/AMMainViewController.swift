@@ -20,6 +20,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var subTitleLabel           : UILabel?  = UILabel()
     var rightBarButtonItem      : UIBarButtonItem? = UIBarButtonItem()
     var centerButton            : AMPlustButton?   = AMPlustButton()
+    var isFirstAccess           : Bool = false
     
     private let viewModel   = AMMainViewModel()
     var disposeBag : DisposeBag  {
@@ -69,6 +70,15 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         viewController2.view.backgroundColor    = .clear
         self.present(viewController2, animated: true, completion: nil)
     }
+    
+    private func showCompleteMakeCarrier(){
+        if isFirstAccess {
+            let vc = AMAlertViewController(nibName: "AMAlertViewController", bundle: nil)
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.view.backgroundColor    = .clear
+            self.present(vc, animated: false, completion: nil)
+        }
+    }
 }
 
 
@@ -76,6 +86,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
 extension AMMainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showCompleteMakeCarrier()
     }
     
     

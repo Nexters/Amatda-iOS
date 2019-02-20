@@ -5,6 +5,7 @@ PODS:
     - SwiftyJSON (~> 4.0.0)
   - DLRadioButton (1.4.12)
   - Kingfisher (5.1.1)
+  - lottie-ios (2.5.2)
   - RxAtomic (4.4.1)
   - RxCocoa (4.4.1):
     - RxSwift (~> 4.0)
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - Alamofire-SwiftyJSON
   - DLRadioButton (~> 1.4)
   - Kingfisher
+  - lottie-ios
   - RxCocoa
   - RxSwift
   - SnapKit
@@ -28,12 +30,13 @@ SPEC CHECKSUMS:
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   Kingfisher: 2558186963e5be42d98c5b110ccb3130148b77e4
+  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
   RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 0977271be18a8d1edeadc8524af1bbb1b0f8fce0
+PODFILE CHECKSUM: 1838d98e57322527a9e7dcd07e3035c63ce59c2e
 
 COCOAPODS: 1.4.0

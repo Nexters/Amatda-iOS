@@ -89,14 +89,13 @@ enum APIRouter : URLRequestConvertible {
     
     //날씨 조회하기
     case weatherOfCity(cityID : Int, month : Int)
-    
+
     
     func asURLRequest() throws -> URLRequest {
         let url = self.url
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         
         urlRequest.httpMethod = self.method.rawValue
-        
         if let parameter = self.parameter {
             do {
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameter)
@@ -150,7 +149,7 @@ enum APIRouter : URLRequestConvertible {
         case .registerPackage(_,_,_,_):
             return "/pack/insert"
         case .registerCarrier(_,_,_):
-            return "/carrier/insert"
+            return "/carrier"
         case .checkPackage(_, _):
             return "/pack/update"
         case .deleteCarrier(let carrierID):

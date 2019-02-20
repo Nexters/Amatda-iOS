@@ -96,7 +96,10 @@ class AMMakeCarrierViewController: AMBaseViewController{
         register.drive(onNext:{ result in
             
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController)
+            let root = mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
+            root.isFirstAccess = true
+            let vc = UINavigationController(rootViewController: root)
+            
             appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)
         }).disposed(by: disposeBag)
     }
