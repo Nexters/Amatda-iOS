@@ -46,21 +46,18 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     
     private func bindInput(){
-        self.centerButton?
-            .rx
-            .tap
-            .asObservable()
-            .bind (to:viewModel.didTap)
-            .disposed(by: disposeBag)
         
+        self.centerButton?.rx.tap.subscribe(onNext:{
+            self.pressedCenterButton()
+        }).disposed(by: disposeBag)
     }
     
     private func bindOutput(){
-        viewModel
-            .didTap
-            .subscribe( onNext : { [weak self] in
-                self?.pressedCenterButton()
-            }).disposed(by: disposeBag)
+        self.viewModel
+            .detailCarrier?
+            .drive(onNext:{ _ in
+            print("dd")
+        }).disposed(by: disposeBag)
     }
     
     
@@ -86,7 +83,20 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
 extension AMMainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.rx.viewDidload.subscribe(onNext:{
+            print("asdf")
+        }).disposed(by: disposeBag)
+        
+        self.rx.viewDidload
+            .map{ CarrierInfo.currentCarrierID() }
+            .bind(to: viewModel.viewDidLoad)
+            .disposed(by: disposeBag)
+        
+        
         self.showCompleteMakeCarrier()
+        
+        print("current ID : \(CarrierInfo.currentCarrierID())")
     }
     
     

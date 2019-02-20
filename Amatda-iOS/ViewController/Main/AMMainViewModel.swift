@@ -11,13 +11,21 @@ import RxSwift
 import RxCocoa
 
 class AMMainViewModel{
-    let didTap = PublishSubject<Void>()
+    //input
+    let viewDidLoad = PublishSubject<Int>()
+    
+    //output
+    var detailCarrier : Driver<Int>?
+    
     let disposeBag = DisposeBag()
     init() {
         setup()
     }
     
     private func setup(){
-       didTap.asObserver().map{ _ in () }
+        
+        self.detailCarrier = viewDidLoad.flatMapLatest{
+            APIClient.detailCarrier(carrierID: $0)
+            }.asDriver(onErrorJustReturn: 0)
     }
 }

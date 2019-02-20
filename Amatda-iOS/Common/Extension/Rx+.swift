@@ -8,10 +8,18 @@
 
 import Foundation
 import RxSwift
-
+import RxCocoa
 
 extension ObservableType {
     func suppressError() -> Observable<E> {
         return retryWhen { _ in return Observable<E>.empty()  }
+    }
+}
+
+
+extension Reactive where Base: UIViewController{
+    var viewDidload: ControlEvent<Void>{
+        let source = self.methodInvoked(#selector(Base.viewDidLoad)).map { _ in }
+        return ControlEvent(events: source)
     }
 }
