@@ -91,8 +91,8 @@ enum APIRouter : URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         let url = self.url
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
-        
         urlRequest.httpMethod = self.method.rawValue
+        
         if let parameter = self.parameter {
             do {
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameter)
@@ -134,8 +134,8 @@ enum APIRouter : URLRequestConvertible {
     
     private var path : String{
         switch self {
-        case .detailCarrier(let carrierID):
-            return "/carrier/list?cId=\(carrierID)"
+        case .detailCarrier(_):
+            return "/carrier"
         case .packageList(let carrierID, let sort):
             return "/pack/all?cId=\(carrierID)&sort=\(sort)"
         case .weatherOfCity(let cityID, let month):
@@ -158,6 +158,9 @@ enum APIRouter : URLRequestConvertible {
         var param : Parameters = [:]
         
         switch self {
+        case .detailCarrier(let carrierID):
+            param["cId"] = carrierID
+            break
         case .registerCarrier(let countryID ,let startTime, let options):
             param["cName"]         = "캐리어 1"
             param["cCountry"]      = countryID

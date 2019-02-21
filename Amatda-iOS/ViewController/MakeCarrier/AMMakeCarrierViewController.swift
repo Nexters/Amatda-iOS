@@ -83,29 +83,27 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
                                                            date,
                                                            optionCarrier){($0,$1,$2)}
         
+        
+        
         didTapRegister
             .bind(to: optionCarrier)
             .disposed(by: disposeBag)
+        
+        
         
         let register = didTapRegister
             .withLatestFrom(requiredCarrierInfo)
             .flatMapLatest{
                 APIClient.registerCarrier(countryID: $0, startDate: $1, options: $2)
-                    .do(onError:{ error in
+                    .do(onError:{ _ in
                         self.registerError.onNext("")
                     }).suppressError()
             }.asDriver(onErrorJustReturn: 0)
         
         
-        register.drive(onNext:{ result in
-            
-            CarrierInfo.setCarrierID(carrierID: result)
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let root = mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
-            root.isFirstAccess = true
-            let vc = UINavigationController(rootViewController: root)
-            print("carrier id : \(CarrierInfo.myCarrierID())")
-            appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)
+        
+        register.drive(onNext:{
+            self.showMain($0)
         }).disposed(by: disposeBag)
         
         
@@ -116,6 +114,7 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
                 self.showAlert(title: "오류", message: String.errorString)
         }).disposed(by: disposeBag)
     }
+    
     
     
     private func setupNavi(){
@@ -172,6 +171,17 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
         }) { (finished) in
             
         }
+    }
+    
+    
+    
+    private func showMain(_ carrierID : Int){
+        CarrierInfo.setCarrierID(carrierID: carrierID)
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let root = mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
+        root.isFirstAccess = true
+        let vc = UINavigationController(rootViewController: root)
+        appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)
     }
 }
 

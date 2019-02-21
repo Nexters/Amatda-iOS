@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewControllerBottomUISetAble {
+class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewControllerBottomUISetAble, AMCanShowAlert {
     @IBOutlet private weak var collectionView: UICollectionView!
     
     var leftButton              : UIButton? = UIButton()
@@ -21,6 +21,9 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var rightBarButtonItem      : UIBarButtonItem? = UIBarButtonItem()
     var centerButton            : AMPlustButton?   = AMPlustButton()
     var isFirstAccess           : Bool = false
+    
+    var carrierItem             = PublishSubject<CarrierModel>()
+    
     
     private let viewModel   = AMMainViewModel()
     var disposeBag : DisposeBag  {
@@ -46,19 +49,34 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     
     private func bindInput(){
-        
         self.centerButton?.rx.tap.subscribe(onNext:{
             self.pressedCenterButton()
+        }).disposed(by: disposeBag)
+        
+        
+        self.carrierItem.subscribe(onNext:{ s in
+            
         }).disposed(by: disposeBag)
     }
     
     private func bindOutput(){
-        self.viewModel
-            .detailCarrier?
+        self.viewModel.detailCarrier?
+            .drive(self.carrierItem)
+            .disposed(by: disposeBag)
+        
+        
+        self.viewModel.apiError
+            .asDriver(onErrorJustReturn: "")
             .drive(onNext:{ _ in
-            print("dd")
+                self.showAlert(title: "오류", message: String.errorString)
+            }).disposed(by: disposeBag)
+        
+    
+        self.viewModel.packageList?.drive(onNext:{ s in
+            
         }).disposed(by: disposeBag)
     }
+    
     
     
     private func pressedCenterButton() {
@@ -67,6 +85,8 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         viewController2.view.backgroundColor    = .clear
         self.present(viewController2, animated: true, completion: nil)
     }
+    
+    
     
     private func showCompleteMakeCarrier(){
         if isFirstAccess {
@@ -83,27 +103,20 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
 extension AMMainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.rx.viewDidload.subscribe(onNext:{
-            print("asdf")
-        }).disposed(by: disposeBag)
-        
-        self.rx.viewDidload
-            .map{ CarrierInfo.currentCarrierID() }
+        Observable.just(CarrierInfo.currentCarrierID())
             .bind(to: viewModel.viewDidLoad)
             .disposed(by: disposeBag)
         
-        
         self.showCompleteMakeCarrier()
-        
-        print("current ID : \(CarrierInfo.currentCarrierID())")
     }
+    
     
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         self.collectionView.reloadData()
     }
+    
     
     
     private func setupCollectionView() {
@@ -117,6 +130,7 @@ extension AMMainViewController {
         collectionView.register(AMMainHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: mainHeaderView)
         collectionView.register(UINib(nibName: "AMPackageHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AMPackageHeaderView")
     }
+    
     
     
     private func setupCollectionViewLayout() {
