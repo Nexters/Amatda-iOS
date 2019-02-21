@@ -23,7 +23,11 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var isFirstAccess           : Bool = false
     
     var carrierItem             = PublishSubject<CarrierModel>()
-    
+    var packageList : PackageModel?{
+        didSet{
+            collectionView.reloadData()
+        }
+    }
     
     private let viewModel   = AMMainViewModel()
     var disposeBag : DisposeBag  {
@@ -54,9 +58,13 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         }).disposed(by: disposeBag)
         
         
-        self.carrierItem.subscribe(onNext:{ s in
-            
-        }).disposed(by: disposeBag)
+        
+        self.carrierItem
+            .do(onNext:{ model in
+                self.titleLabel?.text = model.carrier?.carrierName ?? ""
+            })
+            .bind(to: viewModel.completeCarrierInfo)
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput(){
@@ -64,17 +72,17 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
             .drive(self.carrierItem)
             .disposed(by: disposeBag)
         
+    
+        self.viewModel.packageList?.drive(onNext:{
+            self.packageList = $0
+        }).disposed(by: disposeBag)
+        
         
         self.viewModel.apiError
             .asDriver(onErrorJustReturn: "")
             .drive(onNext:{ _ in
                 self.showAlert(title: "오류", message: String.errorString)
             }).disposed(by: disposeBag)
-        
-    
-        self.viewModel.packageList?.drive(onNext:{ s in
-            
-        }).disposed(by: disposeBag)
     }
     
     
@@ -103,13 +111,18 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
 extension AMMainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        Observable.just(CarrierInfo.currentCarrierID())
-            .bind(to: viewModel.viewDidLoad)
-            .disposed(by: disposeBag)
-        
         self.showCompleteMakeCarrier()
     }
     
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Observable.just(CarrierInfo.currentCarrierID())
+            .bind(to: viewModel.viewDidLoad)
+            .disposed(by: disposeBag)
+    }
     
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -192,9 +205,15 @@ extension AMMainViewController : UICollectionViewDataSource{
         case 0:
             return 0
         case 1:
-            return 3
+            if let count = self.packageList?.check?.count {
+                return count
+            }
+            return 0
         case 2:
-            return 10
+            if let count = self.packageList?.unCheck?.count {
+                return count
+            }
+            return 0
         default:
             return 0
         }
@@ -215,16 +234,17 @@ extension AMMainViewController : UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if indexPath.section == 0 {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: mainHeaderView, for: indexPath)
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: mainHeaderView, for: indexPath) as! AMMainHeaderView
+            header.carrierName = self.titleLabel?.text
             return header
         }else{
             if indexPath.section == 1 {
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath)
-                (header as! AMPackageHeaderView).lineView.isHidden = false
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath) as! AMPackageHeaderView
+                header.lineView.isHidden = false
                 return header
             }else{
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath)
-                (header as! AMPackageHeaderView).lineView.isHidden = true
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath) as! AMPackageHeaderView
+                header.lineView.isHidden = true
                 return header
             }
         }

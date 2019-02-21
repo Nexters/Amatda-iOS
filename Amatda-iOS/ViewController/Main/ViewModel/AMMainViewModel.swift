@@ -25,11 +25,7 @@ class AMMainViewModel{
         setup()
     }
     
-    /*
-     .do(onError:{ error in
-     self.registerError.onNext("")
-     }).suppressError()
-     */
+    
     private func setup(){
         self.detailCarrier = viewDidLoad
             .flatMapLatest{
@@ -39,16 +35,24 @@ class AMMainViewModel{
                         self.apiError.onNext("")
                     }).suppressError()
                 
-            }.map{try CarrierModel.parseJSON($0)}
+            }.map{
+                try CarrierModel.parseJSON($0)
+            }
             .asDriver(onErrorJustReturn: CarrierModel(carrier:nil,options:nil))
         
         
-        completeCarrierInfo.flatMapLatest{
-            APIClient.packageList(carrierID: $0.carrier?.carrierID ?? 0, sort: 0)
-                .do(onError:{ _ in
-                    self.apiError.onNext("")
-                }).suppressError()
-            }.map{ try PackageModel.parseJSON($0) }
+        
+        self.packageList = completeCarrierInfo
+            .flatMapLatest{
+                
+                APIClient.packageList(carrierID: $0.carrier?.carrierID ?? 0, sort: 0)
+                    .do(onError:{ _ in
+                        self.apiError.onNext("")
+                    }).suppressError()
+                
+            }.map{
+                try PackageModel.parseJSON($0)
+            }
             .asDriver(onErrorJustReturn: PackageModel(unCheck: nil,check:nil))
     }
 }

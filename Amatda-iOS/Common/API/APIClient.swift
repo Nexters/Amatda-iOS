@@ -45,7 +45,7 @@ class APIClient {
     
 
     static func packageList(carrierID : Int, sort: Int)->Observable<JSON>{
-        return rxJSONAPIObservable(url: APIRouter.packageList(carrierID: carrierID, sort: sort))
+        return rxJSONAPIObservable(url: APIRouter.packageList(carrierID: 2, sort: sort))
     }
     
     
@@ -53,6 +53,7 @@ class APIClient {
         return Observable.create{ emit in
             Alamofire.request(url)
                 .responseSwiftyJSON(completionHandler: { (jsonData) in
+                    print("result : \(jsonData.value ?? "")")
                     switch jsonData.result{
                     case .success(let data):
                         emit.onNext(data)

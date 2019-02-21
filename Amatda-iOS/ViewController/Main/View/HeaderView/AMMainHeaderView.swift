@@ -30,6 +30,14 @@ class AMMainHeaderView: UICollectionReusableView {
         return lb
     }()
     
+    var carrierName : String? {
+        didSet{
+            let attr = NSMutableAttributedString(string:"\(carrierName ?? "")에\n무엇을 챙길까요?")
+            attr.setColorForText(textForAttribute: carrierName ?? "", withColor: UIColor(red: 255, green: 84, blue: 0))
+            self.titleLabel.attributedText = attr
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()

@@ -136,8 +136,8 @@ enum APIRouter : URLRequestConvertible {
         switch self {
         case .detailCarrier(_):
             return "/carrier"
-        case .packageList(let carrierID, let sort):
-            return "/pack/all?cId=\(carrierID)&sort=\(sort)"
+        case .packageList(_, _):
+            return "/pack/all"
         case .weatherOfCity(let cityID, let month):
             return "/weather/list?city_id=\(cityID)&month=\(month)"
         case .registerPackage(_,_,_,_):
@@ -180,6 +180,11 @@ enum APIRouter : URLRequestConvertible {
         case .checkPackage(let packageID, let check):
             param["pId"]    = packageID
             param["pCheck"] = check
+            break
+            
+        case .packageList(let carrierID, let sort):
+            param["cId"] = carrierID
+            param["sort"] = sort
             break
             
         default:
