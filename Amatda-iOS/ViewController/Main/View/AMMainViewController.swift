@@ -19,7 +19,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var titleLabel              : UILabel?  = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
     var subTitleLabel           : UILabel?  = UILabel()
     var rightBarButtonItem      : UIBarButtonItem? = UIBarButtonItem()
-    var centerButton            : AMPlustButton?   = AMPlustButton()
+    var centerButton            : UIButton? = UIButton()
     var isFirstAccess           : Bool = false
     
     var carrierItem             = PublishSubject<CarrierModel>()
@@ -113,6 +113,9 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
 extension AMMainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        Observable.just(CarrierInfo.currentCarrierID())
+            .bind(to: viewModel.viewDidLoad)
+            .disposed(by: disposeBag)
         self.showCompleteMakeCarrier()
     }
     
@@ -121,9 +124,7 @@ extension AMMainViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        Observable.just(CarrierInfo.currentCarrierID())
-            .bind(to: viewModel.viewDidLoad)
-            .disposed(by: disposeBag)
+        
     }
     
     

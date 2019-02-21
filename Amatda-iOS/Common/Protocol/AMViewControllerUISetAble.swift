@@ -43,7 +43,7 @@ protocol AMViewControllerBottomUISetAble where Self : AMBaseViewController {
     func setupBottom()
     var leftButton : UIButton? { get set }
     var rightButton : UIButton? { get set }
-    var centerButton : AMPlustButton? { get set }
+    var centerButton : UIButton? { get set }
     
 }
 
@@ -60,11 +60,10 @@ extension AMViewControllerBottomUISetAble {
                 return
         }
         
+        leftButton.setImage(UIImage(named: "icMenu"), for: .normal)
+        centerButton.setImage(UIImage(named: "plusButton"), for: .normal)
+        rightButton.setImage(UIImage(named: "icSetting"), for: .normal)
         
-
-        bottomToolbar.backgroundColor = .blue
-        leftButton.backgroundColor        = .red
-        rightButton.backgroundColor      = .red
         
         self.view.addSubview(bottomBackgroundView)
         bottomBackgroundView.addSubview(bottomToolbar)
@@ -72,7 +71,8 @@ extension AMViewControllerBottomUISetAble {
         bottomToolbar.addSubview(leftButton)
         bottomToolbar.addSubview(rightButton)
         
-        
+        bottomToolbar.dropShadow()
+        bottomToolbar.backgroundColor = .white
         
         bottomBackgroundView.snp.makeConstraints{
             $0.left.equalToSuperview()
@@ -95,7 +95,7 @@ extension AMViewControllerBottomUISetAble {
         }
         
         leftButton.snp.makeConstraints{
-            $0.centerY.equalToSuperview().offset(-10)
+            $0.centerY.equalToSuperview()
             $0.left.equalTo(24)
             $0.size.equalTo(30)
         }

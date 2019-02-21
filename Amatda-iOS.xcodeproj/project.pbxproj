@@ -25,7 +25,6 @@
 		A13A74582216F3B10062A9E8 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13A74572216F3B10062A9E8 /* UIFont+.swift */; };
 		A13A745A2216F5B10062A9E8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13A74592216F5B10062A9E8 /* UIColor+.swift */; };
 		A13F22CF21FF643F006675FC /* AMDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13F22CE21FF643F006675FC /* AMDeviceInfo.swift */; };
-		A13F22D221FF685F006675FC /* AMPlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13F22D121FF685F006675FC /* AMPlusButton.swift */; };
 		A1511C682217C1F30051FA25 /* AMShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511C672217C1F30051FA25 /* AMShowAlert.swift */; };
 		A1511C6A2217C2660051FA25 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511C692217C2660051FA25 /* String+.swift */; };
 		A1511C6D2217D67E0051FA25 /* AMMakeCarrierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511C6C2217D67E0051FA25 /* AMMakeCarrierViewController.swift */; };
@@ -41,6 +40,7 @@
 		A1A2C941221DB124004BEB75 /* CarrierInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A2C940221DB124004BEB75 /* CarrierInfo.swift */; };
 		A1A2C946221EE8E2004BEB75 /* AMMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A2C945221EE8E2004BEB75 /* AMMainModel.swift */; };
 		A1A2C948221F1AAF004BEB75 /* AMPackageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A2C947221F1AAF004BEB75 /* AMPackageCell.swift */; };
+		A1A2C94A221F26BE004BEB75 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A2C949221F26BE004BEB75 /* UIView+.swift */; };
 		A1A47DE721E1E9EA0067D46B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47DE621E1E9EA0067D46B /* AppDelegate.swift */; };
 		A1A47DE921E1E9EA0067D46B /* AMMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47DE821E1E9EA0067D46B /* AMMainViewController.swift */; };
 		A1A47DEC21E1E9EA0067D46B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A47DEA21E1E9EA0067D46B /* Main.storyboard */; };
@@ -102,7 +102,6 @@
 		A13A74572216F3B10062A9E8 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		A13A74592216F5B10062A9E8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		A13F22CE21FF643F006675FC /* AMDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMDeviceInfo.swift; sourceTree = "<group>"; };
-		A13F22D121FF685F006675FC /* AMPlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMPlusButton.swift; sourceTree = "<group>"; };
 		A1511C672217C1F30051FA25 /* AMShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMShowAlert.swift; sourceTree = "<group>"; };
 		A1511C692217C2660051FA25 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		A1511C6C2217D67E0051FA25 /* AMMakeCarrierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMakeCarrierViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +117,7 @@
 		A1A2C940221DB124004BEB75 /* CarrierInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierInfo.swift; sourceTree = "<group>"; };
 		A1A2C945221EE8E2004BEB75 /* AMMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMainModel.swift; sourceTree = "<group>"; };
 		A1A2C947221F1AAF004BEB75 /* AMPackageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMPackageCell.swift; sourceTree = "<group>"; };
+		A1A2C949221F26BE004BEB75 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		A1A47DE321E1E9EA0067D46B /* Amatda-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amatda-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A47DE621E1E9EA0067D46B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1A47DE821E1E9EA0067D46B /* AMMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMainViewController.swift; sourceTree = "<group>"; };
@@ -254,18 +254,9 @@
 				A10D31A021F316D9006132C5 /* Protocol */,
 				A1D89ABC221328EC0036C4BC /* Extension */,
 				A10D319B21F2FA32006132C5 /* Base */,
-				A13F22D021FF683A006675FC /* CustomUI */,
 				A13F22CE21FF643F006675FC /* AMDeviceInfo.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		A13F22D021FF683A006675FC /* CustomUI */ = {
-			isa = PBXGroup;
-			children = (
-				A13F22D121FF685F006675FC /* AMPlusButton.swift */,
-			);
-			path = CustomUI;
 			sourceTree = "<group>";
 		};
 		A1511C6B2217D1550051FA25 /* MakeCarrier */ = {
@@ -407,6 +398,7 @@
 				A1511C692217C2660051FA25 /* String+.swift */,
 				A1511CB32217FBDC0051FA25 /* UIPageViewController+.swift */,
 				A1A2C93E221DACB3004BEB75 /* Rx+.swift */,
+				A1A2C949221F26BE004BEB75 /* UIView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -778,7 +770,6 @@
 				A10D319D21F2FA45006132C5 /* AMBaseViewController.swift in Sources */,
 				A1A47DE721E1E9EA0067D46B /* AppDelegate.swift in Sources */,
 				A1511CB42217FBDC0051FA25 /* UIPageViewController+.swift in Sources */,
-				A13F22D221FF685F006675FC /* AMPlusButton.swift in Sources */,
 				BA18BD18221C410F0062159E /* APIClient.swift in Sources */,
 				A13A74582216F3B10062A9E8 /* UIFont+.swift in Sources */,
 				A1B9793D221C709B0054EA2F /* AMPackageHeaderView.swift in Sources */,
@@ -788,6 +779,7 @@
 				A13A745A2216F5B10062A9E8 /* UIColor+.swift in Sources */,
 				A1A2C946221EE8E2004BEB75 /* AMMainModel.swift in Sources */,
 				A1511CA92217DF4E0051FA25 /* AMMakeOptionViewController.swift in Sources */,
+				A1A2C94A221F26BE004BEB75 /* UIView+.swift in Sources */,
 				A120640E220DAA3B001EC1EF /* AMMainHeaderView.swift in Sources */,
 				A1206410220DB1DA001EC1EF /* AMMainHeaderLayout.swift in Sources */,
 				A13F22CF21FF643F006675FC /* AMDeviceInfo.swift in Sources */,
