@@ -37,7 +37,6 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     override func setupUI() {
         super.setupUI()
-        titleLabel?.text = "캐리어 1"
         setupNavigation()
         setupBottom()
         setupCollectionView()
@@ -50,6 +49,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         bindInput()
         bindOutput()
     }
+    
     
     
     private func bindInput(){
@@ -66,6 +66,8 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
             .bind(to: viewModel.completeCarrierInfo)
             .disposed(by: disposeBag)
     }
+    
+    
     
     private func bindOutput(){
         self.viewModel.detailCarrier?
@@ -139,7 +141,7 @@ extension AMMainViewController {
         collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellID")
+        collectionView.register(AMPackageCell.self, forCellWithReuseIdentifier: "AMPackageCell")
         collectionView.register(AMMainHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: mainHeaderView)
         collectionView.register(UINib(nibName: "AMPackageHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AMPackageHeaderView")
     }
@@ -193,7 +195,7 @@ extension AMMainViewController : UICollectionViewDelegateFlowLayout {
             
         }
         
-        return CGSize(width: width, height: 40)
+        return CGSize(width: width, height: 60)
     }
 }
 
@@ -205,12 +207,12 @@ extension AMMainViewController : UICollectionViewDataSource{
         case 0:
             return 0
         case 1:
-            if let count = self.packageList?.check?.count {
+            if let count = self.packageList?.unCheck?.count {
                 return count
             }
             return 0
         case 2:
-            if let count = self.packageList?.unCheck?.count {
+            if let count = self.packageList?.check?.count {
                 return count
             }
             return 0
@@ -226,8 +228,14 @@ extension AMMainViewController : UICollectionViewDataSource{
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath)
-        cell.backgroundColor = .black
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AMPackageCell", for: indexPath) as! AMPackageCell
+        
+        if indexPath.section == 1 {
+            cell.packageItem = packageList?.unCheck?[indexPath.row]
+        }else if indexPath.section == 2 {
+            cell.packageItem = packageList?.check?[indexPath.row]
+        }
+        
         return cell
     }
     
@@ -238,15 +246,13 @@ extension AMMainViewController : UICollectionViewDataSource{
             header.carrierName = self.titleLabel?.text
             return header
         }else{
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath) as! AMPackageHeaderView
             if indexPath.section == 1 {
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath) as! AMPackageHeaderView
                 header.lineView.isHidden = false
-                return header
             }else{
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath) as! AMPackageHeaderView
                 header.lineView.isHidden = true
-                return header
             }
+            return header
         }
         
     }
