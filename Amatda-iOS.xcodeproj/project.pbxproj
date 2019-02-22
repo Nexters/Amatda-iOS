@@ -17,6 +17,7 @@
 		A1206410220DB1DA001EC1EF /* AMMainHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120640F220DB1DA001EC1EF /* AMMainHeaderLayout.swift */; };
 		A122FD4A222038E000121F42 /* AMMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A122FD49222038E000121F42 /* AMMenuViewController.swift */; };
 		A122FD4C2220393500121F42 /* AMMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A122FD4B2220393500121F42 /* AMMenuView.swift */; };
+		A122FD502220608500121F42 /* AMCarrierStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A122FD4F2220608500121F42 /* AMCarrierStack.swift */; };
 		A13A74502216F2C30062A9E8 /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = A13A744F2216F2BB0062A9E8 /* NotoSansCJKkr-DemiLight.otf */; };
 		A13A74512216F2C50062A9E8 /* NotoSansCJKkr-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = A13A744D2216F2BA0062A9E8 /* NotoSansCJKkr-Black.otf */; };
 		A13A74522216F2C80062A9E8 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A13A744C2216F2BA0062A9E8 /* NotoSansCJKkr-Bold.otf */; };
@@ -96,6 +97,7 @@
 		A120640F220DB1DA001EC1EF /* AMMainHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMainHeaderLayout.swift; sourceTree = "<group>"; };
 		A122FD49222038E000121F42 /* AMMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMenuViewController.swift; sourceTree = "<group>"; };
 		A122FD4B2220393500121F42 /* AMMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMenuView.swift; sourceTree = "<group>"; };
+		A122FD4F2220608500121F42 /* AMCarrierStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMCarrierStack.swift; sourceTree = "<group>"; };
 		A13A74492216F2B80062A9E8 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
 		A13A744A2216F2B80062A9E8 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		A13A744B2216F2B90062A9E8 /* NotoSansCJKkr-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Light.otf"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				A10D319C21F2FA45006132C5 /* AMBaseViewController.swift */,
 				A10D31A921F4620E006132C5 /* AMBaseView.swift */,
 				A1A2C940221DB124004BEB75 /* CarrierInfo.swift */,
+				A122FD4F2220608500121F42 /* AMCarrierStack.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -720,6 +723,8 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -733,6 +738,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -795,6 +802,7 @@
 				A122FD4C2220393500121F42 /* AMMenuView.swift in Sources */,
 				A1511CA92217DF4E0051FA25 /* AMMakeOptionViewController.swift in Sources */,
 				A1A2C94A221F26BE004BEB75 /* UIView+.swift in Sources */,
+				A122FD502220608500121F42 /* AMCarrierStack.swift in Sources */,
 				A120640E220DAA3B001EC1EF /* AMMainHeaderView.swift in Sources */,
 				A122FD4A222038E000121F42 /* AMMenuViewController.swift in Sources */,
 				A1206410220DB1DA001EC1EF /* AMMainHeaderLayout.swift in Sources */,

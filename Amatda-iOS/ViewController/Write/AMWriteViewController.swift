@@ -26,12 +26,12 @@ class AMWriteViewController: AMPresentAnimateViewController {
     //output
     var registerCheckItem    : Driver<String>?
     var isEmptyInputText     = PublishSubject<Bool>()
-    var carrierItem          : Int = 0
+    var carrierItem          : Carrier?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+     
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -44,7 +44,7 @@ class AMWriteViewController: AMPresentAnimateViewController {
         
         let register = Observable.combineLatest(self.labelColorTag,
                                                 self.checkInputText
-                                                ) { (self.carrierItem,$0,$1) }
+                                                ) { (self.carrierItem?.carrierID ?? 0,$0,$1) }
         let emptyObservable = self.checkInputText.map{ $0.count == 0 }
         
         

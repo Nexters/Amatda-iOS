@@ -46,6 +46,13 @@ class AMMenuView: AMBaseView, AMViewAnimatable {
     }()
     
     
+    private lazy var tableView : UITableView = {
+        let tb = UITableView()
+        return tb
+    }()
+    
+    
+    
     
     override func setupUI(){
         setupBaseView()
@@ -53,6 +60,11 @@ class AMMenuView: AMBaseView, AMViewAnimatable {
         self.backgroundColor = .clear
     }
     
+    
+    override func setupBinding() {
+//        self.tableView.delegate   = self
+//        self.tableView.dataSource = self
+    }
     
     
     @objc private func dragView(_ gesture : UIGestureRecognizer){
@@ -92,3 +104,23 @@ extension AMMenuView : AMActionAnimate {
         }
     }
 }
+
+//
+//extension AMMenuView : UITableViewDelegate{
+//
+//}
+//
+//
+//extension AMMenuView : UITableViewDataSource {
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 2
+//    }
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 2
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//    }
+//}

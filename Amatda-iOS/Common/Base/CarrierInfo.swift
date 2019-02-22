@@ -9,35 +9,16 @@
 import Foundation
 
 struct CarrierInfo {
-    static func setCarrierID(carrierID : Int){
-        var carriers = myCarrierID()
-        carriers.append(carrierID)
-        UserDefaults.standard.setValue(carriers, forKey: "myCarriersID")
-        setCurrentCarrierID(index: carriers.count)
-    }
-    
-    
-    static func myCarrierID() -> [Int]{
-        if let carrierID = UserDefaults.standard.object(forKey: "myCarriersID") as? [Int] {
-            return carrierID
+    static var currentCarrierIndex: Int{
+        set(newVal) {
+            UserDefaults.standard.setValue(newVal, forKey: "carrierIndex")
         }
         
-        return []
-    }
-    
-    
-    
-    static func setCurrentCarrierID(index : Int){
-        let carriers = myCarrierID()
-        UserDefaults.standard.setValue(carriers[index-1], forKey: "currentCarrier")
-    }
-    
-    
-    static func currentCarrierID()->Int{
-        if let carrierID = UserDefaults.standard.object(forKey: "currentCarrier") as? Int {
-            return carrierID
+        get{
+            if let index = UserDefaults.standard.object(forKey: "carrierIndex") as? Int {
+                return index
+            }
+            return 0
         }
-        
-        return 0
     }
 }

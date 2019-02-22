@@ -13,6 +13,8 @@ target 'Amatda-iOS' do
   pod 'lottie-ios'
   pod 'RxCocoa'
   pod 'DLRadioButton', '~> 1.4'
+  pod ‘RealmSwift’ 
+
 
   # Pods for Amatda-iOS
 

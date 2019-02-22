@@ -22,6 +22,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var centerButton            : UIButton? = UIButton()
     var isFirstAccess           : Bool = false
     
+    var carrierID = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0
     var carrierItem             = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
     var packageList : PackageModel?{
         didSet{
@@ -59,6 +60,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         }).disposed(by: self.disposeBag)
         
         
+        
         self.leftButton?.rx.tap.subscribe(onNext:{
             self.pressedMenuButton()
         }).disposed(by: self.disposeBag)
@@ -68,6 +70,9 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         self.carrierItem
             .do(onNext:{ model in
                 self.titleLabel?.text = model.carrier?.carrierName ?? ""
+                if let carrier = model.carrier {
+                    AMCarrierStack().push(carrier)
+                }
             })
             .bind(to: viewModel.completeCarrierInfo)
             .disposed(by: disposeBag)
@@ -102,10 +107,10 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         let viewController2 = AMWriteViewController()
         viewController2.modalPresentationStyle = .overCurrentContext
         viewController2.view.backgroundColor   = .clear
-        viewController2.carrierItem = CarrierInfo.currentCarrierID()
+        viewController2.carrierItem = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)
         viewController2.writeEventBus?
             .asDriver(onErrorJustReturn: ())
-            .map{ CarrierInfo.currentCarrierID() }
+            .map{ AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0 }
             .do(onNext:{ s in
                 print("\(s)")
             })
@@ -119,8 +124,6 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     
     private func pressedMenuButton(){
-
-
         let vc = AMMenuViewController()
         vc.modalPresentationStyle = .overCurrentContext
         vc.view.backgroundColor   = .clear
@@ -145,7 +148,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
 extension AMMainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rx.viewWillAppear.map{ CarrierInfo.currentCarrierID() }
+        self.rx.viewWillAppear.map{ self.carrierID }
             .bind(to: viewModel.viewDidLoad)
             .disposed(by: disposeBag)
 

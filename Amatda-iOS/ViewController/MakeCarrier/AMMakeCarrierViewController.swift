@@ -176,9 +176,10 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
     
     
     private func showMain(_ carrierID : Int){
-        CarrierInfo.setCarrierID(carrierID: carrierID)
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let root = mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
+        CarrierInfo.currentCarrierIndex = AMCarrierStack().count
+        root.carrierID     = carrierID
         root.isFirstAccess = true
         let vc = UINavigationController(rootViewController: root)
         appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)

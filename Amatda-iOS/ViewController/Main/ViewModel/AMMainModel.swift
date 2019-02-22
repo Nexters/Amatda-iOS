@@ -8,6 +8,15 @@
 
 import Foundation
 import SwiftyJSON
+import RealmSwift
+
+
+class CarrierRealm : Object{
+    @objc dynamic var carrierID   : Int = 0
+    @objc dynamic var startDate   : String = ""
+    @objc dynamic var carrierName : String = ""
+    @objc dynamic var carrierCountryID : Int = 0
+}
 
 struct Carrier {
     let carrierID   : Int
@@ -27,7 +36,7 @@ struct Package {
 
 public let AMMainModelParseError = apiError("AMMainModel error during parsing")
 
-struct CarrierModel {
+struct CarrierModel{
     let carrier : Carrier?
     let options : [Int]?
     
@@ -39,6 +48,7 @@ struct CarrierModel {
             throw AMMainModelParseError
         }
 
+        guard carrierList.count > 0 else { return CarrierModel(carrier: nil, options: nil) }
         let item = carrierList[0].dictionaryValue
         
         guard let id = item["cId"]?.intValue,
@@ -63,7 +73,7 @@ struct CarrierModel {
 }
 
 
-struct PackageModel {
+struct PackageModel{
     var unCheck : [Package]? = []
     var check   : [Package]? = []
     
