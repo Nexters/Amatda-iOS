@@ -43,9 +43,16 @@ class APIClient {
         return rxJSONAPIObservable(url: APIRouter.detailCarrier(carrierID: carrierID))
     }
     
-
     static func packageList(carrierID : Int, sort: Int)->Observable<JSON>{
-        return rxJSONAPIObservable(url: APIRouter.packageList(carrierID: 2, sort: sort))
+        return rxJSONAPIObservable(url: APIRouter.packageList(carrierID: carrierID, sort: sort))
+    }
+    
+    static func checkPackage(packageID : Int, check : Bool)->Observable<JSON>{
+        return rxJSONAPIObservable(url: APIRouter.checkPackage(packageID: packageID, check: check))
+    }
+    
+    static func registerPackage(carrierID : Int, packageName:String, labelColor : String)->Observable<JSON>{
+        return rxJSONAPIObservable(url: APIRouter.registerPackage(carrierID: carrierID, packageName: packageName, labelColor: labelColor, check: "N"))
     }
     
     

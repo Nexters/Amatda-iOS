@@ -32,7 +32,7 @@
  6. 준비물 등록하기
  http method : post
  body에 넣을 데이터 : pcId(int), pName(varchar), pColor(varchar), pCheck(varchar)
- url -> /pack/insert
+ url -> /pack
  return 값 : pId ( 준비물 아이디 )
  
  7. 준비물 삭제하기
@@ -82,7 +82,7 @@ enum APIRouter : URLRequestConvertible {
     case deletePackage(packageID : Int)
     
     //준비물 체크하기
-    case checkPackage(packageID : Int, check : String)
+    case checkPackage(packageID : Int, check : Bool)
     
     //날씨 조회하기
     case weatherOfCity(cityID : Int, month : Int)
@@ -121,13 +121,15 @@ enum APIRouter : URLRequestConvertible {
             return .get
             
         case .registerCarrier(_,_,_),
-             .registerPackage(_,_,_,_),
-             .checkPackage(_, _):
+             .registerPackage(_,_,_,_):
             return .post
             
         case .deleteCarrier(_),
              .deletePackage(_):
             return .delete
+            
+        case .checkPackage(_, _):
+            return .put
         }
     }
     
@@ -138,14 +140,14 @@ enum APIRouter : URLRequestConvertible {
             return "/carrier"
         case .packageList(_, _):
             return "/pack/all"
-        case .weatherOfCity(let cityID, let month):
-            return "/weather/list?city_id=\(cityID)&month=\(month)"
+        case .weatherOfCity(_,_):
+            return "/weather/list"
         case .registerPackage(_,_,_,_):
-            return "/pack/insert"
+            return "/pack"
         case .registerCarrier(_,_,_):
             return "/carrier"
         case .checkPackage(_, _):
-            return "/pack/update"
+            return "/pack/check"
         case .deleteCarrier(let carrierID):
             return "/carrier/delete?cId=\(carrierID)"
         case .deletePackage(let packageID):
@@ -185,6 +187,11 @@ enum APIRouter : URLRequestConvertible {
         case .packageList(let carrierID, let sort):
             param["cId"] = carrierID
             param["sort"] = sort
+            break
+            
+        case .weatherOfCity(let cityID, let month):
+            param["city_id"] = cityID
+            param["month"] = month
             break
             
         default:

@@ -33,6 +33,7 @@ extension AMViewControllerNaviSetAble{
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UINavigationBar.appearance().isTranslucent = false

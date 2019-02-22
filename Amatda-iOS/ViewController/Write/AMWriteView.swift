@@ -204,26 +204,33 @@ extension AMWriteView{
         radioStackView.alignment    = .center;
         radioStackView.spacing      = 34;
         
+        let garyRadio  = DLRadioButton()
         let redRadio   = DLRadioButton()
         let blueRadio  = DLRadioButton()
         let greenRadio = DLRadioButton()
         
+        
+        garyRadio.createRadioButton(size: 30, color: .gray, superView: radioStackView)
         redRadio.createRadioButton(size: 30, color: .red, superView: radioStackView)
         blueRadio.createRadioButton(size: 30, color: .blue, superView: radioStackView)
         greenRadio.createRadioButton(size: 30, color: .green, superView: radioStackView)
 
-        redRadio.isSelected = true
-        redRadio.otherButtons = [blueRadio, greenRadio]
+        garyRadio.isSelected = true
+        garyRadio.otherButtons = [redRadio, blueRadio, greenRadio]
         
         if let controller = controller {
-            Observable.of(redRadio.rx.tap.map{ _ in 0 },
-                          blueRadio.rx.tap.map{ _ in 1 },
-                          greenRadio.rx.tap.map{ _ in 2 }
+            Observable.of(
+                garyRadio.rx.tap.map{ _ in 0 },
+                redRadio.rx.tap.map{ _ in 1 },
+                blueRadio.rx.tap.map{ _ in 2 },
+                greenRadio.rx.tap.map{ _ in 3 }
                 )
                 .merge()
+                .map{self.convertColorTag($0)}
                 .bind(to: controller.labelColorTag)
                 .disposed(by: controller.disposeBag)
         }
+        
         
         self.labelStackView.addArrangedSubview(titleLabel)
         self.labelStackView.addArrangedSubview(radioStackView)
@@ -246,4 +253,19 @@ extension AMWriteView{
         }
     }
     
+    
+    private func convertColorTag(_ index : Int)->String{
+        switch index {
+        case 0:
+            return "Gray"
+        case 1:
+            return "Red"
+        case 2:
+            return "Blue"
+        case 3:
+            return "Green"
+        default:
+            return ""
+        }
+    }
 }

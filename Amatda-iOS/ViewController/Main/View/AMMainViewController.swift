@@ -22,12 +22,13 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var centerButton            : UIButton? = UIButton()
     var isFirstAccess           : Bool = false
     
-    var carrierItem             = PublishSubject<CarrierModel>()
+    var carrierItem             = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
     var packageList : PackageModel?{
         didSet{
             collectionView.reloadData()
         }
     }
+    
     
     private let viewModel   = AMMainViewModel()
     var disposeBag : DisposeBag  {
@@ -74,10 +75,12 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
             .drive(self.carrierItem)
             .disposed(by: disposeBag)
         
-    
+        
+        
         self.viewModel.packageList?.drive(onNext:{
             self.packageList = $0
         }).disposed(by: disposeBag)
+        
         
         
         self.viewModel.apiError
@@ -90,9 +93,21 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     
     private func pressedCenterButton() {
+        
         let viewController2 = AMWriteViewController()
         viewController2.modalPresentationStyle = .overCurrentContext
-        viewController2.view.backgroundColor    = .clear
+        viewController2.view.backgroundColor   = .clear
+        viewController2.carrierItem = CarrierInfo.currentCarrierID()
+        viewController2.writeEventBus?
+            .asDriver(onErrorJustReturn: ())
+            .map{ CarrierInfo.currentCarrierID() }
+            .do(onNext:{ s in
+                print("\(s)")
+            })
+            .drive(self.viewModel.viewDidLoad)
+            .disposed(by: disposeBag)
+
+        
         self.present(viewController2, animated: true, completion: nil)
     }
     
@@ -113,9 +128,12 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
 extension AMMainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        Observable.just(CarrierInfo.currentCarrierID())
+        self.rx.viewWillAppear.map{ CarrierInfo.currentCarrierID() }
             .bind(to: viewModel.viewDidLoad)
             .disposed(by: disposeBag)
+//        Observable.just(CarrierInfo.currentCarrierID())
+//            .bind(to: viewModel.viewDidLoad)
+//            .disposed(by: disposeBag)
         self.showCompleteMakeCarrier()
     }
     
@@ -123,7 +141,6 @@ extension AMMainViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         
     }
     
@@ -230,12 +247,24 @@ extension AMMainViewController : UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AMPackageCell", for: indexPath) as! AMPackageCell
+        guard let packageList = self.packageList else { return cell }
         
-        if indexPath.section == 1 {
-            cell.packageItem = packageList?.unCheck?[indexPath.row]
-        }else if indexPath.section == 2 {
-            cell.packageItem = packageList?.check?[indexPath.row]
+        if indexPath.section == 1,
+            let packageItem = packageList.unCheck?[indexPath.row]{
+            
+            cell.packageItem = packageItem
+        }else if indexPath.section == 2,
+            let packageItem = packageList.check?[indexPath.row]{
+            
+            cell.packageItem = packageItem
         }
+        
+        
+        cell.checkButton.rx.tap
+            .map{cell.packageItem!}
+            .bind(to:viewModel.tapCheckPackage)
+            .disposed(by: cell.disposeBag)
+        
         
         return cell
     }

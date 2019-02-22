@@ -7,9 +7,17 @@
 //
 
 import UIKit
+import RxSwift
 import SnapKit
 
 class AMPackageCell: UICollectionViewCell {
+    private(set) var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+
     var packageItem : Package? {
         didSet{
             setupUI()

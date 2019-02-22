@@ -19,11 +19,14 @@ class AMWriteViewController: AMPresentAnimateViewController {
     //input
     let didTapCompleteButton = PublishSubject<Void>()
     let checkInputText       = BehaviorSubject(value: "")
-    let labelColorTag        = BehaviorSubject(value: 0)
+    let labelColorTag        = BehaviorSubject(value: "Gray")
+    let currentCarrier       = PublishSubject<CarrierModel>()
+    var writeEventBus        : Driver<Void>?
     
     //output
     var registerCheckItem    : Driver<String>?
     var isEmptyInputText     = PublishSubject<Bool>()
+    var carrierItem          : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +41,21 @@ class AMWriteViewController: AMPresentAnimateViewController {
     
     
     private func setupObservable(){
-        let register = Observable.combineLatest(self.labelColorTag, self.checkInputText) { ($0,$1) }
+        
+        let register = Observable.combineLatest(self.labelColorTag,
+                                                self.checkInputText
+                                                ) { (self.carrierItem,$0,$1) }
         let emptyObservable = self.checkInputText.map{ $0.count == 0 }
         
-        self.didTapCompleteButton
+        
+        self.writeEventBus = self.didTapCompleteButton
             .withLatestFrom(register)
-            .subscribe(onNext:{ s1 in
-                print("s1 : \(s1)")
-            }).disposed(by: disposeBag)
+            .flatMapLatest{
+                APIClient.registerPackage(carrierID: $0, packageName: $2, labelColor: $1)
+            }.do(onNext: { _ in
+                self.dismiss(animated: true, completion: nil)
+            })
+            .map{ _ in return () }.asDriver(onErrorJustReturn: ())
         
         
         self.didTapCompleteButton
