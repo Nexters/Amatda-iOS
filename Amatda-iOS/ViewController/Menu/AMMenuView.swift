@@ -56,21 +56,37 @@ class AMMenuView: AMBaseView, AMViewAnimatable {
     
     override func setupUI(){
         setupBaseView()
+        setupTableView()
         self.layoutIfNeeded()
         self.backgroundColor = .clear
     }
     
     
+    
     override func setupBinding() {
-//        self.tableView.delegate   = self
-//        self.tableView.dataSource = self
+        self.tableView.delegate   = controller
+        self.tableView.dataSource = controller
     }
+    
     
     
     @objc private func dragView(_ gesture : UIGestureRecognizer){
         onDragContentView(gesture)
     }
     
+    
+    
+    private func setupTableView(){
+        self.contentView?.addSubview(self.tableView)
+        tableView.separatorStyle = .none
+        tableView.register(AMMenuCell.self, forCellReuseIdentifier: "AMMenuCell")
+        tableView.snp.makeConstraints{
+            $0.top.equalToSuperview()
+            $0.left.equalToSuperview()
+            $0.right.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+    }
 }
 
 
@@ -105,22 +121,4 @@ extension AMMenuView : AMActionAnimate {
     }
 }
 
-//
-//extension AMMenuView : UITableViewDelegate{
-//
-//}
-//
-//
-//extension AMMenuView : UITableViewDataSource {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 2
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 2
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//    }
-//}
+

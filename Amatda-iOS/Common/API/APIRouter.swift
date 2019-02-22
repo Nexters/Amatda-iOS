@@ -82,7 +82,7 @@ enum APIRouter : URLRequestConvertible {
     case deletePackage(packageID : Int)
     
     //준비물 체크하기
-    case checkPackage(packageID : Int, check : Bool)
+    case checkPackage(packageID : Int, check : String)
     
     //날씨 조회하기
     case weatherOfCity(cityID : Int, month : Int)
@@ -164,7 +164,7 @@ enum APIRouter : URLRequestConvertible {
             param["cId"] = carrierID
             break
         case .registerCarrier(let countryID ,let startTime, let options):
-            param["cName"]         = "캐리어 1"
+            param["cName"]         = "캐리어 \(AMCarrierStack().count + 1)"
             param["cCountry"]      = countryID
             param["startDate"]     = startTime //"YY-MM-DD hh:mm:ss"
             options.map{

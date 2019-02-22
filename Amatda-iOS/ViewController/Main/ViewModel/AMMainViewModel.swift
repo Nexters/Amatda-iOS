@@ -65,6 +65,9 @@ class AMMainViewModel{
         
         self.tapCheckPackage.flatMapLatest{
             APIClient.checkPackage(packageID: $0.packageID, check: !$0.check)
+                .do(onError:{ _ in
+                    self.apiError.onNext("")
+                }).suppressError()
             }.subscribe(onNext:{ s in
                 print("result : \(s)")
             }).disposed(by: disposeBag)

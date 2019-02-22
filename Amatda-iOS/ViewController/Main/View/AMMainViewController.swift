@@ -72,6 +72,11 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
                 self.titleLabel?.text = model.carrier?.carrierName ?? ""
                 if let carrier = model.carrier {
                     AMCarrierStack().push(carrier)
+                    /*
+                     태준님에게 캐리어 등록할 때
+                     캐리어 아이디만 보내지 말고
+                     캐리어 상세정보 보기랑 똑같이 줄 수 없는지 문의하기.
+                     */
                 }
             })
             .bind(to: viewModel.completeCarrierInfo)
@@ -111,9 +116,6 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         viewController2.writeEventBus?
             .asDriver(onErrorJustReturn: ())
             .map{ AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0 }
-            .do(onNext:{ s in
-                print("\(s)")
-            })
             .drive(self.viewModel.viewDidLoad)
             .disposed(by: disposeBag)
 

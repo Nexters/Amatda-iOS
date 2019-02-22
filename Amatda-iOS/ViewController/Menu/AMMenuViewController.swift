@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class AMMenuViewController: AMPresentAnimateViewController {
 
@@ -49,5 +50,61 @@ class AMMenuViewController: AMPresentAnimateViewController {
     
     override func performCustomDismissingAnimation(){
         self.menuView.performCustomDismissingAnimation()
+    }
+}
+
+
+extension AMMenuViewController : UITableViewDelegate{
+    
+}
+
+
+extension AMMenuViewController : UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return AMCarrierStack().count
+        }else{
+            return 2
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell : AMMenuCell = tableView.dequeueReusableCell(withIdentifier: "AMMenuCell", for: indexPath) as! AMMenuCell
+        if indexPath.section == 0 {
+            cell.titleStr = AMCarrierStack().carrierAt(index: indexPath.row)?.carrierName ?? ""
+        }else{
+            cell.titleStr = "ㅇㅇ"
+        }
+        
+        return cell
+    }
+}
+
+
+
+
+class AMMenuCell : UITableViewCell{
+    
+    
+    private var titleLabel : UILabel = UILabel()
+    var titleStr = "" {
+        didSet{
+            setupUI()
+        }
+    }
+    
+    
+    private func setupUI(){
+        self.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints{
+            $0.left.equalToSuperview().offset(24)
+            $0.centerY.equalToSuperview()
+        }
+        
+        titleLabel.text = titleStr
     }
 }
