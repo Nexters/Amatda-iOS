@@ -125,9 +125,11 @@ extension AMWriteView  {
             .disposed(by: controller.disposeBag)
         
         
-        self.completeButton.rx.tap
-            .bind(to:controller.didTapCompleteButton)
+        Observable.merge(self.checkInputTextField.rx.controlEvent(.editingDidEndOnExit).map{_ in ()},
+                         self.completeButton.rx.tap.map{_ in ()})
+            .bind(to: controller.didTapCompleteButton)
             .disposed(by: controller.disposeBag)
+        
     }
     
     func bindOutput(){

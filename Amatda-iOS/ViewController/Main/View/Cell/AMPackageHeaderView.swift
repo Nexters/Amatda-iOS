@@ -13,9 +13,10 @@ class AMPackageHeaderView: UICollectionReusableView {
     @IBOutlet weak var sortImageView: UIImageView!
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var lineView: UIView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
 }

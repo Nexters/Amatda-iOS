@@ -131,9 +131,7 @@ extension AMMainViewController {
         self.rx.viewWillAppear.map{ CarrierInfo.currentCarrierID() }
             .bind(to: viewModel.viewDidLoad)
             .disposed(by: disposeBag)
-//        Observable.just(CarrierInfo.currentCarrierID())
-//            .bind(to: viewModel.viewDidLoad)
-//            .disposed(by: disposeBag)
+
         self.showCompleteMakeCarrier()
     }
     
@@ -277,10 +275,16 @@ extension AMMainViewController : UICollectionViewDataSource{
             return header
         }else{
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath) as! AMPackageHeaderView
+            guard let checkCount = packageList?.check?.count,
+                let unCheckCount = packageList?.unCheck?.count else { return header }
+            
+            let total = checkCount + unCheckCount
             if indexPath.section == 1 {
                 header.lineView.isHidden = false
+                header.headerTitle.text = "아직 챙기지 않았어요! (\(unCheckCount)/\(total))"
             }else{
                 header.lineView.isHidden = true
+                header.headerTitle.text = "잊지 않고 챙겼어요! (\(checkCount)/\(total))"
             }
             return header
         }
