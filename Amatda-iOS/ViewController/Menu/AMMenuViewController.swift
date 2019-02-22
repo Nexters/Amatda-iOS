@@ -55,7 +55,34 @@ class AMMenuViewController: AMPresentAnimateViewController {
 
 
 extension AMMenuViewController : UITableViewDelegate{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            let headerView = UIView()
+            let lineView = UIView()
+            headerView.addSubview(lineView)
+            lineView.snp.makeConstraints{
+                $0.left.equalToSuperview().offset(24)
+                $0.right.equalToSuperview().offset(-24)
+                $0.height.equalTo(1)
+                $0.centerY.equalToSuperview()
+            }
+            lineView.backgroundColor = UIColor(red: 231, green: 231, blue: 231)
+            return headerView
+        }
+        
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }
+        return 20
+    }
 }
 
 
@@ -75,6 +102,9 @@ extension AMMenuViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : AMMenuCell = tableView.dequeueReusableCell(withIdentifier: "AMMenuCell", for: indexPath) as! AMMenuCell
         if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                cell.selectionCell = true
+            }
             cell.titleStr = AMCarrierStack().carrierAt(index: indexPath.row)?.carrierName ?? ""
         }else{
             cell.titleStr = "ㅇㅇ"
@@ -89,7 +119,7 @@ extension AMMenuViewController : UITableViewDataSource {
 
 class AMMenuCell : UITableViewCell{
     
-    
+    var selectionCell = false
     private var titleLabel : UILabel = UILabel()
     var titleStr = "" {
         didSet{
@@ -97,9 +127,22 @@ class AMMenuCell : UITableViewCell{
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.selectionCell = false
+    }
+    
     
     private func setupUI(){
         self.addSubview(titleLabel)
+        if selectionCell {
+            titleLabel.font = UIFont.notoSansCJKKr_medium(fontSize: 13)
+            titleLabel.textColor = UIColor(red: 255, green: 84, blue: 0)
+        }else{
+            titleLabel.font = UIFont.notoSansCJKKr_regular(fontSize: 13)
+            titleLabel.textColor = UIColor(red: 51, green: 51, blue: 51)
+        }
+        
         titleLabel.snp.makeConstraints{
             $0.left.equalToSuperview().offset(24)
             $0.centerY.equalToSuperview()
