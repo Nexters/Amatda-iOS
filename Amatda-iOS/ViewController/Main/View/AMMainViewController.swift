@@ -56,7 +56,12 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     private func bindInput(){
         self.centerButton?.rx.tap.subscribe(onNext:{
             self.pressedCenterButton()
-        }).disposed(by: disposeBag)
+        }).disposed(by: self.disposeBag)
+        
+        
+        self.leftButton?.rx.tap.subscribe(onNext:{
+            self.pressedMenuButton()
+        }).disposed(by: self.disposeBag)
         
         
         
@@ -109,6 +114,18 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
 
         
         self.present(viewController2, animated: true, completion: nil)
+    }
+    
+    
+    
+    private func pressedMenuButton(){
+
+
+        let vc = AMMenuViewController()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.view.backgroundColor   = .clear
+        
+        self.present(vc, animated: true, completion: nil)
     }
     
     

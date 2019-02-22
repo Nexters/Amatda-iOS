@@ -342,10 +342,10 @@
                                     <constraint firstAttribute="height" constant="60" id="SzX-Th-GU2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="20"/>
-                                <state key="normal" title="다음">
+                                <state key="normal" title="완료">
                                     <color key="titleColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <state key="disabled" title="다음">
+                                <state key="disabled">
                                     <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>

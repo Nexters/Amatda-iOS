@@ -15,6 +15,8 @@
 		A10D31AA21F4620E006132C5 /* AMBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10D31A921F4620E006132C5 /* AMBaseView.swift */; };
 		A120640E220DAA3B001EC1EF /* AMMainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120640D220DAA3B001EC1EF /* AMMainHeaderView.swift */; };
 		A1206410220DB1DA001EC1EF /* AMMainHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120640F220DB1DA001EC1EF /* AMMainHeaderLayout.swift */; };
+		A122FD4A222038E000121F42 /* AMMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A122FD49222038E000121F42 /* AMMenuViewController.swift */; };
+		A122FD4C2220393500121F42 /* AMMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A122FD4B2220393500121F42 /* AMMenuView.swift */; };
 		A13A74502216F2C30062A9E8 /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = A13A744F2216F2BB0062A9E8 /* NotoSansCJKkr-DemiLight.otf */; };
 		A13A74512216F2C50062A9E8 /* NotoSansCJKkr-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = A13A744D2216F2BA0062A9E8 /* NotoSansCJKkr-Black.otf */; };
 		A13A74522216F2C80062A9E8 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A13A744C2216F2BA0062A9E8 /* NotoSansCJKkr-Bold.otf */; };
@@ -92,6 +94,8 @@
 		A10D31A921F4620E006132C5 /* AMBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMBaseView.swift; sourceTree = "<group>"; };
 		A120640D220DAA3B001EC1EF /* AMMainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMainHeaderView.swift; sourceTree = "<group>"; };
 		A120640F220DB1DA001EC1EF /* AMMainHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMainHeaderLayout.swift; sourceTree = "<group>"; };
+		A122FD49222038E000121F42 /* AMMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMenuViewController.swift; sourceTree = "<group>"; };
+		A122FD4B2220393500121F42 /* AMMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMenuView.swift; sourceTree = "<group>"; };
 		A13A74492216F2B80062A9E8 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
 		A13A744A2216F2B80062A9E8 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		A13A744B2216F2B90062A9E8 /* NotoSansCJKkr-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Light.otf"; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 		A10D31A521F45F63006132C5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A122FD48222038B700121F42 /* Menu */,
 				A1511C6B2217D1550051FA25 /* MakeCarrier */,
 				A18841C92201C8F4009EC62E /* Main */,
 				A10D31A621F46141006132C5 /* Write */,
@@ -220,6 +225,15 @@
 				A10D31A721F46156006132C5 /* AMWriteView.swift */,
 			);
 			path = Write;
+			sourceTree = "<group>";
+		};
+		A122FD48222038B700121F42 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				A122FD49222038E000121F42 /* AMMenuViewController.swift */,
+				A122FD4B2220393500121F42 /* AMMenuView.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		A13A74472216F27A0062A9E8 /* Resource */ = {
@@ -778,9 +792,11 @@
 				A1D89AC4221485E00036C4BC /* DLRadioButton+.swift in Sources */,
 				A13A745A2216F5B10062A9E8 /* UIColor+.swift in Sources */,
 				A1A2C946221EE8E2004BEB75 /* AMMainModel.swift in Sources */,
+				A122FD4C2220393500121F42 /* AMMenuView.swift in Sources */,
 				A1511CA92217DF4E0051FA25 /* AMMakeOptionViewController.swift in Sources */,
 				A1A2C94A221F26BE004BEB75 /* UIView+.swift in Sources */,
 				A120640E220DAA3B001EC1EF /* AMMainHeaderView.swift in Sources */,
+				A122FD4A222038E000121F42 /* AMMenuViewController.swift in Sources */,
 				A1206410220DB1DA001EC1EF /* AMMainHeaderLayout.swift in Sources */,
 				A13F22CF21FF643F006675FC /* AMDeviceInfo.swift in Sources */,
 				A1511CB9221906D40051FA25 /* AMCarrierTimeViewController.swift in Sources */,
