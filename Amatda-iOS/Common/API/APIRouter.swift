@@ -121,15 +121,14 @@ enum APIRouter : URLRequestConvertible {
             return .get
             
         case .registerCarrier(_,_,_),
-             .registerPackage(_,_,_,_):
+             .registerPackage(_,_,_,_),
+             .checkPackage(_, _):
             return .post
             
         case .deleteCarrier(_),
              .deletePackage(_):
             return .delete
-            
-        case .checkPackage(_, _):
-            return .put
+
         }
     }
     

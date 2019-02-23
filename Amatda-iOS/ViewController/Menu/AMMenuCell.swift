@@ -9,17 +9,14 @@
 import Foundation
 import SnapKit
 
+enum AMMenuCellType {
+    case carrier(String,Bool)
+    case addCarrier
+    case pushOption
+    case termsOfService
+}
+
 class AMMenuCell : UITableViewCell{
-    
-    enum AMMenuCellType {
-        case carrier(String,Bool)
-        case addCarrier
-        case pushOption
-        case termsOfService
-    }
-    
-    
-    var selectionCell = false
     var selectionType : AMMenuCellType?{
         didSet{
             setupUI()
@@ -33,7 +30,6 @@ class AMMenuCell : UITableViewCell{
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.selectionCell = false
         titleLabel.font = UIFont.notoSansCJKKr_regular(fontSize: 13)
         titleLabel.textColor = UIColor(red: 51, green: 51, blue: 51)
         titleLabel.isHidden       = false
