@@ -20,8 +20,6 @@ class AMMenuView: AMBaseView, AMViewAnimatable {
         contentView.layer.cornerRadius = 10
         contentView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
         
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(dragView(_:)))
-        contentView.addGestureRecognizer(gesture)
         
         return contentView
     }()
@@ -70,16 +68,13 @@ class AMMenuView: AMBaseView, AMViewAnimatable {
     
     
     
-    @objc private func dragView(_ gesture : UIGestureRecognizer){
-        onDragContentView(gesture)
-    }
-    
     
     
     private func setupTableView(){
         self.contentView?.addSubview(self.tableView)
         tableView.separatorStyle = .none
         tableView.register(AMMenuCell.self, forCellReuseIdentifier: "AMMenuCell")
+        tableView.contentInset = .init(top: 10, left: 0, bottom: 10, right: 0)
         tableView.snp.makeConstraints{
             $0.top.equalToSuperview()
             $0.left.equalToSuperview()

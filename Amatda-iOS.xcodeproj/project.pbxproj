@@ -18,6 +18,7 @@
 		A122FD4A222038E000121F42 /* AMMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A122FD49222038E000121F42 /* AMMenuViewController.swift */; };
 		A122FD4C2220393500121F42 /* AMMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A122FD4B2220393500121F42 /* AMMenuView.swift */; };
 		A122FD502220608500121F42 /* AMCarrierStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A122FD4F2220608500121F42 /* AMCarrierStack.swift */; };
+		A122FD522220DEEF00121F42 /* AMMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A122FD512220DEEF00121F42 /* AMMenuCell.swift */; };
 		A13A74502216F2C30062A9E8 /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = A13A744F2216F2BB0062A9E8 /* NotoSansCJKkr-DemiLight.otf */; };
 		A13A74512216F2C50062A9E8 /* NotoSansCJKkr-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = A13A744D2216F2BA0062A9E8 /* NotoSansCJKkr-Black.otf */; };
 		A13A74522216F2C80062A9E8 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A13A744C2216F2BA0062A9E8 /* NotoSansCJKkr-Bold.otf */; };
@@ -98,6 +99,7 @@
 		A122FD49222038E000121F42 /* AMMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMenuViewController.swift; sourceTree = "<group>"; };
 		A122FD4B2220393500121F42 /* AMMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMenuView.swift; sourceTree = "<group>"; };
 		A122FD4F2220608500121F42 /* AMCarrierStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMCarrierStack.swift; sourceTree = "<group>"; };
+		A122FD512220DEEF00121F42 /* AMMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMenuCell.swift; sourceTree = "<group>"; };
 		A13A74492216F2B80062A9E8 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
 		A13A744A2216F2B80062A9E8 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		A13A744B2216F2B90062A9E8 /* NotoSansCJKkr-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Light.otf"; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			children = (
 				A122FD49222038E000121F42 /* AMMenuViewController.swift */,
 				A122FD4B2220393500121F42 /* AMMenuView.swift */,
+				A122FD512220DEEF00121F42 /* AMMenuCell.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -778,6 +781,7 @@
 				BABB4F0D21F811FF00616FD7 /* AMViewAnimatable.swift in Sources */,
 				BAD622C521EC73FD00BA2C27 /* AMPresentAnimateSetting.swift in Sources */,
 				A10D31A221F31718006132C5 /* AMViewControllerUISetAble.swift in Sources */,
+				A122FD522220DEEF00121F42 /* AMMenuCell.swift in Sources */,
 				A1511C6D2217D67E0051FA25 /* AMMakeCarrierViewController.swift in Sources */,
 				A1511CBB221990040051FA25 /* AMCarrierOptionViewController.swift in Sources */,
 				A1511C682217C1F30051FA25 /* AMShowAlert.swift in Sources */,

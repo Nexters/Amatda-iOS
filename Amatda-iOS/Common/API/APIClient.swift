@@ -48,7 +48,7 @@ class APIClient {
     }
     
     static func checkPackage(packageID : Int, check : Bool)->Observable<JSON>{
-        return rxJSONAPIObservable(url: APIRouter.checkPackage(packageID: packageID, check: true ? "Y":"N"))
+        return rxJSONAPIObservable(url: APIRouter.checkPackage(packageID: packageID, check: check ? "Y":"N"))
     }
     
     static func registerPackage(carrierID : Int, packageName:String, labelColor : String)->Observable<JSON>{

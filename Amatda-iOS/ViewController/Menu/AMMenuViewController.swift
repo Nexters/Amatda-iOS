@@ -93,7 +93,7 @@ extension AMMenuViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return AMCarrierStack().count
+            return AMCarrierStack().count + 1
         }else{
             return 2
         }
@@ -102,12 +102,23 @@ extension AMMenuViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : AMMenuCell = tableView.dequeueReusableCell(withIdentifier: "AMMenuCell", for: indexPath) as! AMMenuCell
         if indexPath.section == 0 {
+            
+            let title = AMCarrierStack().carrierAt(index: indexPath.row)?.carrierName ?? ""
             if indexPath.row == 0 {
-                cell.selectionCell = true
+                cell.selectionType = .carrier(title, true)
+            }else if indexPath.row == AMCarrierStack().count{
+                cell.selectionType = .addCarrier
+            }else{
+                cell.selectionType = .carrier(title, false)
             }
-            cell.titleStr = AMCarrierStack().carrierAt(index: indexPath.row)?.carrierName ?? ""
+            
+            
         }else{
-            cell.titleStr = "ㅇㅇ"
+            if indexPath.row == 0 {
+                cell.selectionType = .pushOption
+            }else{
+                cell.selectionType = .termsOfService
+            }
         }
         
         return cell
@@ -116,38 +127,3 @@ extension AMMenuViewController : UITableViewDataSource {
 
 
 
-
-class AMMenuCell : UITableViewCell{
-    
-    var selectionCell = false
-    private var titleLabel : UILabel = UILabel()
-    var titleStr = "" {
-        didSet{
-            setupUI()
-        }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.selectionCell = false
-    }
-    
-    
-    private func setupUI(){
-        self.addSubview(titleLabel)
-        if selectionCell {
-            titleLabel.font = UIFont.notoSansCJKKr_medium(fontSize: 13)
-            titleLabel.textColor = UIColor(red: 255, green: 84, blue: 0)
-        }else{
-            titleLabel.font = UIFont.notoSansCJKKr_regular(fontSize: 13)
-            titleLabel.textColor = UIColor(red: 51, green: 51, blue: 51)
-        }
-        
-        titleLabel.snp.makeConstraints{
-            $0.left.equalToSuperview().offset(24)
-            $0.centerY.equalToSuperview()
-        }
-        
-        titleLabel.text = titleStr
-    }
-}
