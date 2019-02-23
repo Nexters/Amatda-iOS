@@ -20,6 +20,7 @@ class AMMainViewModel{
     var detailCarrier        : Driver<CarrierModel>?
     var packageList          : Driver<PackageModel>?
     var completeCheckPackage : Driver<Int>?
+    var checkPackage         : Driver<Int>?
     
     let apiError = PublishSubject<String>()
     
@@ -63,14 +64,13 @@ class AMMainViewModel{
         
         
         
-        self.tapCheckPackage.flatMapLatest{
+        
+        self.checkPackage = self.tapCheckPackage.flatMapLatest{
             APIClient.checkPackage(packageID: $0.packageID, check: !$0.check)
                 .do(onError:{ _ in
                     self.apiError.onNext("")
                 }).suppressError()
-            }.subscribe(onNext:{ s in
-                print("result : \(s)")
-            }).disposed(by: disposeBag)
-        
+            }.map{_ in 0}
+            .asDriver(onErrorJustReturn: 0)
     }
 }

@@ -98,6 +98,13 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         
         
         
+        self.viewModel.checkPackage?
+            .map{ _ in AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0 }
+            .drive(self.viewModel.viewDidLoad)
+            .disposed(by: disposeBag)
+        
+        
+        
         self.viewModel.apiError
             .asDriver(onErrorJustReturn: "")
             .drive(onNext:{ _ in
