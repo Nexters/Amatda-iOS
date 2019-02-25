@@ -27,6 +27,9 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var packageList : PackageModel?{
         didSet{
             collectionView.reloadData()
+            self.collectionView.performBatchUpdates({
+                self.collectionView.reloadSections(IndexSet(integer: 0))
+            }, completion: nil)
         }
     }
     
@@ -158,11 +161,6 @@ extension AMMainViewController {
     
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -205,6 +203,7 @@ extension AMMainViewController : AMMainHeaderDelegate {
 }
 
 
+
 extension AMMainViewController : UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -224,15 +223,8 @@ extension AMMainViewController : UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var width = collectionView.frame.width
-        if UIApplication.shared.statusBarOrientation == .landscapeRight ||
-            UIApplication.shared.statusBarOrientation == .landscapeLeft{
-            width = (width - 1) / 2
-        }else{
-            
-        }
         
-        return CGSize(width: width, height: 60)
+        return CGSize(width: collectionView.frame.width, height: 60)
     }
 }
 
@@ -274,7 +266,6 @@ extension AMMainViewController : UICollectionViewDataSource{
             cell.packageItem = packageItem
         }else if indexPath.section == 2,
             let packageItem = packageList.check?[indexPath.row]{
-            
             cell.packageItem = packageItem
         }
         

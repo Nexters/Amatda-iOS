@@ -211,12 +211,20 @@ extension AMWriteView{
         let blueRadio  = DLRadioButton()
         let greenRadio = DLRadioButton()
         
-        
         garyRadio.createRadioButton(size: 30, color: .gray, superView: radioStackView)
         redRadio.createRadioButton(size: 30, color: .red, superView: radioStackView)
         blueRadio.createRadioButton(size: 30, color: .blue, superView: radioStackView)
         greenRadio.createRadioButton(size: 30, color: .green, superView: radioStackView)
 
+        garyRadio.icon          = UIImage(named: "labelDefault")!
+        garyRadio.iconSelected  = UIImage(named: "labelDefaultSelect")!
+        redRadio.icon           = UIImage(named: "labelPink")!
+        redRadio.iconSelected   = UIImage(named: "labelPinkSelected")!
+        blueRadio.icon          = UIImage(named: "labelViolet")!
+        blueRadio.iconSelected  = UIImage(named: "labelVioletSelected")!
+        greenRadio.icon         = UIImage(named: "labelGreen")!
+        greenRadio.iconSelected = UIImage(named: "labelGreenSelected")!
+        
         garyRadio.isSelected = true
         garyRadio.otherButtons = [redRadio, blueRadio, greenRadio]
         

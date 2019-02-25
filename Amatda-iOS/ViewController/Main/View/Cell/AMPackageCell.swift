@@ -7,6 +7,8 @@
 //
 
 import UIKit
+
+import DLRadioButton
 import RxSwift
 import SnapKit
 
@@ -41,10 +43,11 @@ class AMPackageCell: UICollectionViewCell {
         self.recommendLabel.textColor = UIColor(red: 51, green: 51, blue: 51)
         
         
+        
         self.checkButton.snp.makeConstraints{
             $0.centerY.equalToSuperview()
             $0.left.equalToSuperview().offset(24)
-            $0.size.equalTo(20)
+            $0.size.equalTo(40)
         }
         
         self.packageLabel.snp.makeConstraints{
@@ -63,60 +66,49 @@ class AMPackageCell: UICollectionViewCell {
         guard let package = self.packageItem else { return }
         self.packageLabel.text = package.packageName
         self.recommendLabel.text = "추천"
-        self.checkButton.setImage(convertCheckImage(package: package), for: .normal)
+        self.checkButton.convertCheckImage(package: package)
     }
-    
-    
-    private func convertCheckImage(package : Package)->UIImage{
-        var imageNamed = ""
-        if package.check {
-            self.checkButton.isEnabled = false
-            switch package.packageColor {
-            case "Black":
-                imageNamed = "checkDefault"
-                break
-                
-            case "Green":
-                imageNamed = "checkGreen"
-                break
-                
-            case "Blue":
-                imageNamed = "checkViolet"
-                break
-                
-            case "Red":
-                imageNamed = "checkPink"
-                break
-                
-            default:
-                imageNamed = "checkDefault"
-                break
-            }
-        }else{
-            self.checkButton.isEnabled = true
-            switch package.packageColor {
-            case "Black":
-                imageNamed = "labelDefault"
-                break
-                
-            case "Green":
-                imageNamed = "labelGreen"
-                break
-                
-            case "Blue":
-                imageNamed = "labelViolet"
-                break
-                
-            case "Red":
-                imageNamed = "labelPink"
-                break
-                
-            default:
-                imageNamed = "labelDefault"
-                break
-            }
+}
+
+
+
+private extension UIButton{
+    func convertCheckImage(package : Package){
+        var checkImageNamed   = ""
+        var uncheckImageNamed = ""
+        switch package.packageColor {
+        case "Gray":
+            checkImageNamed   = "checkDefault"
+            uncheckImageNamed = "labelDefault"
+            break
+            
+        case "Green":
+            checkImageNamed   = "checkGreen"
+            uncheckImageNamed = "labelGreen"
+            break
+            
+        case "Blue":
+            checkImageNamed   = "checkViolet"
+            uncheckImageNamed = "labelViolet"
+            break
+            
+        case "Red":
+            checkImageNamed   = "checkPink"
+            uncheckImageNamed = "labelPink"
+            break
+            
+        default:
+            checkImageNamed   = "checkDefault"
+            uncheckImageNamed = "labelDefault"
+            break
         }
         
-        return UIImage(named: imageNamed)!
+        
+        
+        if package.check {
+            self.setImage(UIImage(named: checkImageNamed)!, for: .normal)
+        }else{
+            self.setImage(UIImage(named: uncheckImageNamed)!, for: .normal)
+        }
     }
 }
