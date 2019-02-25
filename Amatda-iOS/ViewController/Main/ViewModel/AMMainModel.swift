@@ -11,12 +11,6 @@ import SwiftyJSON
 import RealmSwift
 
 
-class CarrierRealm : Object{
-    @objc dynamic var carrierID   : Int = 0
-    @objc dynamic var startDate   : String = ""
-    @objc dynamic var carrierName : String = ""
-    @objc dynamic var carrierCountryID : Int = 0
-}
 
 struct Carrier {
     let carrierID   : Int

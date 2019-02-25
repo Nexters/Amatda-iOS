@@ -20,13 +20,23 @@ func apiError(_ error: String) -> NSError {
 class APIClient {
     static func registerCarrier(countryID : Int,
                                 startDate : String,
-                                options   : [Int])->Observable<Int>{
+                                options   : [Int])->Observable<Carrier>{
         return Observable.create{ emit in
-            Alamofire.request(APIRouter.registerCarrier(countryID: countryID, startDate: startDate, options: options)).responseSwiftyJSON(completionHandler: { (jsonData) in
+            Alamofire.request(APIRouter.registerCarrier(countryID: countryID,
+                                                        startDate: startDate,
+                                                        options: options))
+                .responseSwiftyJSON(completionHandler: { (jsonData) in
                 
                 switch jsonData.result{
                 case .success(let data):
-                    emit.onNext(data.intValue)
+                    
+                    let carrier = Carrier(carrierID: data.intValue,
+                                          startDate: startDate,
+                                          carrierName: "캐리어 \(AMCarrierStack().count + 1)",
+                                          carrierCountryID: countryID
+                    )
+                    
+                    emit.onNext(carrier)
                     emit.onCompleted()
                     break
                 case .failure(let error):

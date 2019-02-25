@@ -98,7 +98,10 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
                     .do(onError:{ _ in
                         self.registerError.onNext("")
                     }).suppressError()
-            }.asDriver(onErrorJustReturn: 0)
+            }.asDriver(onErrorJustReturn: Carrier(carrierID: 0,
+                                                  startDate: "",
+                                                  carrierName: "",
+                                                  carrierCountryID: 0))
         
         
         
@@ -175,11 +178,11 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
     
     
     
-    private func showMain(_ carrierID : Int){
+    private func showMain(_ carrier : Carrier){
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let root = mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
         CarrierInfo.currentCarrierIndex = AMCarrierStack().count
-        root.carrierID     = carrierID
+        AMCarrierStack().push(carrier)
         root.isFirstAccess = true
         let vc = UINavigationController(rootViewController: root)
         appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)
@@ -193,9 +196,9 @@ extension AMMakeCarrierViewController {
         var vc : UIViewController?
         switch index {
         case 0:
-            vc = self.storyboard?.instantiateViewController(withIdentifier: "AMMakeOptionViewController") as! AMMakeOptionViewController
-            (vc as! AMMakeOptionViewController).superPageVC = self
-            (vc as! AMMakeOptionViewController).disposeBag  = disposeBag
+            vc = self.storyboard?.instantiateViewController(withIdentifier: "AMMakeOptionViewController") as! AMMakeCityViewController
+            (vc as! AMMakeCityViewController).superPageVC = self
+            (vc as! AMMakeCityViewController).disposeBag  = disposeBag
             break
         case 1:
             vc = self.storyboard?.instantiateViewController(withIdentifier: "AMCarrierTimeViewController") as! AMCarrierTimeViewController

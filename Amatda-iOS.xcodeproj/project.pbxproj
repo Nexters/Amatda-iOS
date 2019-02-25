@@ -32,7 +32,7 @@
 		A1511C682217C1F30051FA25 /* AMShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511C672217C1F30051FA25 /* AMShowAlert.swift */; };
 		A1511C6A2217C2660051FA25 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511C692217C2660051FA25 /* String+.swift */; };
 		A1511C6D2217D67E0051FA25 /* AMMakeCarrierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511C6C2217D67E0051FA25 /* AMMakeCarrierViewController.swift */; };
-		A1511CA92217DF4E0051FA25 /* AMMakeOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511CA82217DF4E0051FA25 /* AMMakeOptionViewController.swift */; };
+		A1511CA92217DF4E0051FA25 /* AMMakeCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511CA82217DF4E0051FA25 /* AMMakeCityViewController.swift */; };
 		A1511CB42217FBDC0051FA25 /* UIPageViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511CB32217FBDC0051FA25 /* UIPageViewController+.swift */; };
 		A1511CB9221906D40051FA25 /* AMCarrierTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511CB8221906D40051FA25 /* AMCarrierTimeViewController.swift */; };
 		A1511CBB221990040051FA25 /* AMCarrierOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511CBA221990040051FA25 /* AMCarrierOptionViewController.swift */; };
@@ -113,7 +113,7 @@
 		A1511C672217C1F30051FA25 /* AMShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMShowAlert.swift; sourceTree = "<group>"; };
 		A1511C692217C2660051FA25 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		A1511C6C2217D67E0051FA25 /* AMMakeCarrierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMakeCarrierViewController.swift; sourceTree = "<group>"; };
-		A1511CA82217DF4E0051FA25 /* AMMakeOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMakeOptionViewController.swift; sourceTree = "<group>"; };
+		A1511CA82217DF4E0051FA25 /* AMMakeCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMakeCityViewController.swift; sourceTree = "<group>"; };
 		A1511CB32217FBDC0051FA25 /* UIPageViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPageViewController+.swift"; sourceTree = "<group>"; };
 		A1511CB8221906D40051FA25 /* AMCarrierTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMCarrierTimeViewController.swift; sourceTree = "<group>"; };
 		A1511CBA221990040051FA25 /* AMCarrierOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMCarrierOptionViewController.swift; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 		A1511CB7221906770051FA25 /* SelectCarrierOption */ = {
 			isa = PBXGroup;
 			children = (
-				A1511CA82217DF4E0051FA25 /* AMMakeOptionViewController.swift */,
+				A1511CA82217DF4E0051FA25 /* AMMakeCityViewController.swift */,
 				A1511CB8221906D40051FA25 /* AMCarrierTimeViewController.swift */,
 				A1511CBA221990040051FA25 /* AMCarrierOptionViewController.swift */,
 			);
@@ -804,7 +804,7 @@
 				A13A745A2216F5B10062A9E8 /* UIColor+.swift in Sources */,
 				A1A2C946221EE8E2004BEB75 /* AMMainModel.swift in Sources */,
 				A122FD4C2220393500121F42 /* AMMenuView.swift in Sources */,
-				A1511CA92217DF4E0051FA25 /* AMMakeOptionViewController.swift in Sources */,
+				A1511CA92217DF4E0051FA25 /* AMMakeCityViewController.swift in Sources */,
 				A1A2C94A221F26BE004BEB75 /* UIView+.swift in Sources */,
 				A122FD502220608500121F42 /* AMCarrierStack.swift in Sources */,
 				A120640E220DAA3B001EC1EF /* AMMainHeaderView.swift in Sources */,

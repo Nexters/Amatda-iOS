@@ -44,16 +44,16 @@
             </objects>
             <point key="canvasLocation" x="76" y="-665"/>
         </scene>
-        <!--Make Option View Controller-->
+        <!--Make City View Controller-->
         <scene sceneID="pdo-EM-4WJ">
             <objects>
-                <viewController storyboardIdentifier="AMMakeOptionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="c2S-cD-IQg" customClass="AMMakeOptionViewController" customModule="Amatda_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AMMakeOptionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="c2S-cD-IQg" customClass="AMMakeCityViewController" customModule="Amatda_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yBC-t4-jAU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어디로 떠나시나요?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDq-j2-MrP">
-                                <rect key="frame" x="24" y="86" width="227" height="41.5"/>
+                                <rect key="frame" x="24" y="86" width="217.5" height="33"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Light" family="Noto Sans CJK KR" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

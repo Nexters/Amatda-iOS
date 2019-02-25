@@ -104,7 +104,7 @@ extension AMMenuViewController : UITableViewDataSource {
         if indexPath.section == 0 {
             
             let title = AMCarrierStack().carrierAt(index: indexPath.row)?.carrierName ?? ""
-            if indexPath.row == 0 {
+            if indexPath.row == CarrierInfo.currentCarrierIndex {
                 cell.selectionType = .carrier(title, true)
             }else if indexPath.row == AMCarrierStack().count{
                 cell.selectionType = .addCarrier

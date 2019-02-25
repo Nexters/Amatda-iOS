@@ -22,7 +22,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var centerButton            : UIButton? = UIButton()
     var isFirstAccess           : Bool = false
     
-    var carrierID = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0
+    lazy var carrierID = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0
     var carrierItem             = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
     var packageList : PackageModel?{
         didSet{
@@ -70,14 +70,6 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         self.carrierItem
             .do(onNext:{ model in
                 self.titleLabel?.text = model.carrier?.carrierName ?? ""
-                if let carrier = model.carrier {
-                    AMCarrierStack().push(carrier)
-                    /*
-                     태준님에게 캐리어 등록할 때
-                     캐리어 아이디만 보내지 말고
-                     캐리어 상세정보 보기랑 똑같이 줄 수 없는지 문의하기.
-                     */
-                }
             })
             .bind(to: viewModel.completeCarrierInfo)
             .disposed(by: disposeBag)

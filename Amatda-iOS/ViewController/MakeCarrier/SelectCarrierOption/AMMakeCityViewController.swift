@@ -13,7 +13,7 @@ import RxSwift
 import SnapKit
 
 
-class AMMakeOptionViewController: AMBaseViewController {
+class AMMakeCityViewController: AMBaseViewController {
 
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var nextButton: UIButton!
@@ -103,7 +103,7 @@ class AMMakeOptionViewController: AMBaseViewController {
 }
 
 
-extension AMMakeOptionViewController {
+extension AMMakeCityViewController {
     private func makeFirstView(){
         self.view.addSubview(self.cityOfCarrierTextField)
         self.cityOfCarrierTextField.snp.makeConstraints{
@@ -221,7 +221,7 @@ extension AMMakeOptionViewController {
 }
 
 
-extension AMMakeOptionViewController{
+extension AMMakeCityViewController{
     @objc private func showPickerView(){
         self.view.layoutIfNeeded()
         UIView.animate(withDuration: 0.3, animations: {
@@ -250,7 +250,7 @@ extension AMMakeOptionViewController{
 }
 
 
-extension AMMakeOptionViewController : UIPickerViewDelegate{
+extension AMMakeCityViewController : UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print("citys \(cities[row])")
         self.selectedCity    = cities[row]
@@ -263,7 +263,7 @@ extension AMMakeOptionViewController : UIPickerViewDelegate{
 }
 
 
-extension AMMakeOptionViewController : UIPickerViewDataSource{
+extension AMMakeCityViewController : UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
