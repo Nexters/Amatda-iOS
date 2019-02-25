@@ -36,10 +36,10 @@
             </objects>
             <point key="canvasLocation" x="-639.20000000000005" y="-665.21739130434787"/>
         </scene>
-        <!--Make Carrier Page View Controller-->
+        <!--Page View Controller-->
         <scene sceneID="JAb-41-XM7">
             <objects>
-                <pageViewController storyboardIdentifier="MakePageViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ULl-NP-9AS" customClass="AMMakeCarrierPageViewController" customModule="Amatda_iOS" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="MakePageViewController" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ULl-NP-9AS" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Nl-BD-0oR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="76" y="-665"/>

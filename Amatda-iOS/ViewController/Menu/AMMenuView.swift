@@ -8,6 +8,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 class AMMenuView: AMBaseView, AMViewAnimatable {
     var contentViewHeight: CGFloat? = 296
     
@@ -64,6 +67,19 @@ class AMMenuView: AMBaseView, AMViewAnimatable {
     override func setupBinding() {
         self.tableView.delegate   = controller
         self.tableView.dataSource = controller
+        
+        controller?.carrierEventBus = self.tableView.rx.itemSelected
+            .filter{ $0.section == 0 && $0.row != AMCarrierStack().count }
+            .do(onNext: { _ in
+                self.controller?.dismiss(animated: true, completion: nil)
+            })
+            .asDriver(onErrorJustReturn: IndexPath(row: 0, section: 0))
+        
+        
+        controller?.goWriteEventBus = self.tableView.rx.itemSelected
+            .debug()
+            .filter{ $0.section == 0 && $0.row == AMCarrierStack().count  }
+            .asDriver(onErrorJustReturn: IndexPath(row: 0, section: 0))
     }
     
     

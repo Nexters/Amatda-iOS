@@ -22,14 +22,14 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var centerButton            : UIButton? = UIButton()
     var isFirstAccess           : Bool = false
     
-    lazy var carrierID = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0
-    var carrierItem             = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
+    var carrierID  :Int{
+        return AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0
+    }
+    
+    var carrierItem    = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
     var packageList : PackageModel?{
         didSet{
             collectionView.reloadData()
-            self.collectionView.performBatchUpdates({
-                self.collectionView.reloadSections(IndexSet(integer: 0))
-            }, completion: nil)
         }
     }
     
@@ -131,6 +131,21 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         let vc = AMMenuViewController()
         vc.modalPresentationStyle = .overCurrentContext
         vc.view.backgroundColor   = .clear
+        vc.carrierEventBus?.do(onNext:{
+            CarrierInfo.currentCarrierIndex = $0.row
+        }).map{ _ in self.carrierID }
+            .drive(self.viewModel.viewDidLoad)
+            .disposed(by: disposeBag)
+        
+        
+        vc.goWriteEventBus?.debug().drive(onNext:{ _ in
+            vc.dismiss(animated: true, completion: {
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let makeVC = mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController")
+                
+                self.present(makeVC, animated: true, completion: nil)
+            })
+        }).disposed(by: disposeBag)
         
         self.present(vc, animated: true, completion: nil)
     }

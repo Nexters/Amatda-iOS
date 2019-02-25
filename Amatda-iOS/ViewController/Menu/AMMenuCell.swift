@@ -25,7 +25,6 @@ class AMMenuCell : UITableViewCell{
     }
     
     private var titleLabel       : UILabel = UILabel()
-    private var addCarrierButton : UIButton = UIButton()
     private var pushSwitch       : UISwitch = UISwitch()
     
     override func prepareForReuse() {
@@ -33,14 +32,12 @@ class AMMenuCell : UITableViewCell{
         titleLabel.font = UIFont.notoSansCJKKr_regular(fontSize: 13)
         titleLabel.textColor = UIColor(red: 51, green: 51, blue: 51)
         titleLabel.isHidden       = false
-        addCarrierButton.isHidden = true
         pushSwitch.isHidden = true
     }
     
     
     private func setupUI(){
         self.addSubview(self.titleLabel)
-        self.addSubview(self.addCarrierButton)
         self.addSubview(self.pushSwitch)
         
         
@@ -49,12 +46,6 @@ class AMMenuCell : UITableViewCell{
             $0.centerY.equalToSuperview()
         }
         
-        self.addCarrierButton.snp.makeConstraints{
-            $0.width.equalTo(100)
-            $0.height.equalTo(40)
-            $0.left.equalTo(self.titleLabel.snp.left)
-            $0.centerY.equalToSuperview()
-        }
         
         self.pushSwitch.snp.makeConstraints{
             $0.centerY.equalToSuperview()
@@ -63,6 +54,8 @@ class AMMenuCell : UITableViewCell{
         
         self.pushSwitch.onTintColor = UIColor(red: 255, green: 84, blue: 0)
     }
+    
+    
     
     private func setData(){
         pushSwitch.isHidden = true
@@ -81,13 +74,10 @@ class AMMenuCell : UITableViewCell{
             break
             
         case .addCarrier:
-            titleLabel.isHidden       = true
-            addCarrierButton.isHidden = false
-            addCarrierButton.setTitle("+  새 캐리어", for: .normal)
-            addCarrierButton.titleLabel?.font = UIFont.notoSansCJKKr_regular(fontSize: 13)
-            addCarrierButton.setTitleColor(UIColor(red: 51, green: 51, blue: 51), for: .normal)
-            addCarrierButton.contentHorizontalAlignment = .left
-            addCarrierButton.addTarget(self, action: #selector(pressedAddCarrier), for: .touchDown)
+            titleLabel.text = "+  새 캐리어"
+            titleLabel.font = UIFont.notoSansCJKKr_regular(fontSize: 13)
+            titleLabel.textColor = UIColor(red: 51, green: 51, blue: 51)
+
             break
             
         case .pushOption:

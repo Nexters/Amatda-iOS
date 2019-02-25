@@ -7,11 +7,17 @@
 //
 
 import UIKit
+
 import SnapKit
+import RxCocoa
+import RxSwift
 
 class AMMenuViewController: AMPresentAnimateViewController {
-
+    
     private lazy var menuView = AMMenuView(controlBy : self)
+    var carrierEventBus      : Driver<IndexPath>?
+    var goWriteEventBus        : Driver<IndexPath>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +31,6 @@ class AMMenuViewController: AMPresentAnimateViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     
     override func loadView() {
@@ -59,6 +64,7 @@ extension AMMenuViewController : UITableViewDelegate{
         return 50
     }
     
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
             let headerView = UIView()
@@ -76,6 +82,7 @@ extension AMMenuViewController : UITableViewDelegate{
         
         return nil
     }
+    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
