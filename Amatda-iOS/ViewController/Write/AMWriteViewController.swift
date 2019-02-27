@@ -52,7 +52,8 @@ class AMWriteViewController: AMPresentAnimateViewController {
             .withLatestFrom(register)
             .flatMapLatest{
                 APIClient.registerPackage(carrierID: $0, packageName: $2, labelColor: $1)
-            }.do(onNext: { _ in
+            }.do(onNext: { [weak self] _ in
+                guard let self = self else { return }
                 self.dismiss(animated: true, completion: nil)
             })
             .map{ _ in return () }.asDriver(onErrorJustReturn: ())

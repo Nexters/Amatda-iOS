@@ -70,7 +70,9 @@ class AMMenuView: AMBaseView, AMViewAnimatable {
         
         controller?.carrierEventBus = self.tableView.rx.itemSelected
             .filter{ $0.section == 0 && $0.row != AMCarrierStack().count }
-            .do(onNext: { _ in
+            .do(onNext: {  [weak self] _ in
+                guard let self = self else { return }
+                
                 self.controller?.dismiss(animated: true, completion: nil)
             })
             .asDriver(onErrorJustReturn: IndexPath(row: 0, section: 0))

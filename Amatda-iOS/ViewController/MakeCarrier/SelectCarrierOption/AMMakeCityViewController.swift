@@ -89,7 +89,9 @@ class AMMakeCityViewController: AMBaseViewController {
         
         nextButton.rx.tap
             .take(1)
-            .subscribe(onNext:{
+            .subscribe(onNext:{ [weak self] in
+                guard let self = self else { return }
+                
                 superPageVC.pressedNextButton()
                 self.nextButton.isEnabled = false
             } )
@@ -205,7 +207,8 @@ extension AMMakeCityViewController {
             let superPageVC = superPageVC else { return }
         
         confirmButton.rx.tap
-            .do(onNext: {
+            .do(onNext: { [weak self] in
+                guard let self = self else { return }
                 self.nextButton.isEnabled = true
                 self.nextButton.backgroundColor = UIColor(red: 255, green: 87, blue: 54)
             })

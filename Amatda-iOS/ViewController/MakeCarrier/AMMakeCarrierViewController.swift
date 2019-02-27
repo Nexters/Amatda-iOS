@@ -95,7 +95,9 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
             .withLatestFrom(requiredCarrierInfo)
             .flatMapLatest{
                 APIClient.registerCarrier(countryID: $0, startDate: $1, options: $2)
-                    .do(onError:{ _ in
+                    .do(onError:{  [weak self] _ in
+                        guard let self = self else { return }
+                        
                         self.registerError.onNext("")
                     }).suppressError()
             }.asDriver(onErrorJustReturn: Carrier(carrierID: 0,
@@ -105,7 +107,9 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
         
         
         
-        register.drive(onNext:{
+        register.drive(onNext:{ [weak self] in
+            guard let self = self else { return }
+            
             self.showMain($0)
         }).disposed(by: disposeBag)
         
@@ -113,7 +117,9 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
         
         self.registerError
             .asDriver(onErrorJustReturn: "")
-            .drive(onNext:{ _ in
+            .drive(onNext:{ [weak self] _ in
+                guard let self = self else { return }
+                
                 self.showAlert(title: "오류", message: String.errorString)
         }).disposed(by: disposeBag)
     }

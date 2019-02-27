@@ -135,9 +135,10 @@ extension AMWriteView  {
     func bindOutput(){
         guard let controller = controller else { return }
         controller.isEmptyInputText
-            .subscribe(onNext:{ s1 in
-            self.showAlert(title: "", message: String.emptyCheckItem)
-        }).disposed(by: controller.disposeBag)
+            .subscribe(onNext:{ [weak self] _ in
+                guard let self = self else { return }
+                self.showAlert(title: "", message: String.emptyCheckItem)
+            }).disposed(by: controller.disposeBag)
     }
 }
 

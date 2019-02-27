@@ -58,21 +58,24 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     
     private func bindInput(){
-        self.centerButton?.rx.tap.subscribe(onNext:{
+        self.centerButton?.rx.tap.subscribe(onNext:{ [weak self] in
+            guard let self = self else { return }
             self.pressedCenterButton()
         }).disposed(by: self.disposeBag)
         
         
         
-        self.leftButton?.rx.tap.subscribe(onNext:{
+        self.leftButton?.rx.tap.subscribe(onNext:{ [weak self] in
+            guard let self = self else { return }
             self.pressedMenuButton()
         }).disposed(by: self.disposeBag)
         
         
         
         self.carrierItem
-            .do(onNext:{ model in
-                self.titleLabel?.text = model.carrier?.carrierName ?? ""
+            .do(onNext:{ [weak self] in
+                guard let self = self else { return }
+                self.titleLabel?.text = $0.carrier?.carrierName ?? ""
             })
             .bind(to: viewModel.completeCarrierInfo)
             .disposed(by: disposeBag)
@@ -82,12 +85,13 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     private func bindOutput(){
         self.viewModel.detailCarrier?
-            .drive(self.carrierItem)
+            .drive(carrierItem)
             .disposed(by: disposeBag)
         
         
         
-        self.viewModel.packageList?.drive(onNext:{
+        self.viewModel.packageList?.drive(onNext:{ [weak self] in
+            guard let self = self else { return }
             self.packageList = $0
         }).disposed(by: disposeBag)
         
@@ -102,7 +106,8 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         
         self.viewModel.apiError
             .asDriver(onErrorJustReturn: "")
-            .drive(onNext:{ _ in
+            .drive(onNext:{ [weak self] _ in
+                guard let self = self else { return }
                 self.showAlert(title: "오류", message: String.errorString)
             }).disposed(by: disposeBag)
     }
@@ -138,8 +143,9 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
             .disposed(by: disposeBag)
         
         
-        vc.goWriteEventBus?.debug().drive(onNext:{ _ in
+        vc.goWriteEventBus?.debug().drive(onNext:{ [weak self] _ in
             vc.dismiss(animated: true, completion: {
+                guard let self = self else { return }
                 let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let makeVC = mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController")
                 
