@@ -18,8 +18,6 @@ class CarrierRealm : Object{
 }
 
 
-
-
 class AMCarrierStack {
     private lazy var carriers : Results<CarrierRealm> = {
         let realm = try! Realm()

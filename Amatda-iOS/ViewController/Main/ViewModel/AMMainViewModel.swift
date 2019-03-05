@@ -18,7 +18,7 @@ class AMMainViewModel{
     
     //output
     var detailCarrier        : Driver<CarrierModel>?
-    var packageList          : Driver<PackageModel>?
+    var packageList          : Driver<[SectionOfPackage]>?
     var completeCheckPackage : Driver<Int>?
     var checkPackage         : Driver<Int>?
     
@@ -60,7 +60,7 @@ class AMMainViewModel{
             }.map{
                 try PackageModel.parseJSON($0)
             }
-            .asDriver(onErrorJustReturn: PackageModel(unCheck: nil,check:nil))
+            .asDriver(onErrorJustReturn: [])
         
         
         

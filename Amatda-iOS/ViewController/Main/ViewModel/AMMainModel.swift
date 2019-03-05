@@ -71,7 +71,7 @@ struct PackageModel{
     var unCheck : [Package]? = []
     var check   : [Package]? = []
     
-    static func parseJSON(_ json : JSON) throws -> PackageModel{
+    static func parseJSON(_ json : JSON) throws -> [SectionOfPackage]{
         let data = json["package"].dictionaryValue
         
         guard let unCheckPack = data["uncheck"]?.arrayValue,
@@ -96,7 +96,13 @@ struct PackageModel{
                     check: $0["pCheck"].boolValue)
         }
         
-        return PackageModel(unCheck: unPack, check: pack)
+        let total = unPack.count + pack.count
+        
+        return [
+            SectionOfPackage(header: "", items: []),
+            SectionOfPackage(header: "아직 챙기지 않았어요! (\(unPack.count)/\(total))", items: unPack),
+            SectionOfPackage(header: "잊지 않고 챙겼어요! (\(pack.count)/\(total))", items: pack)
+        ]
     }
 }
 

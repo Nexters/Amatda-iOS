@@ -16,8 +16,10 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
 //    private var isFirstSectionExpandCase  = Driver<Void>()
 //    private var isSecondSectionExpandCase = Driver<Void>()
-    private var isFirstSectionExpand      = false
-    private var isSecondSectionExpand     = false
+//    private var isFirstSectionExpand      = false
+//    private var isSecondSectionExpand     = false
+    
+    private var dataSource : RxCollectionViewSectionedAnimatedDataSource<SectionOfPackage>?
     
     var leftButton              : UIButton? = UIButton()
     var rightButton             : UIButton? = UIButton()
@@ -91,17 +93,15 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     
     private func bindOutput(){
+        guard let dataSource = dataSource else { return }
         self.viewModel.detailCarrier?
             .drive(carrierItem)
             .disposed(by: disposeBag)
         
         
-        
-        self.viewModel.packageList?.drive(onNext:{ [weak self] in
-            guard let self = self else { return }
-            self.packageList = $0
-        }).disposed(by: disposeBag)
-        
+        self.viewModel.packageList?
+            .drive(self.collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
         
         
         self.viewModel.checkPackage?
@@ -137,7 +137,6 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     
     private func pressedCenterButton() {
-        
         let viewController2 = AMWriteViewController()
         viewController2.modalPresentationStyle = .overCurrentContext
         viewController2.view.backgroundColor   = .clear
@@ -213,15 +212,18 @@ extension AMMainViewController {
     
     
     private func setupCollectionView() {
+        self.dataSource = RxCollectionViewSectionedAnimatedDataSource(
+            configureCell: collectionViewDataSourceUI().0,
+            configureSupplementaryView: collectionViewDataSourceUI().1
+        )
+        
         if #available(iOS 11.0, *) {
-            collectionView.contentInsetAdjustmentBehavior = .never
+            self.collectionView.contentInsetAdjustmentBehavior = .never
         }
-        collectionView.backgroundColor = .white
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(AMPackageCell.self, forCellWithReuseIdentifier: "AMPackageCell")
-        collectionView.register(AMMainHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: mainHeaderView)
-        collectionView.register(UINib(nibName: "AMPackageHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AMPackageHeaderView")
+        self.collectionView.backgroundColor = .white
+        self.collectionView.register(AMPackageCell.self, forCellWithReuseIdentifier: "AMPackageCell")
+        self.collectionView.register(AMMainHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: mainHeaderView)
+        self.collectionView.register(UINib(nibName: "AMPackageHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AMPackageHeaderView")
     }
     
     
@@ -231,10 +233,46 @@ extension AMMainViewController {
         layout.delegate = self
         layout.minimumLineSpacing = 1
         layout.minimumInteritemSpacing = 1
-        collectionView.collectionViewLayout = layout
+        self.collectionView.collectionViewLayout = layout
     }
 }
 
+
+extension AMMainViewController{
+    func collectionViewDataSourceUI() -> (
+        CollectionViewSectionedDataSource<SectionOfPackage>.ConfigureCell,
+        CollectionViewSectionedDataSource<SectionOfPackage>.ConfigureSupplementaryView){
+            return (
+                { (_, collectionView, indexPath, item) in
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AMPackageCell", for: indexPath) as! AMPackageCell
+                    
+                    cell.packageItem = item
+                    cell.checkButton.rx.tap
+                        .map{cell.packageItem!}
+                        .bind(to:self.viewModel.tapCheckPackage)
+                        .disposed(by: cell.disposeBag)
+                    
+                    return cell
+            },
+                { (dataSource ,collectionView, kind, indexPath) in
+                    
+                    switch indexPath.section {
+                    case 0:
+                        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: mainHeaderView, for: indexPath) as! AMMainHeaderView
+                        header.carrierName = self.titleLabel?.text
+                        return header
+                        
+                    default:
+                        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath) as! AMPackageHeaderView
+                        header.headerTitle.text = dataSource[indexPath.section].header
+                        header.lineView.isHidden = indexPath.section == 1 ? false : true
+                        
+                        return header
+                    }
+            }
+            )
+    }
+}
 
 extension AMMainViewController : AMMainHeaderDelegate {
     func recognizeHeaderContentOffset(_: AMMainHeaderLayout, contentOffSetY: CGFloat) {
@@ -244,15 +282,6 @@ extension AMMainViewController : AMMainHeaderDelegate {
         }
     }
 }
-
-
-
-extension AMMainViewController : UICollectionViewDelegate{
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
-}
-
 
 
 extension AMMainViewController : UICollectionViewDelegateFlowLayout {
@@ -266,87 +295,6 @@ extension AMMainViewController : UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: collectionView.frame.width, height: 60)
     }
 }
-
-
-
-extension AMMainViewController : UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 0
-        case 1:
-            if let count = self.packageList?.unCheck?.count {
-                return count
-            }
-            return 0
-        case 2:
-            if let count = self.packageList?.check?.count {
-                return count
-            }
-            return 0
-        default:
-            return 0
-        }
-    }
-    
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AMPackageCell", for: indexPath) as! AMPackageCell
-        guard let packageList = self.packageList else { return cell }
-        
-        if indexPath.section == 1,
-            let packageItem = packageList.unCheck?[indexPath.row]{
-            cell.packageItem = packageItem
-        }else if indexPath.section == 2,
-            let packageItem = packageList.check?[indexPath.row]{
-            cell.packageItem = packageItem
-        }
-        
-        
-        cell.checkButton.rx.tap
-            .map{cell.packageItem!}
-            .bind(to:viewModel.tapCheckPackage)
-            .disposed(by: cell.disposeBag)
-        
-        
-        return cell
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if indexPath.section == 0 {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: mainHeaderView, for: indexPath) as! AMMainHeaderView
-            header.carrierName = self.titleLabel?.text
-            return header
-        }else{
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath) as! AMPackageHeaderView
-            guard let checkCount = packageList?.check?.count,
-                let unCheckCount = packageList?.unCheck?.count else { return header }
-            
-            let total = checkCount + unCheckCount
-            if indexPath.section == 1 {
-                header.lineView.isHidden = false
-                header.headerTitle.text = "아직 챙기지 않았어요! (\(unCheckCount)/\(total))"
-            }else{
-                header.lineView.isHidden = true
-                header.headerTitle.text = "잊지 않고 챙겼어요! (\(checkCount)/\(total))"
-            }
-            
-            
-//            header.tapExpandableButton?.drive(self.isFirstSectionExpandCase).disposed(by: header.disposeBag)
-            
-            return header
-        }
-        
-    }
-}
-
