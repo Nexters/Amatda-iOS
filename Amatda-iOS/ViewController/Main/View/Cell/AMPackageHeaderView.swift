@@ -8,15 +8,37 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 class AMPackageHeaderView: UICollectionReusableView {
+    
+    
     @IBOutlet weak var sortLabel: UILabel!
     @IBOutlet weak var sortImageView: UIImageView!
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var lineView: UIView!
     
+    @IBOutlet private weak var expandableButton: UIButton!
+    var tapExpandableButton : Driver<Void>?
+    
+    private(set) var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.disposeBag = DisposeBag()
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setupBind()
+    }
+    
+    
+    private func setupBind(){
+        self.tapExpandableButton = self.expandableButton.rx.tap
+            .map{()}
+            .asDriver(onErrorJustReturn: ())
     }
 }

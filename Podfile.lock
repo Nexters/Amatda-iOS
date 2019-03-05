@@ -3,8 +3,9 @@ PODS:
   - Alamofire-SwiftyJSON (3.0.0):
     - Alamofire (~> 4.5)
     - SwiftyJSON (~> 4.0.0)
+  - Differentiator (3.1.0)
   - DLRadioButton (1.4.12)
-  - Kingfisher (5.1.1)
+  - Kingfisher (5.2.0)
   - lottie-ios (2.5.2)
   - Realm (3.13.1):
     - Realm/Headers (= 3.13.1)
@@ -13,6 +14,10 @@ PODS:
     - Realm (= 3.13.1)
   - RxAtomic (4.4.1)
   - RxCocoa (4.4.1):
+    - RxSwift (~> 4.0)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.4.1):
     - RxAtomic (~> 4.4)
@@ -27,6 +32,7 @@ DEPENDENCIES:
   - lottie-ios
   - RealmSwift
   - RxCocoa
+  - RxDataSources
   - RxSwift
   - SnapKit
   - SwiftyJSON
@@ -34,17 +40,19 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
-  Kingfisher: 2558186963e5be42d98c5b110ccb3130148b77e4
+  Kingfisher: 07067cfacf371117330dceb4b4b8f5c4b691ab42
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
   RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
   RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 659c55b92cefdb2cb4d1e302bd7f3458abb8c5fb
+PODFILE CHECKSUM: b5188d5ca958854d6358173b8b6049182aec0fd1
 
 COCOAPODS: 1.4.0

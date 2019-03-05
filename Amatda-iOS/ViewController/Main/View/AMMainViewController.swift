@@ -9,10 +9,15 @@
 import UIKit
 import RxSwift
 import RxCocoa
-
+import RxDataSources
 
 class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewControllerBottomUISetAble, AMCanShowAlert {
     @IBOutlet private weak var collectionView: UICollectionView!
+    
+//    private var isFirstSectionExpandCase  = Driver<Void>()
+//    private var isSecondSectionExpandCase = Driver<Void>()
+    private var isFirstSectionExpand      = false
+    private var isSecondSectionExpand     = false
     
     var leftButton              : UIButton? = UIButton()
     var rightButton             : UIButton? = UIButton()
@@ -25,6 +30,8 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var carrierID  :Int{
         return AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0
     }
+    
+    
     
     var carrierItem    = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
     var packageList : PackageModel?{
@@ -110,6 +117,21 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
                 guard let self = self else { return }
                 self.showAlert(title: "오류", message: String.errorString)
             }).disposed(by: disposeBag)
+        
+        
+        
+//        self.isFirstSectionExpandCase?.drive(onNext: { [weak self] isExpand in
+//            guard let self = self else { return }
+//
+//            self.collectionView.reloadSections(IndexSet(integer: 1))
+//        }).disposed(by: disposeBag)
+//
+//
+//        self.isSecondSectionExpandCase?.drive(onNext: { [weak self] isExpand in
+//            guard let self = self else { return }
+//
+//            self.collectionView.reloadSections(IndexSet(integer: 2))
+//        }).disposed(by: disposeBag)
     }
     
     
@@ -283,7 +305,6 @@ extension AMMainViewController : UICollectionViewDataSource{
         
         if indexPath.section == 1,
             let packageItem = packageList.unCheck?[indexPath.row]{
-            
             cell.packageItem = packageItem
         }else if indexPath.section == 2,
             let packageItem = packageList.check?[indexPath.row]{
@@ -319,6 +340,10 @@ extension AMMainViewController : UICollectionViewDataSource{
                 header.lineView.isHidden = true
                 header.headerTitle.text = "잊지 않고 챙겼어요! (\(checkCount)/\(total))"
             }
+            
+            
+//            header.tapExpandableButton?.drive(self.isFirstSectionExpandCase).disposed(by: header.disposeBag)
+            
             return header
         }
         

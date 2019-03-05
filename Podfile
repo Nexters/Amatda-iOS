@@ -14,7 +14,7 @@ target 'Amatda-iOS' do
   pod 'RxCocoa'
   pod 'DLRadioButton', '~> 1.4'
   pod ‘RealmSwift’ 
-
+  pod 'RxDataSources'
 
   # Pods for Amatda-iOS
 
