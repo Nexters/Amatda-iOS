@@ -33,7 +33,8 @@ class APIClient {
                     let carrier = Carrier(carrierID: data.intValue,
                                           startDate: startDate,
                                           carrierName: "캐리어 \(AMCarrierStack().count + 1)",
-                                          carrierCountryID: countryID
+                                          carrierCountryID: countryID,
+                                          countryName : cities[countryID]
                     )
                     
                     emit.onNext(carrier)

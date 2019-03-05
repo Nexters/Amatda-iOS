@@ -25,10 +25,13 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     var carrierItem    = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
     
-    var carrierID  :Int{
+    private var carrierID  :Int{
         return AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0
     }
     
+    private var carrierCityName : String {
+        return AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.countryName ?? ""
+    }
 
     private let viewModel   = AMMainViewModel()
     var disposeBag : DisposeBag  {
@@ -231,6 +234,7 @@ extension AMMainViewController{
                     switch indexPath.section {
                     case 0:
                         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: mainHeaderView, for: indexPath) as! AMMainHeaderView
+                        header.cityName    = self.carrierCityName
                         header.carrierName = self.titleLabel?.text
                         return header
                         
@@ -249,6 +253,7 @@ extension AMMainViewController{
     }
 }
 
+
 extension AMMainViewController : AMMainHeaderDelegate {
     func recognizeHeaderContentOffset(_: AMMainHeaderLayout, contentOffSetY: CGFloat) {
         let differ = 164 - contentOffSetY
@@ -264,7 +269,6 @@ extension AMMainViewController : UICollectionViewDelegateFlowLayout {
         if section == 0 {
             return CGSize(width: view.frame.width, height: 164)
         }
-        
         return CGSize(width: view.frame.width, height: 38)
     }
     

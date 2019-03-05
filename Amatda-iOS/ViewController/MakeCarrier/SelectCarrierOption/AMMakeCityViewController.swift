@@ -12,6 +12,14 @@ import RxCocoa
 import RxSwift
 import SnapKit
 
+var cities = ["도시 없음",
+              "일본 오사카",
+              "중국 베이징",
+              "하와이",
+              "미주 뉴욕",
+              "독일 베를린",
+              "프랑스 파리",
+              "베트남 다낭"]
 
 class AMMakeCityViewController: AMBaseViewController {
 
@@ -22,14 +30,7 @@ class AMMakeCityViewController: AMBaseViewController {
     var superPageVC : AMMakeCarrierViewController?
     var disposeBag : DisposeBag?
     
-    private lazy var cities = ["도시 없음",
-                              "일본 오사카",
-                              "중국 베이징",
-                              "하와이",
-                              "미주 뉴욕",
-                              "독일 베를린",
-                              "프랑스 파리",
-                              "베트남 다낭"]
+    
     
     private lazy var cityOfCarrierTextField : UITextField = {
         let tf = UITextField()

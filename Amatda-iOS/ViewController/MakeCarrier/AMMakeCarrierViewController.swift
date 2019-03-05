@@ -84,11 +84,9 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
                                                            optionCarrier){($0,$1,$2)}
         
         
-        
         didTapRegister
             .bind(to: optionCarrier)
             .disposed(by: disposeBag)
-        
         
         
         let register = didTapRegister
@@ -97,22 +95,20 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
                 APIClient.registerCarrier(countryID: $0, startDate: $1, options: $2)
                     .do(onError:{  [weak self] _ in
                         guard let self = self else { return }
-                        
                         self.registerError.onNext("")
                     }).suppressError()
             }.asDriver(onErrorJustReturn: Carrier(carrierID: 0,
                                                   startDate: "",
                                                   carrierName: "",
-                                                  carrierCountryID: 0))
-        
+                                                  carrierCountryID: 0,
+                                                  countryName : cities[0]
+            ))
         
         
         register.drive(onNext:{ [weak self] in
             guard let self = self else { return }
-            
             self.showMain($0)
         }).disposed(by: disposeBag)
-        
         
         
         self.registerError

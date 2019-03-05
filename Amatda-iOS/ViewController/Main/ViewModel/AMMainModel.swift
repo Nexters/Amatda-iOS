@@ -17,6 +17,7 @@ struct Carrier {
     let startDate   : String
     let carrierName : String
     let carrierCountryID : Int
+    let countryName : String
 }
 
 struct Package {
@@ -55,7 +56,9 @@ struct CarrierModel{
         let carrier = Carrier(carrierID: id,
                               startDate: startDate,
                               carrierName: carrierName,
-                              carrierCountryID: carrierCountryID)
+                              carrierCountryID: carrierCountryID,
+                              countryName : cities[carrierCountryID]
+        )
         
         
         let options : [Int] = opt.map{
@@ -97,9 +100,10 @@ struct PackageModel{
         }
         
         let total = unPack.count + pack.count
+        let carrierID = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID
         
         return [
-            SectionOfPackage(header: "", items: []),
+            SectionOfPackage(header: "\(carrierID ?? 0)", items: []),
             SectionOfPackage(header: "아직 챙기지 않았어요! (\(unPack.count)/\(total))", items: unPack),
             SectionOfPackage(header: "잊지 않고 챙겼어요! (\(pack.count)/\(total))", items: pack)
         ]

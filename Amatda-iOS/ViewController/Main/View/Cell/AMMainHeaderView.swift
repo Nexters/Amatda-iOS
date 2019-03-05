@@ -38,6 +38,12 @@ class AMMainHeaderView: UICollectionReusableView {
         }
     }
     
+    var cityName : String?{
+        didSet{
+            self.cityLabel.text = self.cityName ?? ""
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()

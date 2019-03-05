@@ -56,7 +56,9 @@ class AMCarrierStack {
                 return Carrier(carrierID : carrier.carrierID,
                                startDate : carrier.startDate,
                                carrierName: carrier.carrierName,
-                               carrierCountryID : carrier.carrierCountryID)
+                               carrierCountryID : carrier.carrierCountryID,
+                               countryName : cities[carrier.carrierCountryID]
+                )
                 
             }
         }

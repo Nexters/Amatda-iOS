@@ -108,8 +108,8 @@ extension AMMenuViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : AMMenuCell = tableView.dequeueReusableCell(withIdentifier: "AMMenuCell", for: indexPath) as! AMMenuCell
-        if indexPath.section == 0 {
-            
+        switch indexPath.section {
+        case 0:
             let title = AMCarrierStack().carrierAt(index: indexPath.row)?.carrierName ?? ""
             if indexPath.row == CarrierInfo.currentCarrierIndex {
                 cell.selectionType = .carrier(title, true)
@@ -119,8 +119,7 @@ extension AMMenuViewController : UITableViewDataSource {
                 cell.selectionType = .carrier(title, false)
             }
             
-            
-        }else{
+        default:
             if indexPath.row == 0 {
                 cell.selectionType = .pushOption
             }else{
