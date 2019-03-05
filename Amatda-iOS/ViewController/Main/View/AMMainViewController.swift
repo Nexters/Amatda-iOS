@@ -13,14 +13,8 @@ import RxDataSources
 
 class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewControllerBottomUISetAble, AMCanShowAlert {
     @IBOutlet private weak var collectionView: UICollectionView!
-    
-//    private var isFirstSectionExpandCase  = Driver<Void>()
-//    private var isSecondSectionExpandCase = Driver<Void>()
-//    private var isFirstSectionExpand      = false
-//    private var isSecondSectionExpand     = false
-    
     private var dataSource : RxCollectionViewSectionedAnimatedDataSource<SectionOfPackage>?
-    
+    private var isExpanded = [Bool]()
     var leftButton              : UIButton? = UIButton()
     var rightButton             : UIButton? = UIButton()
     var titleLabel              : UILabel?  = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
@@ -29,20 +23,13 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var centerButton            : UIButton? = UIButton()
     var isFirstAccess           : Bool = false
     
+    var carrierItem    = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
+    
     var carrierID  :Int{
         return AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0
     }
     
-    
-    
-    var carrierItem    = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
-    var packageList : PackageModel?{
-        didSet{
-            collectionView.reloadData()
-        }
-    }
-    
-    
+
     private let viewModel   = AMMainViewModel()
     var disposeBag : DisposeBag  {
         return viewModel.disposeBag
@@ -110,28 +97,12 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
             .disposed(by: disposeBag)
         
         
-        
         self.viewModel.apiError
             .asDriver(onErrorJustReturn: "")
             .drive(onNext:{ [weak self] _ in
                 guard let self = self else { return }
                 self.showAlert(title: "오류", message: String.errorString)
             }).disposed(by: disposeBag)
-        
-        
-        
-//        self.isFirstSectionExpandCase?.drive(onNext: { [weak self] isExpand in
-//            guard let self = self else { return }
-//
-//            self.collectionView.reloadSections(IndexSet(integer: 1))
-//        }).disposed(by: disposeBag)
-//
-//
-//        self.isSecondSectionExpandCase?.drive(onNext: { [weak self] isExpand in
-//            guard let self = self else { return }
-//
-//            self.collectionView.reloadSections(IndexSet(integer: 2))
-//        }).disposed(by: disposeBag)
     }
     
     
@@ -199,6 +170,7 @@ extension AMMainViewController {
             .disposed(by: disposeBag)
 
         self.showCompleteMakeCarrier()
+        self.isExpanded = Array(repeating: false, count: 3)
     }
     
     
@@ -243,7 +215,7 @@ extension AMMainViewController{
         CollectionViewSectionedDataSource<SectionOfPackage>.ConfigureCell,
         CollectionViewSectionedDataSource<SectionOfPackage>.ConfigureSupplementaryView){
             return (
-                { (_, collectionView, indexPath, item) in
+                { (dataSource, collectionView, indexPath, item) in
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AMPackageCell", for: indexPath) as! AMPackageCell
                     
                     cell.packageItem = item
@@ -251,7 +223,7 @@ extension AMMainViewController{
                         .map{cell.packageItem!}
                         .bind(to:self.viewModel.tapCheckPackage)
                         .disposed(by: cell.disposeBag)
-                    
+                    cell.isHidden = self.isExpanded[indexPath.section]
                     return cell
             },
                 { (dataSource ,collectionView, kind, indexPath) in
@@ -266,7 +238,10 @@ extension AMMainViewController{
                         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "AMPackageHeaderView", for: indexPath) as! AMPackageHeaderView
                         header.headerTitle.text = dataSource[indexPath.section].header
                         header.lineView.isHidden = indexPath.section == 1 ? false : true
-                        
+                        header.tapExpandableButton?.drive(onNext:{
+                            self.isExpanded[indexPath.section] = !self.isExpanded[indexPath.section]
+                            self.collectionView.reloadSections(IndexSet(integer: indexPath.section))
+                        }).disposed(by: header.disposeBag)
                         return header
                     }
             }
@@ -295,6 +270,9 @@ extension AMMainViewController : UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if isExpanded[indexPath.section] {
+            return CGSize(width: collectionView.frame.width, height: 0)
+        }
         return CGSize(width: collectionView.frame.width, height: 60)
     }
 }

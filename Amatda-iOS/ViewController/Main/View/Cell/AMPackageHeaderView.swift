@@ -38,6 +38,7 @@ class AMPackageHeaderView: UICollectionReusableView {
     
     private func setupBind(){
         self.tapExpandableButton = self.expandableButton.rx.tap
+            .debug("expandableButton")
             .map{()}
             .asDriver(onErrorJustReturn: ())
     }
