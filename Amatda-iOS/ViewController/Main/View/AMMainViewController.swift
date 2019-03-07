@@ -227,6 +227,7 @@ extension AMMainViewController{
                         .bind(to:self.viewModel.tapCheckPackage)
                         .disposed(by: cell.disposeBag)
                     cell.isHidden = self.isExpanded[indexPath.section]
+                    
                     return cell
             },
                 { (dataSource ,collectionView, kind, indexPath) in
@@ -246,6 +247,7 @@ extension AMMainViewController{
                             self.isExpanded[indexPath.section] = !self.isExpanded[indexPath.section]
                             self.collectionView.reloadSections(IndexSet(integer: indexPath.section))
                         }).disposed(by: header.disposeBag)
+                        
                         return header
                     }
             }
