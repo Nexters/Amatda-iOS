@@ -118,11 +118,10 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     
     private func showEditViewController(packItem : Package){
-        let writeVC = AMWriteViewController()
+        let writeVC = AMWriteViewController(packageID: packItem.packageID)
         writeVC.modalPresentationStyle = .overCurrentContext
         writeVC.view.backgroundColor   = .clear
         writeVC.carrierItem = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)
-        writeVC.packageID = packItem.packageID
 
         BehaviorSubject(value: packItem.packageName).bind(to: writeVC.checkInputText).disposed(by: self.disposeBag)
         BehaviorSubject(value: packItem.packageColor).bind(to: writeVC.labelColorTag).disposed(by: self.disposeBag)

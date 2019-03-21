@@ -286,6 +286,11 @@ extension AMWriteView{
             $0.size.equalTo(40)
             $0.top.equalTo(self.labelStackView.snp.bottom).offset(28)
         }
+        
+        guard let controller = controller else { return }
+        if controller.packageID > 0 {
+            completeButton.setTitle("수정", for: .normal)
+        }
     }
     
     

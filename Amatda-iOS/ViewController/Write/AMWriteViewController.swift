@@ -11,7 +11,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class AMWriteViewController: AMPresentAnimateViewController {
+final class AMWriteViewController: AMPresentAnimateViewController {
     
     private lazy var writeView = AMWriteView(controlBy : self)
     lazy var disposeBag = DisposeBag()
@@ -39,6 +39,11 @@ class AMWriteViewController: AMPresentAnimateViewController {
         super.init(nibName: nil, bundle: nil)
         setupObservable()
         self.modalPresentationStyle = .overCurrentContext
+    }
+    
+    convenience init(packageID : Int){
+        self.init()
+        self.packageID = packageID
     }
     
     

@@ -142,5 +142,6 @@ extension Package : IdentifiableType, Equatable{
     static func == (lhs: Package, rhs: Package) -> Bool {
         return lhs.packageID == rhs.packageID
             && lhs.packageName == rhs.packageName
+            && lhs.packageColor == rhs.packageColor
     }
 }
