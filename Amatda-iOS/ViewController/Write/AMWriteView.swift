@@ -94,6 +94,13 @@ class AMWriteView: AMBaseView, AMViewAnimatable, AMCanShowAlert {
     }()
     
     
+    private lazy var deleteButton : UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "icDelete"), for: .normal)
+        return button
+    }()
+    
+    
     private let grayRadio  = DLRadioButton()
     private let redRadio   = DLRadioButton()
     private let blueRadio  = DLRadioButton()
@@ -125,15 +132,8 @@ class AMWriteView: AMBaseView, AMViewAnimatable, AMCanShowAlert {
 extension AMWriteView  {
     func bindInput(){
         guard let controller = controller else { return }
-        self.checkInputTextField.rx.text.orEmpty
-            .bind(to:controller.checkInputText)
-            .disposed(by: controller.disposeBag)
         
         
-        Observable.merge(self.checkInputTextField.rx.controlEvent(.editingDidEndOnExit).map{_ in ()},
-                         self.completeButton.rx.tap.map{_ in ()})
-            .bind(to: controller.didTapCompleteButton)
-            .disposed(by: controller.disposeBag)
         
         controller.checkInputText.subscribe(onNext: {
             self.checkInputTextField.text = $0
@@ -161,6 +161,7 @@ extension AMWriteView  {
         }).disposed(by: controller.disposeBag)
     }
     
+    
     func bindOutput(){
         guard let controller = controller else { return }
         controller.isEmptyInputText
@@ -168,6 +169,22 @@ extension AMWriteView  {
                 guard let self = self else { return }
                 self.showAlert(title: "", message: String.emptyCheckItem)
             }).disposed(by: controller.disposeBag)
+        
+        
+        self.checkInputTextField.rx.text.orEmpty
+            .bind(to:controller.checkInputText)
+            .disposed(by: controller.disposeBag)
+        
+        
+        self.deleteButton.rx.tap
+            .bind(to:controller.deleteTapButton)
+            .disposed(by: controller.disposeBag)
+        
+        
+        Observable.merge(self.checkInputTextField.rx.controlEvent(.editingDidEndOnExit).map{_ in ()},
+                         self.completeButton.rx.tap.map{_ in ()})
+            .bind(to: controller.didTapCompleteButton)
+            .disposed(by: controller.disposeBag)
     }
 }
 
@@ -221,6 +238,8 @@ extension AMWriteView{
             $0.right.equalTo(self.checkInputTextField.snp.right).offset(70)
             $0.height.equalTo(1)
         }
+        
+
     }
     
     
@@ -289,10 +308,13 @@ extension AMWriteView{
         
         guard let controller = controller else { return }
         if controller.packageID > 0 {
-            completeButton.setTitle("수정", for: .normal)
+            self.completeButton.setTitle("수정", for: .normal)
+            self.contentView?.addSubview(self.deleteButton)
+            self.deleteButton.snp.makeConstraints{
+                $0.bottom.equalTo(self.checkInputTextField.snp.bottom).offset(10)
+                $0.centerX.equalTo(self.completeButton.snp.centerX)
+                $0.size.equalTo(40)
+            }
         }
     }
-    
-    
-    
 }

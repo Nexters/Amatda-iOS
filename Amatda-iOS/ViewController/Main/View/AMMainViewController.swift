@@ -127,6 +127,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         BehaviorSubject(value: packItem.packageColor).bind(to: writeVC.labelColorTag).disposed(by: self.disposeBag)
         
         writeVC.editEventBus?
+            .debug("editEventBus")
             .asDriver(onErrorJustReturn: ())
             .map{ AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0 }
             .drive(self.viewModel.viewDidLoad)
@@ -167,10 +168,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         vc.goWriteEventBus?.debug().drive(onNext:{ [weak self] _ in
             vc.dismiss(animated: true, completion: {
                 guard let self = self else { return }
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let makeVC = mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController")
-                
-                self.present(makeVC, animated: true, completion: nil)
+                self.showMakeCariierVC()
             })
         }).disposed(by: disposeBag)
         
@@ -199,6 +197,14 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
             vc.view.backgroundColor    = .clear
             self.present(vc, animated: false, completion: nil)
         }
+    }
+    
+    
+    private func showMakeCariierVC(){
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let makeVC = mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController")
+        
+        self.present(makeVC, animated: true, completion: nil)
     }
 }
 

@@ -19,6 +19,7 @@ final class AMWriteViewController: AMPresentAnimateViewController {
     
     //input
     let didTapCompleteButton = PublishSubject<Void>()
+    let deleteTapButton      = PublishSubject<Void>()
     let checkInputText       = BehaviorSubject(value: "")
     let labelColorTag        = BehaviorSubject(value: "Gray")
     let currentCarrier       = PublishSubject<CarrierModel>()
@@ -66,15 +67,38 @@ final class AMWriteViewController: AMPresentAnimateViewController {
             .map{ _ in return () }.asDriver(onErrorJustReturn: ())
         
         
-        self.editEventBus = self.didTapCompleteButton
+        let completeEvent = self.didTapCompleteButton
             .withLatestFrom(register)
             .flatMapLatest{
                 APIClient.editPackage(packageID: self.packageID, packageName: $2, packageColor: $1)
-            }.do(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.dismiss(animated: true, completion: nil)
-            })
-            .map{ _ in return () }.asDriver(onErrorJustReturn: ())
+        }
+        
+        let deleteEvent = self.deleteTapButton
+            .flatMapLatest{
+                APIClient.deletePackage(packageID: self.packageID)
+        }
+        
+        self.editEventBus = Observable.merge(completeEvent,deleteEvent).debug("editEventBusObservable")
+            .do(onNext:{
+            [weak self] _ in
+            guard let self = self else { return }
+            self.dismiss(animated: true, completion: nil)            
+        }).map{ _ in ()}.asDriver(onErrorJustReturn: ())
+        
+        
+//        self.editEventBus = .do(onNext: { [weak self] _ in
+//                guard let self = self else { return }
+//                self.dismiss(animated: true, completion: nil)
+//            })
+//            .map{ _ in return () }.asDriver(onErrorJustReturn: ())
+        
+//
+//        self.editEventBus = .do(onNext: { [weak self] _ in
+//                guard let self = self else { return }
+//                self.dismiss(animated: true, completion: nil)
+//            })
+//            .map{ _ in return () }.asDriver(onErrorJustReturn: ())
+        
         
         
         self.didTapCompleteButton
