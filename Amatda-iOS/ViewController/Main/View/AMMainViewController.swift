@@ -86,18 +86,18 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         guard let dataSource = dataSource else { return }
         self.viewModel.detailCarrier?
             .drive(carrierItem)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         
         self.viewModel.packageList?
             .drive(self.collectionView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         
         self.viewModel.checkPackage?
             .map{ _ in AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0 }
             .drive(self.viewModel.viewDidLoad)
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
         
         self.viewModel.apiError
@@ -105,24 +105,51 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
             .drive(onNext:{ [weak self] _ in
                 guard let self = self else { return }
                 self.showAlert(title: "오류", message: String.errorString)
-            }).disposed(by: disposeBag)
+            }).disposed(by: self.disposeBag)
+        
+        
+        self.collectionView
+            .rx
+            .modelSelected(Package.self)
+            .subscribe(onNext: { package in
+                self.showEditViewController(packItem: package)
+            }).disposed(by: self.disposeBag)
     }
     
     
-    
-    private func pressedCenterButton() {
-        let viewController2 = AMWriteViewController()
-        viewController2.modalPresentationStyle = .overCurrentContext
-        viewController2.view.backgroundColor   = .clear
-        viewController2.carrierItem = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)
-        viewController2.writeEventBus?
+    private func showEditViewController(packItem : Package){
+        let writeVC = AMWriteViewController()
+        writeVC.modalPresentationStyle = .overCurrentContext
+        writeVC.view.backgroundColor   = .clear
+        writeVC.carrierItem = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)
+        writeVC.packageID = packItem.packageID
+
+        BehaviorSubject(value: packItem.packageName).bind(to: writeVC.checkInputText).disposed(by: self.disposeBag)
+        BehaviorSubject(value: packItem.packageColor).bind(to: writeVC.labelColorTag).disposed(by: self.disposeBag)
+        
+        writeVC.editEventBus?
             .asDriver(onErrorJustReturn: ())
             .map{ AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0 }
             .drive(self.viewModel.viewDidLoad)
-            .disposed(by: disposeBag)
-
+            .disposed(by: self.disposeBag)
         
-        self.present(viewController2, animated: true, completion: nil)
+        self.present(writeVC, animated: true, completion: nil)
+    }
+    
+    
+    private func pressedCenterButton() {
+        let writeVC = AMWriteViewController()
+        writeVC.modalPresentationStyle = .overCurrentContext
+        writeVC.view.backgroundColor   = .clear
+        writeVC.carrierItem = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)
+        
+        writeVC.writeEventBus?
+            .asDriver(onErrorJustReturn: ())
+            .map{ AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0 }
+            .drive(self.viewModel.viewDidLoad)
+            .disposed(by: self.disposeBag)
+        
+        self.present(writeVC, animated: true, completion: nil)
     }
     
     
@@ -151,6 +178,19 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         self.present(vc, animated: true, completion: nil)
     }
     
+    
+    private func showWriteViewController(writeVC : AMWriteViewController){
+        writeVC.modalPresentationStyle = .overCurrentContext
+        writeVC.view.backgroundColor   = .clear
+        writeVC.carrierItem = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)
+        writeVC.writeEventBus?
+            .asDriver(onErrorJustReturn: ())
+            .map{ AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0 }
+            .drive(self.viewModel.viewDidLoad)
+            .disposed(by: disposeBag)
+
+        self.present(writeVC, animated: true, completion: nil)
+    }
     
     
     private func showCompleteMakeCarrier(){

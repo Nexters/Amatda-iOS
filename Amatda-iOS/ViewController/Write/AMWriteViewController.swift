@@ -15,6 +15,7 @@ class AMWriteViewController: AMPresentAnimateViewController {
     
     private lazy var writeView = AMWriteView(controlBy : self)
     lazy var disposeBag = DisposeBag()
+    var packageID = 0
     
     //input
     let didTapCompleteButton = PublishSubject<Void>()
@@ -22,6 +23,7 @@ class AMWriteViewController: AMPresentAnimateViewController {
     let labelColorTag        = BehaviorSubject(value: "Gray")
     let currentCarrier       = PublishSubject<CarrierModel>()
     var writeEventBus        : Driver<Void>?
+    var editEventBus         : Driver<Void>?
     
     //output
     var registerCheckItem    : Driver<String>?
@@ -52,6 +54,17 @@ class AMWriteViewController: AMPresentAnimateViewController {
             .withLatestFrom(register)
             .flatMapLatest{
                 APIClient.registerPackage(carrierID: $0, packageName: $2, labelColor: $1)
+            }.do(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.dismiss(animated: true, completion: nil)
+            })
+            .map{ _ in return () }.asDriver(onErrorJustReturn: ())
+        
+        
+        self.editEventBus = self.didTapCompleteButton
+            .withLatestFrom(register)
+            .flatMapLatest{
+                APIClient.editPackage(packageID: self.packageID, packageName: $2, packageColor: $1)
             }.do(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.dismiss(animated: true, completion: nil)
@@ -94,5 +107,39 @@ class AMWriteViewController: AMPresentAnimateViewController {
     
     override func performCustomDismissingAnimation(){
         self.writeView.performCustomDismissingAnimation()
+    }
+}
+
+
+extension AMWriteViewController{
+    func convertColorTag(_ index : Int)->String{
+        switch index {
+        case 0:
+            return "Gray"
+        case 1:
+            return "Red"
+        case 2:
+            return "Blue"
+        case 3:
+            return "Green"
+        default:
+            return ""
+        }
+    }
+    
+    
+    func convertColorString(_ colorLabel : String)->Int{
+        switch colorLabel {
+        case "Gray":
+            return 0
+        case "Red":
+            return 1
+        case "Blue":
+            return 2
+        case "Green":
+            return 3
+        default:
+            return 0
+        }
     }
 }

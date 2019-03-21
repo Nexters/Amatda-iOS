@@ -66,6 +66,9 @@ enum APIRouter : URLRequestConvertible {
     //캐리어 등록하기
     case registerCarrier(countryID : Int, startDate : String ,options : [Int])
     
+    //캐리어 수정하기
+    case editCarrier(carrierID : Int, carrierName : String, countryID : Int, startDate : String)
+    
     //캐리어 삭제하기
     case deleteCarrier(carrierID : Int)
     
@@ -77,6 +80,14 @@ enum APIRouter : URLRequestConvertible {
         packageName:String,
         labelColor : String,
         check : String)
+    
+    
+    //준비물 수정하기
+    case editPackage(
+        packageID : Int,
+        packageName:String,
+        labelColor:String
+    )
     
     //준비물 삭제하기
     case deletePackage(packageID : Int)
@@ -121,36 +132,40 @@ enum APIRouter : URLRequestConvertible {
             return .get
             
         case .registerCarrier(_,_,_),
-             .registerPackage(_,_,_,_),
-             .checkPackage(_, _):
+             .registerPackage(_,_,_,_):
             return .post
             
         case .deleteCarrier(_),
              .deletePackage(_):
             return .delete
-
+            
+        case .editCarrier(_, _, _, _),
+             .editPackage(_,_,_),
+             .checkPackage(_, _):
+            return .put
         }
     }
     
     
     private var path : String{
         switch self {
-        case .detailCarrier(_):
+        case .detailCarrier(_),
+             .registerCarrier(_,_,_),
+             .editCarrier(_, _, _, _):
             return "/carrier"
         case .packageList(_, _):
-            return "/pack/all"
+            return "/carrier/pack"
         case .weatherOfCity(_,_):
             return "/weather/list"
-        case .registerPackage(_,_,_,_):
-            return "/pack"
-        case .registerCarrier(_,_,_):
-            return "/carrier"
+        case .registerPackage(_,_,_,_),
+             .editPackage(_,_,_):
+            return "/carrier/pack"
         case .checkPackage(_, _):
-            return "/pack/check"
+            return "/carrier/pack/check"
         case .deleteCarrier(let carrierID):
-            return "/carrier/delete?cId=\(carrierID)"
-        case .deletePackage(let packageID):
-            return "/pack/delete?pId = \(packageID)"
+            return "/carrier?cId=\(carrierID)"
+        case .deletePackage(_):
+            return "/carrier/pack"
         }
     }
     
@@ -193,6 +208,22 @@ enum APIRouter : URLRequestConvertible {
             param["month"] = month
             break
             
+        case .editCarrier(let carrierID, let carrierName, let countryID, let startDate):
+            param["cId"]      = carrierID
+            param["cName"]    = carrierName
+            param["cCountry"] = countryID
+            param["startDate"] = startDate
+            break
+            
+        case .deletePackage(let packageID):
+            param["pId"] = packageID
+            break
+            
+        case .editPackage(let packageID, let packageName, let packageColor):
+            param["pId"]    = packageID
+            param["pName"]  = packageName
+            param["pColor"] = packageColor
+            break
         default:
             break
         }

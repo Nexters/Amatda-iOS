@@ -66,6 +66,16 @@ class APIClient {
         return rxJSONAPIObservable(url: APIRouter.registerPackage(carrierID: carrierID, packageName: packageName, labelColor: labelColor, check: "N"))
     }
     
+    static func editPackage(packageID : Int,packageName : String, packageColor:String)->Observable<JSON>{
+        return rxJSONAPIObservable(url: APIRouter.editPackage(packageID: packageID,
+                                                              packageName: packageName,
+                                                              labelColor: packageColor))
+    }
+    
+    static func deletePackage(packageID : Int)->Observable<JSON>{
+        return rxJSONAPIObservable(url: APIRouter.deletePackage(packageID: packageID))
+    }
+    
     
     static func rxJSONAPIObservable(url : URLRequestConvertible)->Observable<JSON>{
         return Observable.create{ emit in

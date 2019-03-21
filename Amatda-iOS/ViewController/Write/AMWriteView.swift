@@ -94,6 +94,11 @@ class AMWriteView: AMBaseView, AMViewAnimatable, AMCanShowAlert {
     }()
     
     
+    private let grayRadio  = DLRadioButton()
+    private let redRadio   = DLRadioButton()
+    private let blueRadio  = DLRadioButton()
+    private let greenRadio = DLRadioButton()
+    
     override func setupUI(){
         setupBaseView()
         setupInputTextField()
@@ -130,6 +135,30 @@ extension AMWriteView  {
             .bind(to: controller.didTapCompleteButton)
             .disposed(by: controller.disposeBag)
         
+        controller.checkInputText.subscribe(onNext: {
+            self.checkInputTextField.text = $0
+        }).disposed(by: controller.disposeBag)
+        
+        
+        controller.labelColorTag.subscribe(onNext:{ label in
+            let index = controller.convertColorString(label)
+            switch index {
+            case 0:
+                self.grayRadio.isSelected = true
+                break
+            case 1:
+                self.redRadio.isSelected = true
+                break
+            case 2:
+                self.blueRadio.isSelected = true
+                break
+            case 3:
+                self.greenRadio.isSelected = true
+                break
+            default:
+                break
+            }
+        }).disposed(by: controller.disposeBag)
     }
     
     func bindOutput(){
@@ -207,37 +236,32 @@ extension AMWriteView{
         radioStackView.alignment    = .center;
         radioStackView.spacing      = 34;
         
-        let garyRadio  = DLRadioButton()
-        let redRadio   = DLRadioButton()
-        let blueRadio  = DLRadioButton()
-        let greenRadio = DLRadioButton()
-        
-        garyRadio.createRadioButton(size: 30, color: .gray, superView: radioStackView)
-        redRadio.createRadioButton(size: 30, color: .red, superView: radioStackView)
-        blueRadio.createRadioButton(size: 30, color: .blue, superView: radioStackView)
-        greenRadio.createRadioButton(size: 30, color: .green, superView: radioStackView)
+        self.grayRadio.createRadioButton(size: 30, color: .gray, superView: radioStackView)
+        self.redRadio.createRadioButton(size: 30, color: .red, superView: radioStackView)
+        self.blueRadio.createRadioButton(size: 30, color: .blue, superView: radioStackView)
+        self.greenRadio.createRadioButton(size: 30, color: .green, superView: radioStackView)
 
-        garyRadio.icon          = UIImage(named: "labelDefault")!
-        garyRadio.iconSelected  = UIImage(named: "labelDefaultSelect")!
-        redRadio.icon           = UIImage(named: "labelPink")!
-        redRadio.iconSelected   = UIImage(named: "labelPinkSelected")!
-        blueRadio.icon          = UIImage(named: "labelViolet")!
-        blueRadio.iconSelected  = UIImage(named: "labelVioletSelected")!
-        greenRadio.icon         = UIImage(named: "labelGreen")!
-        greenRadio.iconSelected = UIImage(named: "labelGreenSelected")!
+        self.grayRadio.icon          = UIImage(named: "labelDefault")!
+        self.grayRadio.iconSelected  = UIImage(named: "labelDefaultSelect")!
+        self.redRadio.icon           = UIImage(named: "labelPink")!
+        self.redRadio.iconSelected   = UIImage(named: "labelPinkSelected")!
+        self.blueRadio.icon          = UIImage(named: "labelViolet")!
+        self.blueRadio.iconSelected  = UIImage(named: "labelVioletSelected")!
+        self.greenRadio.icon         = UIImage(named: "labelGreen")!
+        self.greenRadio.iconSelected = UIImage(named: "labelGreenSelected")!
         
-        garyRadio.isSelected = true
-        garyRadio.otherButtons = [redRadio, blueRadio, greenRadio]
+        self.grayRadio.isSelected = true
+        self.grayRadio.otherButtons = [self.redRadio, self.blueRadio, self.greenRadio]
         
-        if let controller = controller {
+        if let controller = self.controller {
             Observable.of(
-                garyRadio.rx.tap.map{ _ in 0 },
-                redRadio.rx.tap.map{ _ in 1 },
-                blueRadio.rx.tap.map{ _ in 2 },
-                greenRadio.rx.tap.map{ _ in 3 }
+                self.grayRadio.rx.tap.map{ _ in 0 },
+                self.redRadio.rx.tap.map{ _ in 1 },
+                self.blueRadio.rx.tap.map{ _ in 2 },
+                self.greenRadio.rx.tap.map{ _ in 3 }
                 )
                 .merge()
-                .map{self.convertColorTag($0)}
+                .map{controller.convertColorTag($0)}
                 .bind(to: controller.labelColorTag)
                 .disposed(by: controller.disposeBag)
         }
@@ -246,8 +270,8 @@ extension AMWriteView{
         self.labelStackView.addArrangedSubview(titleLabel)
         self.labelStackView.addArrangedSubview(radioStackView)
         
-        self.contentView?.addSubview(labelStackView)
-        labelStackView.snp.makeConstraints{
+        self.contentView?.addSubview(self.labelStackView)
+        self.labelStackView.snp.makeConstraints{
             $0.top.equalTo(self.checkInputTextField.snp.bottom).offset(33)
             $0.left.equalTo(self.checkInputTextField.snp.left)
         }
@@ -265,18 +289,5 @@ extension AMWriteView{
     }
     
     
-    private func convertColorTag(_ index : Int)->String{
-        switch index {
-        case 0:
-            return "Gray"
-        case 1:
-            return "Red"
-        case 2:
-            return "Blue"
-        case 3:
-            return "Green"
-        default:
-            return ""
-        }
-    }
+    
 }
