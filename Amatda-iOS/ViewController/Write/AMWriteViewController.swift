@@ -86,21 +86,6 @@ final class AMWriteViewController: AMPresentAnimateViewController {
         }).map{ _ in ()}.asDriver(onErrorJustReturn: ())
         
         
-//        self.editEventBus = .do(onNext: { [weak self] _ in
-//                guard let self = self else { return }
-//                self.dismiss(animated: true, completion: nil)
-//            })
-//            .map{ _ in return () }.asDriver(onErrorJustReturn: ())
-        
-//
-//        self.editEventBus = .do(onNext: { [weak self] _ in
-//                guard let self = self else { return }
-//                self.dismiss(animated: true, completion: nil)
-//            })
-//            .map{ _ in return () }.asDriver(onErrorJustReturn: ())
-        
-        
-        
         self.didTapCompleteButton
             .withLatestFrom(emptyObservable)
             .filter{$0}
