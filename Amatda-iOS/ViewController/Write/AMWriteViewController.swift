@@ -76,7 +76,7 @@ final class AMWriteViewController: AMPresentAnimateViewController {
         let deleteEvent = self.deleteTapButton
             .flatMapLatest{
                 APIClient.deletePackage(packageID: self.packageID)
-        }
+        }.debug("deleteEvent")
         
         self.editEventBus = Observable.merge(completeEvent,deleteEvent).debug("editEventBusObservable")
             .do(onNext:{

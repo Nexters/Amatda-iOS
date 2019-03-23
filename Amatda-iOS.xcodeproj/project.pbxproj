@@ -55,6 +55,8 @@
 		A1B9793D221C709B0054EA2F /* AMPackageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9793B221C709B0054EA2F /* AMPackageHeaderView.swift */; };
 		A1B9793E221C709B0054EA2F /* AMPackageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1B9793C221C709B0054EA2F /* AMPackageHeaderView.xib */; };
 		A1D89AC4221485E00036C4BC /* DLRadioButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D89AC3221485E00036C4BC /* DLRadioButton+.swift */; };
+		A1F4C29122462229003953F2 /* AMEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F4C28F22462229003953F2 /* AMEditViewController.swift */; };
+		A1F4C29222462229003953F2 /* AMEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1F4C29022462229003953F2 /* AMEditViewController.xib */; };
 		BA18BD16221C1C660062159E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA18BD15221C1C660062159E /* APIRouter.swift */; };
 		BA18BD18221C410F0062159E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA18BD17221C410F0062159E /* APIClient.swift */; };
 		BABB4F0D21F811FF00616FD7 /* AMViewAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABB4F0C21F811FF00616FD7 /* AMViewAnimatable.swift */; };
@@ -142,6 +144,8 @@
 		A1B9793B221C709B0054EA2F /* AMPackageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMPackageHeaderView.swift; sourceTree = "<group>"; };
 		A1B9793C221C709B0054EA2F /* AMPackageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AMPackageHeaderView.xib; sourceTree = "<group>"; };
 		A1D89AC3221485E00036C4BC /* DLRadioButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DLRadioButton+.swift"; sourceTree = "<group>"; };
+		A1F4C28F22462229003953F2 /* AMEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMEditViewController.swift; sourceTree = "<group>"; };
+		A1F4C29022462229003953F2 /* AMEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AMEditViewController.xib; sourceTree = "<group>"; };
 		BA18BD15221C1C660062159E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		BA18BD17221C410F0062159E /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		BABB4F0C21F811FF00616FD7 /* AMViewAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMViewAnimatable.swift; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 		A14391B42243ED0500DE02EC /* EditCarrier */ = {
 			isa = PBXGroup;
 			children = (
+				A1F4C28F22462229003953F2 /* AMEditViewController.swift */,
+				A1F4C29022462229003953F2 /* AMEditViewController.xib */,
 			);
 			path = EditCarrier;
 			sourceTree = "<group>";
@@ -588,6 +594,7 @@
 				A13A74522216F2C80062A9E8 /* NotoSansCJKkr-Bold.otf in Resources */,
 				A1B9793E221C709B0054EA2F /* AMPackageHeaderView.xib in Resources */,
 				A13A74542216F2CF0062A9E8 /* NotoSansCJKkr-Medium.otf in Resources */,
+				A1F4C29222462229003953F2 /* AMEditViewController.xib in Resources */,
 				A1A2C939221D7C18004BEB75 /* AMAlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -795,6 +802,7 @@
 				A10D31A221F31718006132C5 /* AMViewControllerUISetAble.swift in Sources */,
 				A122FD522220DEEF00121F42 /* AMMenuCell.swift in Sources */,
 				A1511C6D2217D67E0051FA25 /* AMMakeCarrierViewController.swift in Sources */,
+				A1F4C29122462229003953F2 /* AMEditViewController.swift in Sources */,
 				A1511CBB221990040051FA25 /* AMCarrierOptionViewController.swift in Sources */,
 				A1511C682217C1F30051FA25 /* AMShowAlert.swift in Sources */,
 				A1A2C93F221DACB3004BEB75 /* Rx+.swift in Sources */,
