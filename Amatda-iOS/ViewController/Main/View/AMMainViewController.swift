@@ -123,8 +123,13 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         writeVC.view.backgroundColor   = .clear
         writeVC.carrierItem = AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)
 
-        BehaviorSubject(value: packItem.packageName).bind(to: writeVC.checkInputText).disposed(by: self.disposeBag)
-        BehaviorSubject(value: packItem.packageColor).bind(to: writeVC.labelColorTag).disposed(by: self.disposeBag)
+        BehaviorSubject(value: packItem.packageName)
+            .bind(to: writeVC.checkInputText)
+            .disposed(by: self.disposeBag)
+        
+        BehaviorSubject(value: packItem.packageColor)
+            .bind(to: writeVC.labelColorTag)
+            .disposed(by: self.disposeBag)
         
         writeVC.editEventBus?
             .debug("editEventBus")
