@@ -14,6 +14,12 @@ extension ObservableType {
     func suppressError() -> Observable<E> {
         return retryWhen { _ in return Observable<E>.empty()  }
     }
+    
+    func asDriverOnErrorJustComplete() -> Driver<E> {
+        return asDriver { error in
+            return Driver.empty()
+        }
+    }
 }
 
 

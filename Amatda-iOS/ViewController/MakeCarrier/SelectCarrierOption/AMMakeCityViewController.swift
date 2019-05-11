@@ -26,7 +26,6 @@ class AMMakeCityViewController: AMBaseViewController {
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     private var selectedCity    = ""
-    private var selectedCityNum = 0
     var superPageVC : AMMakeCarrierViewController?
     var disposeBag : DisposeBag?
     
@@ -77,10 +76,9 @@ class AMMakeCityViewController: AMBaseViewController {
     
     
     override func setupBind() {
-        selectedCity    = cities[0]
-        selectedCityNum = 0
-        bindInput()
-        bindOutput()
+        self.selectedCity    = cities[0]
+        self.bindInput()
+        self.bindOutput()
     }
 
     
@@ -215,7 +213,7 @@ extension AMMakeCityViewController {
             })
             .map{ _ in
                 self.cityOfCarrierTextField.text = self.selectedCity
-                return self.selectedCityNum
+                return self.selectedCity
             }
             .bind(to: superPageVC.cityOfCarrier)
             .disposed(by: disposeBag)
@@ -256,9 +254,7 @@ extension AMMakeCityViewController{
 
 extension AMMakeCityViewController : UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("citys \(cities[row])")
         self.selectedCity    = cities[row]
-        self.selectedCityNum = row
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

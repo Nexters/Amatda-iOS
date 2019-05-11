@@ -36,6 +36,9 @@
 		A1511CB42217FBDC0051FA25 /* UIPageViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511CB32217FBDC0051FA25 /* UIPageViewController+.swift */; };
 		A1511CB9221906D40051FA25 /* AMCarrierTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511CB8221906D40051FA25 /* AMCarrierTimeViewController.swift */; };
 		A1511CBB221990040051FA25 /* AMCarrierOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511CBA221990040051FA25 /* AMCarrierOptionViewController.swift */; };
+		A16E20432286B05100BA8382 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E20422286B05100BA8382 /* Application.swift */; };
+		A16E20472286B0C300BA8382 /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E20462286B0C300BA8382 /* UseCaseProvider.swift */; };
+		A16E20492286B0E600BA8382 /* PostsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E20482286B0E600BA8382 /* PostsUseCase.swift */; };
 		A18841CB2201C922009EC62E /* AMMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18841CA2201C922009EC62E /* AMMainViewModel.swift */; };
 		A1A2C938221D7C18004BEB75 /* AMAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A2C936221D7C18004BEB75 /* AMAlertViewController.swift */; };
 		A1A2C939221D7C18004BEB75 /* AMAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1A2C937221D7C18004BEB75 /* AMAlertViewController.xib */; };
@@ -119,6 +122,9 @@
 		A1511CB32217FBDC0051FA25 /* UIPageViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPageViewController+.swift"; sourceTree = "<group>"; };
 		A1511CB8221906D40051FA25 /* AMCarrierTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMCarrierTimeViewController.swift; sourceTree = "<group>"; };
 		A1511CBA221990040051FA25 /* AMCarrierOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMCarrierOptionViewController.swift; sourceTree = "<group>"; };
+		A16E20422286B05100BA8382 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		A16E20462286B0C300BA8382 /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
+		A16E20482286B0E600BA8382 /* PostsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsUseCase.swift; sourceTree = "<group>"; };
 		A18841CA2201C922009EC62E /* AMMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMainViewModel.swift; sourceTree = "<group>"; };
 		A1A2C936221D7C18004BEB75 /* AMAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMAlertViewController.swift; sourceTree = "<group>"; };
 		A1A2C937221D7C18004BEB75 /* AMAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AMAlertViewController.xib; sourceTree = "<group>"; };
@@ -201,7 +207,6 @@
 				A10D319C21F2FA45006132C5 /* AMBaseViewController.swift */,
 				A10D31A921F4620E006132C5 /* AMBaseView.swift */,
 				A1A2C940221DB124004BEB75 /* CarrierInfo.swift */,
-				A122FD4F2220608500121F42 /* AMCarrierStack.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -274,6 +279,8 @@
 		A13F22CD21FF642C006675FC /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A16E20412286B04300BA8382 /* Application */,
+				A16E20402286A32600BA8382 /* DB */,
 				BA18BD14221C1B6B0062159E /* API */,
 				BAD622C121EC73D100BA2C27 /* Animate */,
 				A10D31A021F316D9006132C5 /* Protocol */,
@@ -310,6 +317,39 @@
 				A1511CBA221990040051FA25 /* AMCarrierOptionViewController.swift */,
 			);
 			path = SelectCarrierOption;
+			sourceTree = "<group>";
+		};
+		A16E20402286A32600BA8382 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				A122FD4F2220608500121F42 /* AMCarrierStack.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		A16E20412286B04300BA8382 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A16E20422286B05100BA8382 /* Application.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		A16E20442286B0A500BA8382 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				A16E20452286B0AE00BA8382 /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		A16E20452286B0AE00BA8382 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				A16E20462286B0C300BA8382 /* UseCaseProvider.swift */,
+				A16E20482286B0E600BA8382 /* PostsUseCase.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 		A18841C92201C8F4009EC62E /* Main */ = {
@@ -383,6 +423,7 @@
 		A1A47DE521E1E9EA0067D46B /* Amatda-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				A16E20442286B0A500BA8382 /* Domain */,
 				A13A74472216F27A0062A9E8 /* Resource */,
 				A13F22CD21FF642C006675FC /* Common */,
 				A10D31A521F45F63006132C5 /* ViewController */,
@@ -796,6 +837,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A16E20432286B05100BA8382 /* Application.swift in Sources */,
 				A1A2C941221DB124004BEB75 /* CarrierInfo.swift in Sources */,
 				BABB4F0D21F811FF00616FD7 /* AMViewAnimatable.swift in Sources */,
 				BAD622C521EC73FD00BA2C27 /* AMPresentAnimateSetting.swift in Sources */,
@@ -809,12 +851,14 @@
 				BAD622C621EC73FD00BA2C27 /* AMPresentAnimateViewController.swift in Sources */,
 				A10D31AA21F4620E006132C5 /* AMBaseView.swift in Sources */,
 				A1A2C948221F1AAF004BEB75 /* AMPackageCell.swift in Sources */,
+				A16E20472286B0C300BA8382 /* UseCaseProvider.swift in Sources */,
 				A1A47DE921E1E9EA0067D46B /* AMMainViewController.swift in Sources */,
 				A10D31A821F46156006132C5 /* AMWriteView.swift in Sources */,
 				BA18BD16221C1C660062159E /* APIRouter.swift in Sources */,
 				A10D319D21F2FA45006132C5 /* AMBaseViewController.swift in Sources */,
 				A1A47DE721E1E9EA0067D46B /* AppDelegate.swift in Sources */,
 				A1511CB42217FBDC0051FA25 /* UIPageViewController+.swift in Sources */,
+				A16E20492286B0E600BA8382 /* PostsUseCase.swift in Sources */,
 				BA18BD18221C410F0062159E /* APIClient.swift in Sources */,
 				A13A74582216F3B10062A9E8 /* UIFont+.swift in Sources */,
 				A1B9793D221C709B0054EA2F /* AMPackageHeaderView.swift in Sources */,

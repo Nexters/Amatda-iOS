@@ -27,7 +27,7 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
     private var zipperImageView  : UIImageView = UIImageView()
     private var disposeBag = DisposeBag()
     
-    var cityOfCarrier     = BehaviorSubject<Int>(value: 0)
+    var cityOfCarrier     = BehaviorSubject<String>(value: "")
     var dayOfCarrier      = BehaviorSubject<String>(value: "")
     var timeOfCarrier     = BehaviorSubject<String>(value: "")
     var optionCarrier     = BehaviorRelay<[Int]>(value: [])
@@ -84,25 +84,21 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
                                                            optionCarrier){($0,$1,$2)}
         
         
-        didTapRegister
-            .bind(to: optionCarrier)
+        self.didTapRegister
+            .bind(to: self.optionCarrier)
             .disposed(by: disposeBag)
         
         
         let register = didTapRegister
             .withLatestFrom(requiredCarrierInfo)
-            .flatMapLatest{
-                APIClient.registerCarrier(countryID: $0, startDate: $1, options: $2)
+            .debug("didTapRegister")
+            .flatMapLatest{ _ in
+                APIClient.registerCarrier(countryID: 1, startDate: "d", options: [1,2])
                     .do(onError:{  [weak self] _ in
                         guard let self = self else { return }
                         self.registerError.onNext("")
                     }).suppressError()
-            }.asDriver(onErrorJustReturn: Carrier(carrierID: 0,
-                                                  startDate: "",
-                                                  carrierName: "",
-                                                  carrierCountryID: 0,
-                                                  countryName : cities[0]
-            ))
+            }.asDriverOnErrorJustComplete()
         
         
         register.drive(onNext:{ [weak self] in
