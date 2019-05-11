@@ -39,6 +39,7 @@
 		A16E20432286B05100BA8382 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E20422286B05100BA8382 /* Application.swift */; };
 		A16E20472286B0C300BA8382 /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E20462286B0C300BA8382 /* UseCaseProvider.swift */; };
 		A16E20492286B0E600BA8382 /* PostsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E20482286B0E600BA8382 /* PostsUseCase.swift */; };
+		A16E204C2286DE5600BA8382 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E204B2286DE5600BA8382 /* Repository.swift */; };
 		A18841CB2201C922009EC62E /* AMMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18841CA2201C922009EC62E /* AMMainViewModel.swift */; };
 		A1A2C938221D7C18004BEB75 /* AMAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A2C936221D7C18004BEB75 /* AMAlertViewController.swift */; };
 		A1A2C939221D7C18004BEB75 /* AMAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1A2C937221D7C18004BEB75 /* AMAlertViewController.xib */; };
@@ -125,6 +126,7 @@
 		A16E20422286B05100BA8382 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		A16E20462286B0C300BA8382 /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
 		A16E20482286B0E600BA8382 /* PostsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsUseCase.swift; sourceTree = "<group>"; };
+		A16E204B2286DE5600BA8382 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		A18841CA2201C922009EC62E /* AMMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMainViewModel.swift; sourceTree = "<group>"; };
 		A1A2C936221D7C18004BEB75 /* AMAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMAlertViewController.swift; sourceTree = "<group>"; };
 		A1A2C937221D7C18004BEB75 /* AMAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AMAlertViewController.xib; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 		A16E20442286B0A500BA8382 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				A16E204A2286DE4500BA8382 /* Repository */,
 				A16E20452286B0AE00BA8382 /* UseCases */,
 			);
 			path = Domain;
@@ -350,6 +353,14 @@
 				A16E20482286B0E600BA8382 /* PostsUseCase.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		A16E204A2286DE4500BA8382 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				A16E204B2286DE5600BA8382 /* Repository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		A18841C92201C8F4009EC62E /* Main */ = {
@@ -843,6 +854,7 @@
 				BAD622C521EC73FD00BA2C27 /* AMPresentAnimateSetting.swift in Sources */,
 				A10D31A221F31718006132C5 /* AMViewControllerUISetAble.swift in Sources */,
 				A122FD522220DEEF00121F42 /* AMMenuCell.swift in Sources */,
+				A16E204C2286DE5600BA8382 /* Repository.swift in Sources */,
 				A1511C6D2217D67E0051FA25 /* AMMakeCarrierViewController.swift in Sources */,
 				A1F4C29122462229003953F2 /* AMEditViewController.swift in Sources */,
 				A1511CBB221990040051FA25 /* AMCarrierOptionViewController.swift in Sources */,
