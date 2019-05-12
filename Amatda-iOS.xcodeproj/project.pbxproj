@@ -40,6 +40,10 @@
 		A16E20472286B0C300BA8382 /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E20462286B0C300BA8382 /* UseCaseProvider.swift */; };
 		A16E20492286B0E600BA8382 /* PostsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E20482286B0E600BA8382 /* PostsUseCase.swift */; };
 		A16E204C2286DE5600BA8382 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E204B2286DE5600BA8382 /* Repository.swift */; };
+		A16E2055228841B700BA8382 /* Carrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E2054228841B700BA8382 /* Carrier.swift */; };
+		A16E2057228841FA00BA8382 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E2056228841FA00BA8382 /* Package.swift */; };
+		A16E205A228845EF00BA8382 /* RMCarrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E2059228845EF00BA8382 /* RMCarrier.swift */; };
+		A16E205C2288465B00BA8382 /* RMPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E205B2288465B00BA8382 /* RMPackage.swift */; };
 		A18841CB2201C922009EC62E /* AMMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18841CA2201C922009EC62E /* AMMainViewModel.swift */; };
 		A1A2C938221D7C18004BEB75 /* AMAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A2C936221D7C18004BEB75 /* AMAlertViewController.swift */; };
 		A1A2C939221D7C18004BEB75 /* AMAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1A2C937221D7C18004BEB75 /* AMAlertViewController.xib */; };
@@ -127,6 +131,10 @@
 		A16E20462286B0C300BA8382 /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
 		A16E20482286B0E600BA8382 /* PostsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsUseCase.swift; sourceTree = "<group>"; };
 		A16E204B2286DE5600BA8382 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		A16E2054228841B700BA8382 /* Carrier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carrier.swift; sourceTree = "<group>"; };
+		A16E2056228841FA00BA8382 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		A16E2059228845EF00BA8382 /* RMCarrier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCarrier.swift; sourceTree = "<group>"; };
+		A16E205B2288465B00BA8382 /* RMPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPackage.swift; sourceTree = "<group>"; };
 		A18841CA2201C922009EC62E /* AMMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMainViewModel.swift; sourceTree = "<group>"; };
 		A1A2C936221D7C18004BEB75 /* AMAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMAlertViewController.swift; sourceTree = "<group>"; };
 		A1A2C937221D7C18004BEB75 /* AMAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AMAlertViewController.xib; sourceTree = "<group>"; };
@@ -281,9 +289,7 @@
 		A13F22CD21FF642C006675FC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A16E20412286B04300BA8382 /* Application */,
 				A16E20402286A32600BA8382 /* DB */,
-				BA18BD14221C1B6B0062159E /* API */,
 				BAD622C121EC73D100BA2C27 /* Animate */,
 				A10D31A021F316D9006132C5 /* Protocol */,
 				A1D89ABC221328EC0036C4BC /* Extension */,
@@ -329,18 +335,10 @@
 			path = DB;
 			sourceTree = "<group>";
 		};
-		A16E20412286B04300BA8382 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				A16E20422286B05100BA8382 /* Application.swift */,
-			);
-			path = Application;
-			sourceTree = "<group>";
-		};
 		A16E20442286B0A500BA8382 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				A16E204A2286DE4500BA8382 /* Repository */,
+				A16E2053228841A700BA8382 /* Entries */,
 				A16E20452286B0AE00BA8382 /* UseCases */,
 			);
 			path = Domain;
@@ -358,9 +356,54 @@
 		A16E204A2286DE4500BA8382 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				A16E204B2286DE5600BA8382 /* Repository.swift */,
+				A16E205E228847E200BA8382 /* NetworkPlatform */,
+				A16E205D228847C800BA8382 /* RealmPlatform */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		A16E20522288408200BA8382 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A16E20422286B05100BA8382 /* Application.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		A16E2053228841A700BA8382 /* Entries */ = {
+			isa = PBXGroup;
+			children = (
+				A16E2054228841B700BA8382 /* Carrier.swift */,
+				A16E2056228841FA00BA8382 /* Package.swift */,
+			);
+			path = Entries;
+			sourceTree = "<group>";
+		};
+		A16E2058228845E100BA8382 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A16E2059228845EF00BA8382 /* RMCarrier.swift */,
+				A16E205B2288465B00BA8382 /* RMPackage.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		A16E205D228847C800BA8382 /* RealmPlatform */ = {
+			isa = PBXGroup;
+			children = (
+				A16E2058228845E100BA8382 /* Entities */,
+				A16E204B2286DE5600BA8382 /* Repository.swift */,
+			);
+			path = RealmPlatform;
+			sourceTree = "<group>";
+		};
+		A16E205E228847E200BA8382 /* NetworkPlatform */ = {
+			isa = PBXGroup;
+			children = (
+				BA18BD15221C1C660062159E /* APIRouter.swift */,
+				BA18BD17221C410F0062159E /* APIClient.swift */,
+			);
+			path = NetworkPlatform;
 			sourceTree = "<group>";
 		};
 		A18841C92201C8F4009EC62E /* Main */ = {
@@ -434,6 +477,8 @@
 		A1A47DE521E1E9EA0067D46B /* Amatda-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				A16E20522288408200BA8382 /* Application */,
+				A16E204A2286DE4500BA8382 /* Repository */,
 				A16E20442286B0A500BA8382 /* Domain */,
 				A13A74472216F27A0062A9E8 /* Resource */,
 				A13F22CD21FF642C006675FC /* Common */,
@@ -487,15 +532,6 @@
 				A1A2C949221F26BE004BEB75 /* UIView+.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		BA18BD14221C1B6B0062159E /* API */ = {
-			isa = PBXGroup;
-			children = (
-				BA18BD15221C1C660062159E /* APIRouter.swift */,
-				BA18BD17221C410F0062159E /* APIClient.swift */,
-			);
-			path = API;
 			sourceTree = "<group>";
 		};
 		BAD622C121EC73D100BA2C27 /* Animate */ = {
@@ -851,6 +887,7 @@
 				A16E20432286B05100BA8382 /* Application.swift in Sources */,
 				A1A2C941221DB124004BEB75 /* CarrierInfo.swift in Sources */,
 				BABB4F0D21F811FF00616FD7 /* AMViewAnimatable.swift in Sources */,
+				A16E205A228845EF00BA8382 /* RMCarrier.swift in Sources */,
 				BAD622C521EC73FD00BA2C27 /* AMPresentAnimateSetting.swift in Sources */,
 				A10D31A221F31718006132C5 /* AMViewControllerUISetAble.swift in Sources */,
 				A122FD522220DEEF00121F42 /* AMMenuCell.swift in Sources */,
@@ -869,6 +906,7 @@
 				BA18BD16221C1C660062159E /* APIRouter.swift in Sources */,
 				A10D319D21F2FA45006132C5 /* AMBaseViewController.swift in Sources */,
 				A1A47DE721E1E9EA0067D46B /* AppDelegate.swift in Sources */,
+				A16E2057228841FA00BA8382 /* Package.swift in Sources */,
 				A1511CB42217FBDC0051FA25 /* UIPageViewController+.swift in Sources */,
 				A16E20492286B0E600BA8382 /* PostsUseCase.swift in Sources */,
 				BA18BD18221C410F0062159E /* APIClient.swift in Sources */,
@@ -884,10 +922,12 @@
 				A1A2C94A221F26BE004BEB75 /* UIView+.swift in Sources */,
 				A122FD502220608500121F42 /* AMCarrierStack.swift in Sources */,
 				A120640E220DAA3B001EC1EF /* AMMainHeaderView.swift in Sources */,
+				A16E2055228841B700BA8382 /* Carrier.swift in Sources */,
 				A122FD4A222038E000121F42 /* AMMenuViewController.swift in Sources */,
 				A1206410220DB1DA001EC1EF /* AMMainHeaderLayout.swift in Sources */,
 				A13F22CF21FF643F006675FC /* AMDeviceInfo.swift in Sources */,
 				A1511CB9221906D40051FA25 /* AMCarrierTimeViewController.swift in Sources */,
+				A16E205C2288465B00BA8382 /* RMPackage.swift in Sources */,
 				A1A2C938221D7C18004BEB75 /* AMAlertViewController.swift in Sources */,
 				A1511C6A2217C2660051FA25 /* String+.swift in Sources */,
 				A18841CB2201C922009EC62E /* AMMainViewModel.swift in Sources */,

@@ -12,21 +12,8 @@ import RealmSwift
 import RxDataSources
 
 
-struct Carrier {
-    let carrierID   : Int
-    let startDate   : String
-    let carrierName : String
-    let carrierCountryID : Int
-    let countryName : String
-}
 
-struct Package {
-    let packageID : Int
-    let carrierID : Int
-    let packageName : String
-    let packageColor : String
-    let check : Bool
-}
+
 
 
 public let AMMainModelParseError = apiError("AMMainModel error during parsing")

@@ -13,15 +13,3 @@ import RealmSwift
 public protocol UseCase {
     func makePostsUseCase() -> PostsUseCase
 }
-
-public final class UseCaseProvider: UseCase{
-    private let configuration : Realm.Configuration
-    
-    public init(configuration: Realm.Configuration = Realm.Configuration()){
-        self.configuration = configuration
-    }
-    
-    public func makePostsUseCase() -> PostsUseCase {
-        
-    }
-}

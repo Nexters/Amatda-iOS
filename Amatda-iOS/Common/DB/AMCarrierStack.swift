@@ -39,9 +39,7 @@ class AMCarrierStack {
     func push(_ element : Carrier){
         let carrier = CarrierRealm()
         carrier.startDate = element.startDate
-        carrier.carrierCountryID = element.carrierCountryID
         carrier.carrierName = element.carrierName
-        carrier.carrierID = element.carrierID
         let realm = try! Realm()
         
         try! realm.write {
@@ -53,10 +51,8 @@ class AMCarrierStack {
     func carrierAt(index:Int)->Carrier?{
         for (i,carrier) in carriers.enumerated() {
             if i == index{
-                return Carrier(carrierID : carrier.carrierID,
-                               startDate : carrier.startDate,
+                return Carrier(startDate : carrier.startDate,
                                carrierName: carrier.carrierName,
-                               carrierCountryID : carrier.carrierCountryID,
                                countryName : cities[carrier.carrierCountryID]
                 )
                 
