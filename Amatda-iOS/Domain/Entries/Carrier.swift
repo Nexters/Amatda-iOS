@@ -12,5 +12,6 @@ public struct Carrier {
     let startDate   : String
     let carrierName : String
     let countryName : String
-    let packItem : [Package]
+    let carrierID   : Int
+    let packItem    : [Package]
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 public struct Package {
-    let packageID : Int
     let carrierID : Int
+    let packageID : Int
     let packageName : String
     let packageColor : String
     let check : Bool

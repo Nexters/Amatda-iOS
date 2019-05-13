@@ -18,3 +18,21 @@ final class RMPackage: Object{
     @objc dynamic var packageColor : String = ""
     @objc dynamic var check : Bool = false
 }
+
+
+
+extension Package: RealmRepresentable{
+    var uid: String {
+        return "\(packageID)"
+    }
+    
+    func asRealm() -> RMPackage {
+        return RMPackage.build({ object in
+            object.packageID    = self.packageID
+            object.carrierID    = self.carrierID
+            object.packageName  = self.packageName
+            object.packageColor = self.packageColor
+            object.check        = self.check
+        })
+    }
+}
