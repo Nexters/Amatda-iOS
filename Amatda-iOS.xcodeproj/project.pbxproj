@@ -77,6 +77,7 @@
 		CC5F7313228AA78D00A1A2E7 /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5F7312228AA78D00A1A2E7 /* Observable+Ext.swift */; };
 		CC5F7315228AB9FA00A1A2E7 /* DomainConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5F7314228AB9FA00A1A2E7 /* DomainConvertibleType.swift */; };
 		CC5F7317228ACB6600A1A2E7 /* CarrierUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5F7316228ACB6600A1A2E7 /* CarrierUseCase.swift */; };
+		CC5F731A228ADF6000A1A2E7 /* DefaultMakeCarrierNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5F7319228ADF6000A1A2E7 /* DefaultMakeCarrierNavigator.swift */; };
 		FC6D6EE8EFFB522939240D04 /* Pods_Amatda_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258DA2E9B7B8DAF32B612370 /* Pods_Amatda_iOSUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +179,7 @@
 		CC5F7312228AA78D00A1A2E7 /* Observable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
 		CC5F7314228AB9FA00A1A2E7 /* DomainConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertibleType.swift; sourceTree = "<group>"; };
 		CC5F7316228ACB6600A1A2E7 /* CarrierUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierUseCase.swift; sourceTree = "<group>"; };
+		CC5F7319228ADF6000A1A2E7 /* DefaultMakeCarrierNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMakeCarrierNavigator.swift; sourceTree = "<group>"; };
 		D809D6D2C416B9645B29265B /* Pods-Amatda-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amatda-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Amatda-iOSUITests/Pods-Amatda-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F64A4D307AC1ADB84E0B2D7F /* Pods_Amatda_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amatda_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4C16790ADCC536F6A0071B /* Pods-Amatda-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amatda-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Amatda-iOSUITests/Pods-Amatda-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 		A1511C6B2217D1550051FA25 /* MakeCarrier */ = {
 			isa = PBXGroup;
 			children = (
+				CC5F7319228ADF6000A1A2E7 /* DefaultMakeCarrierNavigator.swift */,
 				A1511C6C2217D67E0051FA25 /* AMMakeCarrierViewController.swift */,
 				A1511CB7221906770051FA25 /* SelectCarrierOption */,
 			);
@@ -872,6 +875,7 @@
 				A16E2057228841FA00BA8382 /* Package.swift in Sources */,
 				A1511CB42217FBDC0051FA25 /* UIPageViewController+.swift in Sources */,
 				BA18BD18221C410F0062159E /* APIClient.swift in Sources */,
+				CC5F731A228ADF6000A1A2E7 /* DefaultMakeCarrierNavigator.swift in Sources */,
 				A13A74582216F3B10062A9E8 /* UIFont+.swift in Sources */,
 				A1B9793D221C709B0054EA2F /* AMPackageHeaderView.swift in Sources */,
 				A10D31A421F4574F006132C5 /* AMWriteViewController.swift in Sources */,

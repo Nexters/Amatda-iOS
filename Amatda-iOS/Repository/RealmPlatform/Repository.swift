@@ -17,7 +17,7 @@ import RxRealm
 protocol AbstractRepository {
     associatedtype T
     func queryAll() -> Observable<[T]>
-    func save(entity: T) -> Observable<Void>
+    func save(entity: T) -> Observable<T>
     func delete(entity: T) -> Observable<Void>
 }
 
@@ -45,7 +45,7 @@ final class Repository<T:RealmRepresentable> : AbstractRepository where T == T.R
         }
     }
     
-    func save(entity: T) -> Observable<Void> {
+    func save(entity: T) -> Observable<T> {
         return Observable.deferred {
             return self.realm.rx.save(entity: entity)
             }.subscribeOn(self.scheduler)

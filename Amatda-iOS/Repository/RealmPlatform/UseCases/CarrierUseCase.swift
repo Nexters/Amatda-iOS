@@ -13,7 +13,7 @@ import RealmSwift
 
 public protocol CarrierCase{
     func post()    -> Observable<[Carrier]>
-    func save(carrier: Carrier)    -> Observable<Void>
+    func save(carrier: Carrier)    -> Observable<Carrier>
     func delete(carrier: Carrier)  -> Observable<Void>
 }
 
@@ -29,7 +29,7 @@ final class CarrierUseCase<Repository>: CarrierCase where Repository: AbstractRe
         return repository.queryAll()
     }
     
-    func save(carrier: Carrier) -> Observable<Void> {
+    func save(carrier: Carrier) -> Observable<Carrier> {
         return repository.save(entity: carrier)
     }
     
