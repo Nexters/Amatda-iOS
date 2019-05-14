@@ -30,12 +30,15 @@ class APIClient {
                 switch jsonData.result{
                 case .success(let data):
                     
-                    let carrier = Carrier(carrierID: data.intValue,
-                                          startDate: startDate,
-                                          carrierName: "캐리어 \(AMCarrierStack().count + 1)",
-                                          carrierCountryID: countryID,
-                                          countryName : cities[countryID]
-                    )
+                    let carrier = Carrier(startDate: startDate,
+                                          countryName: cities[countryID],
+                                          carrierID: data.doubleValue)
+//                    let carrier = Carrier(carrierID: data.intValue,
+//                                          startDate: startDate,
+//                                          carrierName: "캐리어 \(AMCarrierStack().count + 1)",
+//                                          carrierCountryID: countryID,
+//                                          countryName : cities[countryID]
+//                    )
                     
                     emit.onNext(carrier)
                     emit.onCompleted()

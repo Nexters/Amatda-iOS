@@ -11,14 +11,14 @@ import Foundation
 import Realm
 import RealmSwift
 
-public final class UseCaseProvider: UseCaseProvide{
+final class UseCaseProvider: UseCaseProvide{
     private let configuration : Realm.Configuration
     
-    public init(configuration: Realm.Configuration = Realm.Configuration()){
+    init(configuration: Realm.Configuration = Realm.Configuration()){
         self.configuration = configuration
     }
     
-    public func makeCarrierUseCase() -> CarrierCase {
+    func makeCarrierUseCase() -> CarrierCase {
         let repository = Repository<Carrier>(configuration: self.configuration)
         return CarrierUseCase(repository: repository)
     }

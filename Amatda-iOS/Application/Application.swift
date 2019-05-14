@@ -10,7 +10,7 @@ import UIKit
 
 final class Application{
     static let shared           = Application()
-    private let useCaseProvider : UseCase
+    private let useCaseProvider : UseCaseProvide
     
     private init(){
         self.useCaseProvider = UseCaseProvider()

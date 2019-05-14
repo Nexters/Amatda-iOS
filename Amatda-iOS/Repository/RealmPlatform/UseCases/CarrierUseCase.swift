@@ -11,7 +11,7 @@ import RxSwift
 import Realm
 import RealmSwift
 
-public protocol CarrierCase{
+protocol CarrierCase{
     func post()    -> Observable<[Carrier]>
     func save(carrier: Carrier)    -> Observable<Carrier>
     func delete(carrier: Carrier)  -> Observable<Void>

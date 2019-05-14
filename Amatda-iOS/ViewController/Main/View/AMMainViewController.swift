@@ -25,7 +25,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     var carrierItem    = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
     
-    private var carrierID  :Int{
+    private var carrierID  :Double{
         return AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0
     }
     
@@ -207,9 +207,11 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     private func showMakeCariierVC(){
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let makeVC = mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController")
+        let vc = DefaultMakeCarrierNavigator(service: UseCaseProvider(), navigationController: self.navigationController!, storyBoard: mainStoryboard)
+        vc.toPost()
+//        let makeVC = mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController")
         
-        self.present(makeVC, animated: true, completion: nil)
+//        self.present(vc, animated: true, completion: nil)
     }
 }
 
@@ -224,6 +226,13 @@ extension AMMainViewController {
 
         self.showCompleteMakeCarrier()
         self.isExpanded = Array(repeating: false, count: 3)
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = DefaultMakeCarrierNavigator(service: UseCaseProvider(), navigationController: self.navigationController!, storyBoard: mainStoryboard)
+        vc.toPost()
+//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController") as! AMMakeCarrierViewController)
+//        self.present(vc, animated: true, completion: nil)
     }
     
     

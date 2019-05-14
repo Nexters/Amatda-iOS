@@ -39,13 +39,16 @@ struct CarrierModel{
             let carrierCountryID = item["cCountry"]?.intValue
         else { throw AMMainModelParseError }
         
-        
-        let carrier = Carrier(carrierID: id,
-                              startDate: startDate,
+        let carrier = Carrier(startDate: startDate,
                               carrierName: carrierName,
-                              carrierCountryID: carrierCountryID,
-                              countryName : cities[carrierCountryID]
-        )
+                              countryName: cities[carrierCountryID],
+                              carrierID: Double(id))
+        
+//        let carrier = Carrier(carrierID: id,
+//                              startDate: startDate,
+//                              carrierName: carrierName,
+//                              countryName : cities[carrierCountryID]
+//        )
         
         
         let options : [Int] = opt.map{
@@ -70,20 +73,23 @@ struct PackageModel{
             throw AMMainModelParseError
         }
         
-        let unPack = unCheckPack.map{
-            Package(packageID: $0["pId"].intValue,
-                    carrierID: $0["pcId"].intValue,
-                    packageName: $0["pName"].stringValue,
-                    packageColor: $0["pColor"].stringValue,
-                    check: $0["pCheck"].boolValue)
+        let unPack = unCheckPack.map{ _ in
+            Package(carrierID: 0, packageID: 0, packageName: "", packageColor: "", check: true)
+            
+//            Package(packageID: $0["pId"].intValue,
+//                    carrierID: $0["pcId"].intValue,
+//                    packageName: $0["pName"].stringValue,
+//                    packageColor: $0["pColor"].stringValue,
+//                    check: $0["pCheck"].boolValue)
         }
         
-        let pack = checkPack.map{
-            Package(packageID: $0["pId"].intValue,
-                    carrierID: $0["pcId"].intValue,
-                    packageName: $0["pName"].stringValue,
-                    packageColor: $0["pColor"].stringValue,
-                    check: $0["pCheck"].boolValue)
+        let pack = checkPack.map{ _ in
+//            Package(packageID: $0["pId"].intValue,
+//                    carrierID: $0["pcId"].intValue,
+//                    packageName: $0["pName"].stringValue,
+//                    packageColor: $0["pColor"].stringValue,
+//                    check: $0["pCheck"].boolValue)
+            Package(carrierID: 0, packageID: 0, packageName: "", packageColor: "", check: true)
         }
         
         let total = unPack.count + pack.count

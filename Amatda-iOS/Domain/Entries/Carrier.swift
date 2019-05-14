@@ -8,18 +8,18 @@
 
 import Foundation
 
-public struct Carrier {
+struct Carrier {
     let startDate   : String
     let carrierName : String
     let countryName : String
-    let carrierID   : String
+    let carrierID   : Double
     let packItem    : [Package]
     
-    public init(startDate: String,
-                carrierName: String = "캐리어",
-                countryName: String,
-                carrierID  : String = String(round(Date().timeIntervalSince1970 * 1000)),
-                packItem   : [Package] = [Package]()
+    init(startDate: String,
+         carrierName: String = "캐리어",
+         countryName: String,
+         carrierID  : Double = round(Date().timeIntervalSince1970 * 1000),
+         packItem   : [Package] = [Package]()
         ){
         self.startDate = startDate
         self.carrierName = carrierName

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Package {
+struct Package {
     let carrierID : Int
     let packageID : Int
     let packageName : String

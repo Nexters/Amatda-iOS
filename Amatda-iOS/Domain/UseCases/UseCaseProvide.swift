@@ -10,6 +10,6 @@ import Foundation
 import Realm
 import RealmSwift
 
-public protocol UseCaseProvide {
+protocol UseCaseProvide {
     func makeCarrierUseCase() -> CarrierCase
 }

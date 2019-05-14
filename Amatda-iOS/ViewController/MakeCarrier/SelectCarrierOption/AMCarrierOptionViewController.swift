@@ -111,7 +111,7 @@ class AMCarrierOptionViewController: AMBaseViewController {
         
         
         Observable.merge(ob,ob1,ob2,ob3,ob4,ob5,ob6)
-            .subscribe(onNext: convertSelectionOption)
+            .subscribe(onNext: self.convertSelectionOption)
             .disposed(by: disposeBag)
         
         

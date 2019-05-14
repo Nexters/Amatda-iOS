@@ -16,7 +16,7 @@ class AMAlertViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let lottie : LOTAnimationView = LOTAnimationView(name: "bag")
+        let lottie : AnimationView = AnimationView(name: "bag")
         lottie.contentMode = .scaleAspectFill
         self.carrierLottiview.addSubview(lottie)
         

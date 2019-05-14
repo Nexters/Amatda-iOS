@@ -22,7 +22,7 @@ class AMCarrierStack {
     private lazy var carriers : Results<CarrierRealm> = {
         let realm = try! Realm()
         let carrs = realm.objects(CarrierRealm.self)
-
+        
         return carrs
     }()
     
@@ -49,15 +49,15 @@ class AMCarrierStack {
     
     
     func carrierAt(index:Int)->Carrier?{
-        for (i,carrier) in carriers.enumerated() {
-            if i == index{
+//        for (i,carrier) in carriers.enumerated() {
+//            if i == index{
 //                return Carrier(startDate : carrier.startDate,
 //                               carrierName: carrier.carrierName,
 //                               countryName : cities[carrier.carrierCountryID]
 //                )
-                return nil
-            }
-        }
+//                return nil
+//            }
+//        }
         
         return nil
     }

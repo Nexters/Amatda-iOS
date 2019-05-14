@@ -12,7 +12,7 @@ import RxCocoa
 
 class AMMainViewModel{
     //input
-    let viewDidLoad         = PublishSubject<Int>()
+    let viewDidLoad         = PublishSubject<Double>()
     let completeCarrierInfo = PublishSubject<CarrierModel>()
     let tapCheckPackage     = PublishSubject<Package>()
     
@@ -35,7 +35,7 @@ class AMMainViewModel{
             .debug("detailCarrier")
             .flatMapLatest{
                 
-                APIClient.detailCarrier(carrierID: $0)
+                APIClient.detailCarrier(carrierID: Int($0))
                     .do(onError: { [weak self] _ in
                         guard let self = self else { return }
                         self.apiError.onNext("")
@@ -49,9 +49,10 @@ class AMMainViewModel{
         
         
         self.packageList = self.completeCarrierInfo
-            .flatMapLatest{
+            .flatMapLatest{ _ in
                 
-                APIClient.packageList(carrierID: $0.carrier?.carrierID ?? 0, sort: 0)
+//                APIClient.packageList(carrierID: $0.carrier?.carrierID ?? 0, sort: 0)
+                APIClient.packageList(carrierID: 0, sort: 0)
                     .do(onError:{ [weak self] _ in
                         guard let self = self else { return }
                         self.apiError.onNext("")
