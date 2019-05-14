@@ -15,6 +15,7 @@ target 'Amatda-iOS' do
   pod 'DLRadioButton', '~> 1.4'
   pod 'RealmSwift'
   pod 'RxDataSources'
+  pod 'RxRealm'
 
   # Pods for Amatda-iOS
 

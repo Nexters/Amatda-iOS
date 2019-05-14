@@ -20,6 +20,16 @@ final class RMPackage: Object{
 }
 
 
+extension RMPackage: DomainConvertibleType{
+    func asDomain() -> Package{
+        return Package(carrierID: carrierID,
+                       packageID: packageID,
+                       packageName: packageName,
+                       packageColor: packageColor,
+                       check: check)
+    }
+}
+
 
 extension Package: RealmRepresentable{
     var uid: String {

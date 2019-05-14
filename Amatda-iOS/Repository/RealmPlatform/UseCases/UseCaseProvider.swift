@@ -18,8 +18,8 @@ public final class UseCaseProvider: UseCaseProvide{
         self.configuration = configuration
     }
     
-    public func makeCarrierUseCase() -> CarrierUseCase {
+    public func makeCarrierUseCase() -> CarrierCase {
         let repository = Repository<Carrier>(configuration: self.configuration)
-        
+        return CarrierUseCase(repository: repository)
     }
 }

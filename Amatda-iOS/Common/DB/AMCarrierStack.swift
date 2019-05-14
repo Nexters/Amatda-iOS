@@ -51,11 +51,11 @@ class AMCarrierStack {
     func carrierAt(index:Int)->Carrier?{
         for (i,carrier) in carriers.enumerated() {
             if i == index{
-                return Carrier(startDate : carrier.startDate,
-                               carrierName: carrier.carrierName,
-                               countryName : cities[carrier.carrierCountryID]
-                )
-                
+//                return Carrier(startDate : carrier.startDate,
+//                               carrierName: carrier.carrierName,
+//                               countryName : cities[carrier.carrierCountryID]
+//                )
+                return nil
             }
         }
         

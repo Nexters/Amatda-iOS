@@ -12,6 +12,7 @@ import Realm
 import RealmSwift
 import RxCocoa
 import RxSwift
+import RxRealm
 
 protocol AbstractRepository {
     associatedtype T
@@ -21,7 +22,7 @@ protocol AbstractRepository {
 }
 
 
-final class Repository<T:RealmRepresentable> : AbstractRepository where T.RealmType : Object{
+final class Repository<T:RealmRepresentable> : AbstractRepository where T == T.RealmType.DomainType, T.RealmType: Object{
     private let configuration: Realm.Configuration
     private lazy var scheduler = ConcurrentDispatchQueueScheduler(qos: .background)
     
@@ -34,18 +35,25 @@ final class Repository<T:RealmRepresentable> : AbstractRepository where T.RealmT
     }
     
     func queryAll() -> Observable<[T]> {
-        
+        return Observable.deferred {
+            let realm = self.realm
+            let objects = realm.objects(T.RealmType.self)
+            
+            return Observable.array(from: objects)
+                .mapToDomain()
+                .subscribeOn(self.scheduler)
+        }
     }
     
     func save(entity: T) -> Observable<Void> {
         return Observable.deferred {
             return self.realm.rx.save(entity: entity)
-            }.subscribeOn(scheduler)
+            }.subscribeOn(self.scheduler)
     }
     
     func delete(entity: T) -> Observable<Void> {
         return Observable.deferred {
             return self.realm.rx.delete(entity: entity)
-            }.subscribeOn(scheduler)
+            }.subscribeOn(self.scheduler)
     }
 }

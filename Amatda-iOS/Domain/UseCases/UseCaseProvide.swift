@@ -11,5 +11,5 @@ import Realm
 import RealmSwift
 
 public protocol UseCaseProvide {
-    func makeCarrierUseCase() -> CarrierUseCase
+    func makeCarrierUseCase() -> CarrierCase
 }
