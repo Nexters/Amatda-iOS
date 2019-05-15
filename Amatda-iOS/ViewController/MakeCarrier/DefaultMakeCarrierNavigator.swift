@@ -28,6 +28,7 @@ final class DefaultMakeCarrierNavigator: CreateNavigator{
     
     func toPost() {
         let vc = self.storyBoard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController") as! AMMakeCarrierViewController
+        vc.navigator = self
         vc.service = self.services.makeCarrierUseCase()
         self.navigationController.present(vc, animated: true, completion: nil)
     }
@@ -39,10 +40,10 @@ final class DefaultMakeCarrierNavigator: CreateNavigator{
             AMCarrierStack().push(carrier)
         })
         
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let root = mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
-        root.isFirstAccess = true
-        let vc = UINavigationController(rootViewController: root)
-        appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)
+//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let root = mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
+//        root.isFirstAccess = true
+//        let vc = UINavigationController(rootViewController: root)
+//        appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)
     }
 }

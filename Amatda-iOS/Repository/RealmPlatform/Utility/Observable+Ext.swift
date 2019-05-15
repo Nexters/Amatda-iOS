@@ -19,11 +19,3 @@ extension Observable where Element: Sequence, Element.Iterator.Element: DomainCo
     }
 }
 
-extension Sequence where Iterator.Element: DomainConvertibleType {
-    typealias Element = Iterator.Element
-    func mapToDomain() -> [Element.DomainType] {
-        return map {
-            $0.asDomain()
-        }
-    }
-}

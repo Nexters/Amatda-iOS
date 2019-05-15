@@ -34,7 +34,7 @@ DEPENDENCIES:
   - DLRadioButton (~> 1.4)
   - Kingfisher
   - lottie-ios
-  - RealmSwift
+  - RealmSwift (~> 3.15)
   - RxCocoa
   - RxDataSources
   - RxRealm
@@ -77,6 +77,6 @@ SPEC CHECKSUMS:
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 6528127bed7ad3b301fedd305d38b3ef5ce9d6ce
+PODFILE CHECKSUM: 67475733df471e92ffac96866a11c112dd06e070
 
 COCOAPODS: 1.6.1

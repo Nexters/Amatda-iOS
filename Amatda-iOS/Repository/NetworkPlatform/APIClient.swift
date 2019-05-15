@@ -32,7 +32,7 @@ class APIClient {
                     
                     let carrier = Carrier(startDate: startDate,
                                           countryName: cities[countryID],
-                                          carrierID: data.doubleValue)
+                                          carrierID: data.intValue)
 //                    let carrier = Carrier(carrierID: data.intValue,
 //                                          startDate: startDate,
 //                                          carrierName: "캐리어 \(AMCarrierStack().count + 1)",

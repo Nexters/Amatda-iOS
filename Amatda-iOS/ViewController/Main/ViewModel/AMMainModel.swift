@@ -42,7 +42,7 @@ struct CarrierModel{
         let carrier = Carrier(startDate: startDate,
                               carrierName: carrierName,
                               countryName: cities[carrierCountryID],
-                              carrierID: Double(id))
+                              carrierID: id)
         
 //        let carrier = Carrier(carrierID: id,
 //                              startDate: startDate,

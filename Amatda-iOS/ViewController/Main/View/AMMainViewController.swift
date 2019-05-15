@@ -25,7 +25,7 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     var carrierItem    = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
     
-    private var carrierID  :Double{
+    private var carrierID  :Int{
         return AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.carrierID ?? 0
     }
     
