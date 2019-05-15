@@ -13,15 +13,18 @@ struct Carrier {
     let carrierName : String
     let countryName : String
     let carrierID   : Int
+    let packages    : [Package]
     
     init(startDate: String,
          carrierName: String = "캐리어",
          countryName: String,
+         packages   : [Package] = [Package](),
          carrierID  : Int = Int(round(Date().timeIntervalSince1970 * 1000))
         ){
         self.startDate = startDate
         self.carrierName = carrierName
         self.countryName = countryName
         self.carrierID   = carrierID
+        self.packages    = packages
     }
 }

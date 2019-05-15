@@ -7,9 +7,13 @@
 //
 
 import UIKit
+
+import RealmSwift
 import RxSwift
 import RxCocoa
 import RxDataSources
+import RxRealm
+
 
 class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewControllerBottomUISetAble, AMCanShowAlert {
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -78,6 +82,14 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
             })
             .bind(to: viewModel.completeCarrierInfo)
             .disposed(by: disposeBag)
+        
+        let realm = try! Realm()
+        let carriers = realm.objects(RMCarrier.self)
+        
+        Observable.collection(from: carriers).map{ $0.last?.countryName }.debug("RealmDebug")
+            .subscribe(onNext: {
+                print("Realm : \($0 ?? "")")
+            }).disposed(by: self.disposeBag)
     }
     
     

@@ -108,7 +108,6 @@ final class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
             .asDriver(onErrorJustReturn: "")
             .drive(onNext:{ [weak self] _ in
                 guard let self = self else { return }
-                
                 self.showAlert(title: "오류", message: String.errorString)
         }).disposed(by: disposeBag)
     }
@@ -168,18 +167,6 @@ final class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
         }) { (finished) in
             
         }
-    }
-    
-    
-    
-    private func showMain(_ carrier : Carrier){
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let root = mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
-        CarrierInfo.currentCarrierIndex = AMCarrierStack().count
-        AMCarrierStack().push(carrier)
-        root.isFirstAccess = true
-        let vc = UINavigationController(rootViewController: root)
-        appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)
     }
 }
 
