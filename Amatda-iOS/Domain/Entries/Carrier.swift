@@ -34,6 +34,8 @@ struct Carrier {
     }
 }
 
+
+
 extension Carrier{
     private func getRecommandPackages(carrierOption: [Int])->[Package]{
         var packages = [Package]()
@@ -146,7 +148,8 @@ extension Carrier{
     }
     
     
-    private func makeDefaultPackage(name:String,packageID:Int)->Package{
+    private func makeDefaultPackage(name:String,
+                                    packageID:Int) -> Package{
         return Package(carrierID: self.carrierID,
                        packageID: packageID,
                        packageName: name,
