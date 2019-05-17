@@ -82,7 +82,7 @@ final class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
             return "\(s1) \(s2)"
         })
         
-        let startDateAndCountryName = Observable.combineLatest(date,self.cityOfCarrier){ Carrier(startDate:$0,countryName:$1) }
+        let startDateAndCountryName = Observable.combineLatest(date,self.cityOfCarrier,self.optionCarrier){ Carrier(startDate:$0,countryName:$1,carrierOption: $2) }
         
         self.didTapRegister
             .bind(to: self.optionCarrier)
