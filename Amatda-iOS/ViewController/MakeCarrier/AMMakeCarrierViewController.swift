@@ -129,7 +129,7 @@ final class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
         self.progressBackView.backgroundColor = UIColor(red: 240, green: 240, blue: 240)
         self.progressFrontView.backgroundColor = UIColor(red: 255, green: 87, blue: 54)
         self.progressBackView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(30)
+            $0.top.equalTo(self.view.safeArea.top).offset(30)
             $0.left.equalToSuperview().offset(20)
             $0.right.equalToSuperview().offset(-20)
             $0.height.equalTo(4)

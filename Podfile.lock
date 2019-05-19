@@ -5,8 +5,8 @@ PODS:
     - SwiftyJSON (~> 4.0.0)
   - Differentiator (4.0.1)
   - DLRadioButton (1.4.12)
-  - Kingfisher (5.4.0)
-  - lottie-ios (3.0.4)
+  - Kingfisher (5.5.0)
+  - lottie-ios (3.0.6)
   - Realm (3.15.0):
     - Realm/Headers (= 3.15.0)
   - Realm/Headers (3.15.0)
@@ -42,31 +42,13 @@ DEPENDENCIES:
   - SnapKit
   - SwiftyJSON
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Alamofire
-    - Alamofire-SwiftyJSON
-    - Differentiator
-    - DLRadioButton
-    - Kingfisher
-    - lottie-ios
-    - Realm
-    - RealmSwift
-    - RxCocoa
-    - RxDataSources
-    - RxRealm
-    - RxRelay
-    - RxSwift
-    - SnapKit
-    - SwiftyJSON
-
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
-  Kingfisher: 9c8f2cc6710334e06f32ba2b45e77707d5e2f0c9
-  lottie-ios: 55a2de40418f8de2b155efaba4d4d1a025a5c570
+  Kingfisher: 6fe5e67a90fd335e49b0f5c075ff55ac5ebedd94
+  lottie-ios: d030b6cda141cfd8bbaa3db89264785e6fdf675a
   Realm: 9b834e1be6062f544805252c812348872dc5d4ed
   RealmSwift: 8a41886f8ab6efef9eb8df97de2f2bb911561a79
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
@@ -79,4 +61,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 67475733df471e92ffac96866a11c112dd06e070
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.4.0
