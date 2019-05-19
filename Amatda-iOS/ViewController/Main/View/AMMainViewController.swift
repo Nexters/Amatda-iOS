@@ -19,6 +19,8 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     @IBOutlet private weak var collectionView: UICollectionView!
     private var dataSource : RxCollectionViewSectionedAnimatedDataSource<SectionOfPackage>?
     private var isExpanded = [Bool]()
+    private let triggerCheck = PublishSubject<Package>()
+    
     var leftButton              : UIButton? = UIButton()
     var rightButton             : UIButton? = UIButton()
     var titleLabel              : UILabel?  = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
@@ -26,7 +28,6 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     var rightBarButtonItem      : UIBarButtonItem? = UIBarButtonItem()
     var centerButton            : UIButton? = UIButton()
     var isFirstAccess           : Bool = false
-    
     var carrierItem    = BehaviorSubject(value: CarrierModel(carrier: nil, options: nil))
     
     private var carrierID  :Int{
@@ -36,12 +37,9 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     private var carrierCityName : String {
         return AMCarrierStack().carrierAt(index: CarrierInfo.currentCarrierIndex)?.countryName ?? ""
     }
-
-    private let viewModel   = AMMainViewModel()
-    var disposeBag : DisposeBag  {
-        return viewModel.disposeBag
-    }
     
+    var viewModel  :AMMainViewModel!
+    var disposeBag : DisposeBag  = DisposeBag()
     
     override func setupUI() {
         super.setupUI()
@@ -54,9 +52,56 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     override func setupBind() {
         super.setupBind()
+        assert(self.viewModel != nil)
+        assert(self.dataSource != nil)
+        
+        
+        self.centerButton?.rx.tap.subscribe(onNext:{ [weak self] in
+            guard let self = self else { return }
+            self.pressedCenterButton()
+        }).disposed(by: self.disposeBag)
+        
+        
+        self.leftButton?.rx.tap.subscribe(onNext:{ [weak self] in
+            guard let self = self else { return }
+            self.pressedMenuButton()
+        }).disposed(by: self.disposeBag)
+        
+        
+        let input = AMMainViewModel.Input(trigger: self.rx.viewWillAppear.map{ self.carrierID }.asDriverOnErrorJustComplete(), triggerCheck: self.triggerCheck.asDriverOnErrorJustComplete())
+        
+        
+        let output = viewModel.transform(input: input)
+        output.packages?
+            .drive(self.collectionView.rx.items(dataSource: dataSource!))
+            .disposed(by: self.disposeBag)
+        
+        
+        output.apiError
+            .drive(onNext:{ [weak self] _ in
+                guard let self = self else { return }
+                self.showAlert(title: "오류", message: String.errorString)
+            }).disposed(by: self.disposeBag)
+        
+        
+        self.collectionView
+            .rx
+            .modelSelected(Package.self)
+            .subscribe(onNext: { package in
+                self.showEditViewController(packItem: package)
+            }).disposed(by: self.disposeBag)
+        
+        
+        //refac
+        self.rx.viewWillAppear.map{ self.carrierID }
+            .bind(to: viewModel.viewDidLoad)
+            .disposed(by: disposeBag)
+        
         bindInput()
         bindOutput()
     }
+    
+    
     
     
     
@@ -289,7 +334,7 @@ extension AMMainViewController{
                     cell.packageItem = item
                     cell.checkButton.rx.tap
                         .map{cell.packageItem!}
-                        .bind(to:self.viewModel.tapCheckPackage)
+                        .bind(to:self.triggerCheck)
                         .disposed(by: cell.disposeBag)
                     cell.isHidden = self.isExpanded[indexPath.section]
                     

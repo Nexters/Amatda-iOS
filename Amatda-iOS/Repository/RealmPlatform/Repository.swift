@@ -17,6 +17,7 @@ import RxRealm
 protocol AbstractRepository {
     associatedtype T
     func queryAll() -> Observable<[T]>
+    func query(with predicateString: String) -> Observable<[T]>
     func save(entity: T) -> Observable<T>
     func delete(entity: T) -> Observable<Void>
 }
@@ -43,6 +44,17 @@ final class Repository<T:RealmRepresentable> : AbstractRepository where T == T.R
                 .mapToDomain()
                 .subscribeOn(self.scheduler)
         }
+    }
+    
+    func query(with predicateString: String) -> Observable<[T]> {
+        return Observable.deferred {
+            let realm = self.realm
+            let objects = realm.objects(T.RealmType.self).filter(predicateString)
+            
+            return Observable.array(from: objects)
+                .mapToDomain()
+            }
+            .subscribeOn(scheduler)
     }
     
     func save(entity: T) -> Observable<T> {

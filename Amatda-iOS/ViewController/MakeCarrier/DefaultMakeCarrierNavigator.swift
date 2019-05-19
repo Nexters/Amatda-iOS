@@ -39,11 +39,5 @@ final class DefaultMakeCarrierNavigator: CreateNavigator{
             CarrierInfo.currentCarrierIndex = AMCarrierStack().count
             AMCarrierStack().push(carrier)
         })
-        
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let root = mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
-//        root.isFirstAccess = true
-//        let vc = UINavigationController(rootViewController: root)
-//        appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)
     }
 }

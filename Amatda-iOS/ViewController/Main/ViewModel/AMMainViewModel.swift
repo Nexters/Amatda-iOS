@@ -10,7 +10,22 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class AMMainViewModel{
+final class AMMainViewModel: ViewModelType{
+    struct Input {
+        let trigger      : Driver<Int> //viewDidLoad
+        let triggerCheck : Driver<Package>
+    }
+    
+    struct Output {
+        let packages : Driver<[SectionOfPackage]>?
+        let doCheck  : Driver<Int>?
+        let apiError : Driver<String>?
+    }
+    
+    private let useCase   : MainCase
+    private let navigator : AMMainNavigator
+    
+    
     //input
     let viewDidLoad         = PublishSubject<Int>()
     let completeCarrierInfo = PublishSubject<CarrierModel>()
@@ -19,14 +34,43 @@ class AMMainViewModel{
     //output
     var detailCarrier        : Driver<CarrierModel>?
     var packageList          : Driver<[SectionOfPackage]>?
-    var completeCheckPackage : Driver<Int>?
     var checkPackage         : Driver<Int>?
     
     let apiError = PublishSubject<String>()
     
-    let disposeBag = DisposeBag()
-    init() {
-        setup()
+//    init() {
+//        setup()
+//    }
+    
+    init(useCase: MainCase, navigator: AMMainNavigator) {
+        self.useCase = useCase
+        self.navigator = navigator
+    }
+    
+    func transform(input: Input)->Output{
+        let packages = input.trigger.map{ _ in
+                self.useCase.postAll()
+            }.flatMapLatest{ _ in
+            APIClient.packageList(carrierID: 0, sort: 0)
+                .do(onError:{ [weak self] _ in
+                    guard let self = self else { return }
+                    self.apiError.onNext("")
+                }).suppressError()
+            }.map{
+                try PackageModel.parseJSON($0)
+            }.asDriverOnErrorJustComplete()
+        
+        
+        let doCheck = input.triggerCheck.flatMapLatest{
+            APIClient.checkPackage(packageID: $0.packageID, check: !$0.check)
+                .do(onError:{ [weak self] _ in
+                    guard let self = self else { return }
+                    self.apiError.onNext("")
+                }).suppressError()
+            }.map{_ in 0}.asDriverOnErrorJustComplete()
+        
+        return Output(packages: packages,
+                      doCheck: doCheck)
     }
     
     

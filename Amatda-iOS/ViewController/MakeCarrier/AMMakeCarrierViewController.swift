@@ -91,7 +91,6 @@ final class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
         
         let register = didTapRegister
             .withLatestFrom(startDateAndCountryName)
-            .debug("didTapRegister")
             .filter{ _ in self.service != nil }
             .flatMapLatest{ s in
                 self.service!.save(carrier: s).suppressError()

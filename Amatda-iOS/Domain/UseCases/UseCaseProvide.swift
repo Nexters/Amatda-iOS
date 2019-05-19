@@ -12,4 +12,5 @@ import RealmSwift
 
 protocol UseCaseProvide {
     func makeCarrierUseCase() -> CarrierCase
+    func makeMainUseCase()    -> MainCase
 }

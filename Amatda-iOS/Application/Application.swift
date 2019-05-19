@@ -18,8 +18,9 @@ final class Application{
     
     func configureMainInterface(in window: UIWindow) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainViewController = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController)
+        let mainNavigator = AMDefaultMainNavigator(storyBoard: mainStoryboard,
+                                                   services: self.useCaseProvider)
         
-        window.rootViewController = mainViewController
+        window.rootViewController = mainNavigator.toMain()
     }
 }
