@@ -221,9 +221,6 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = DefaultMakeCarrierNavigator(service: UseCaseProvider(), navigationController: self.navigationController!, storyBoard: mainStoryboard)
         vc.toPost()
-//        let makeVC = mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController")
-        
-//        self.present(vc, animated: true, completion: nil)
     }
 }
 
@@ -242,9 +239,6 @@ extension AMMainViewController {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = DefaultMakeCarrierNavigator(service: UseCaseProvider(), navigationController: self.navigationController!, storyBoard: mainStoryboard)
         vc.toPost()
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController") as! AMMakeCarrierViewController)
-//        self.present(vc, animated: true, completion: nil)
     }
     
     
