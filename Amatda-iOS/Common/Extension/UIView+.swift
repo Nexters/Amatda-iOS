@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+import SnapKit
+
 extension UIView {
     
     func dropShadow() {
@@ -30,5 +32,14 @@ extension UIView {
         layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+    
+    
+    var safeArea: ConstraintBasicAttributesDSL {
+        if #available(iOS 11.0, *) {
+            return self.safeAreaLayoutGuide.snp
+        }
+        
+        return self.snp
     }
 }

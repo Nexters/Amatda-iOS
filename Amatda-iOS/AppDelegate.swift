@@ -31,11 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func startVC(){
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if AMCarrierStack().count > 0 {
+//        if AMCarrierStack().count > 0 {
             window?.rootViewController = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController)
-        }else{
-            window?.rootViewController = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController") as! AMMakeCarrierViewController)
-        }
+//        }else{
+//            window?.rootViewController = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController") as! AMMakeCarrierViewController)
+//        }
     }
     
 

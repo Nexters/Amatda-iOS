@@ -36,7 +36,13 @@
 		A1511CB42217FBDC0051FA25 /* UIPageViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511CB32217FBDC0051FA25 /* UIPageViewController+.swift */; };
 		A1511CB9221906D40051FA25 /* AMCarrierTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511CB8221906D40051FA25 /* AMCarrierTimeViewController.swift */; };
 		A1511CBB221990040051FA25 /* AMCarrierOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1511CBA221990040051FA25 /* AMCarrierOptionViewController.swift */; };
-		A16E20502286F2CA00BA8382 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E204F2286F2CA00BA8382 /* RealmRepository.swift */; };
+		A16E20432286B05100BA8382 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E20422286B05100BA8382 /* Application.swift */; };
+		A16E20472286B0C300BA8382 /* UseCaseProvide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E20462286B0C300BA8382 /* UseCaseProvide.swift */; };
+		A16E204C2286DE5600BA8382 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E204B2286DE5600BA8382 /* Repository.swift */; };
+		A16E2055228841B700BA8382 /* Carrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E2054228841B700BA8382 /* Carrier.swift */; };
+		A16E2057228841FA00BA8382 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E2056228841FA00BA8382 /* Package.swift */; };
+		A16E205A228845EF00BA8382 /* RMCarrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E2059228845EF00BA8382 /* RMCarrier.swift */; };
+		A16E205C2288465B00BA8382 /* RMPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E205B2288465B00BA8382 /* RMPackage.swift */; };
 		A18841CB2201C922009EC62E /* AMMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18841CA2201C922009EC62E /* AMMainViewModel.swift */; };
 		A1A2C938221D7C18004BEB75 /* AMAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A2C936221D7C18004BEB75 /* AMAlertViewController.swift */; };
 		A1A2C939221D7C18004BEB75 /* AMAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1A2C937221D7C18004BEB75 /* AMAlertViewController.xib */; };
@@ -65,6 +71,14 @@
 		BAD622C621EC73FD00BA2C27 /* AMPresentAnimateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD622C321EC73FD00BA2C27 /* AMPresentAnimateViewController.swift */; };
 		BAD622C721EC73FD00BA2C27 /* AMActionAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD622C421EC73FD00BA2C27 /* AMActionAnimate.swift */; };
 		BAFDB75E6127612B16B6B881 /* Pods_Amatda_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498A330DF2B63D53C6285116 /* Pods_Amatda_iOSTests.framework */; };
+		CC1451C3228976400029DA0F /* Realm+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1451C2228976400029DA0F /* Realm+Ext.swift */; };
+		CC1451C622897EB30029DA0F /* RealmRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1451C522897EB30029DA0F /* RealmRepresentable.swift */; };
+		CC1451C9228985630029DA0F /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1451C8228985630029DA0F /* UseCaseProvider.swift */; };
+		CC5F7313228AA78D00A1A2E7 /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5F7312228AA78D00A1A2E7 /* Observable+Ext.swift */; };
+		CC5F7315228AB9FA00A1A2E7 /* DomainConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5F7314228AB9FA00A1A2E7 /* DomainConvertibleType.swift */; };
+		CC5F7317228ACB6600A1A2E7 /* CarrierUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5F7316228ACB6600A1A2E7 /* CarrierUseCase.swift */; };
+		CC5F731A228ADF6000A1A2E7 /* DefaultMakeCarrierNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5F7319228ADF6000A1A2E7 /* DefaultMakeCarrierNavigator.swift */; };
+		CC86CBC5228BA5CD00648209 /* Sequence+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC86CBC4228BA5CD00648209 /* Sequence+.swift */; };
 		FC6D6EE8EFFB522939240D04 /* Pods_Amatda_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258DA2E9B7B8DAF32B612370 /* Pods_Amatda_iOSUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,7 +134,13 @@
 		A1511CB32217FBDC0051FA25 /* UIPageViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPageViewController+.swift"; sourceTree = "<group>"; };
 		A1511CB8221906D40051FA25 /* AMCarrierTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMCarrierTimeViewController.swift; sourceTree = "<group>"; };
 		A1511CBA221990040051FA25 /* AMCarrierOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMCarrierOptionViewController.swift; sourceTree = "<group>"; };
-		A16E204F2286F2CA00BA8382 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		A16E20422286B05100BA8382 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		A16E20462286B0C300BA8382 /* UseCaseProvide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvide.swift; sourceTree = "<group>"; };
+		A16E204B2286DE5600BA8382 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		A16E2054228841B700BA8382 /* Carrier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carrier.swift; sourceTree = "<group>"; };
+		A16E2056228841FA00BA8382 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		A16E2059228845EF00BA8382 /* RMCarrier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCarrier.swift; sourceTree = "<group>"; };
+		A16E205B2288465B00BA8382 /* RMPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMPackage.swift; sourceTree = "<group>"; };
 		A18841CA2201C922009EC62E /* AMMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMMainViewModel.swift; sourceTree = "<group>"; };
 		A1A2C936221D7C18004BEB75 /* AMAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMAlertViewController.swift; sourceTree = "<group>"; };
 		A1A2C937221D7C18004BEB75 /* AMAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AMAlertViewController.xib; sourceTree = "<group>"; };
@@ -154,6 +174,14 @@
 		BAD622C221EC73FC00BA2C27 /* AMPresentAnimateSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPresentAnimateSetting.swift; sourceTree = "<group>"; };
 		BAD622C321EC73FD00BA2C27 /* AMPresentAnimateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPresentAnimateViewController.swift; sourceTree = "<group>"; };
 		BAD622C421EC73FD00BA2C27 /* AMActionAnimate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMActionAnimate.swift; sourceTree = "<group>"; };
+		CC1451C2228976400029DA0F /* Realm+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Ext.swift"; sourceTree = "<group>"; };
+		CC1451C522897EB30029DA0F /* RealmRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepresentable.swift; sourceTree = "<group>"; };
+		CC1451C8228985630029DA0F /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
+		CC5F7312228AA78D00A1A2E7 /* Observable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
+		CC5F7314228AB9FA00A1A2E7 /* DomainConvertibleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainConvertibleType.swift; sourceTree = "<group>"; };
+		CC5F7316228ACB6600A1A2E7 /* CarrierUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierUseCase.swift; sourceTree = "<group>"; };
+		CC5F7319228ADF6000A1A2E7 /* DefaultMakeCarrierNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMakeCarrierNavigator.swift; sourceTree = "<group>"; };
+		CC86CBC4228BA5CD00648209 /* Sequence+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+.swift"; sourceTree = "<group>"; };
 		D809D6D2C416B9645B29265B /* Pods-Amatda-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amatda-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Amatda-iOSUITests/Pods-Amatda-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F64A4D307AC1ADB84E0B2D7F /* Pods_Amatda_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Amatda_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4C16790ADCC536F6A0071B /* Pods-Amatda-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Amatda-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Amatda-iOSUITests/Pods-Amatda-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -275,8 +303,7 @@
 		A13F22CD21FF642C006675FC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A16E204D2286F20A00BA8382 /* DB */,
-				BA18BD14221C1B6B0062159E /* API */,
+				A16E20402286A32600BA8382 /* DB */,
 				BAD622C121EC73D100BA2C27 /* Animate */,
 				A10D31A021F316D9006132C5 /* Protocol */,
 				A1D89ABC221328EC0036C4BC /* Extension */,
@@ -298,6 +325,7 @@
 		A1511C6B2217D1550051FA25 /* MakeCarrier */ = {
 			isa = PBXGroup;
 			children = (
+				CC5F7319228ADF6000A1A2E7 /* DefaultMakeCarrierNavigator.swift */,
 				A1511C6C2217D67E0051FA25 /* AMMakeCarrierViewController.swift */,
 				A1511CB7221906770051FA25 /* SelectCarrierOption */,
 			);
@@ -314,29 +342,85 @@
 			path = SelectCarrierOption;
 			sourceTree = "<group>";
 		};
-		A16E204D2286F20A00BA8382 /* DB */ = {
-			isa = PBXGroup;
-			children = (
-				A16E20512286F2F000BA8382 /* Entities */,
-				A16E204E2286F2BB00BA8382 /* Repository */,
-			);
-			path = DB;
-			sourceTree = "<group>";
-		};
-		A16E204E2286F2BB00BA8382 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				A16E204F2286F2CA00BA8382 /* RealmRepository.swift */,
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
-		A16E20512286F2F000BA8382 /* Entities */ = {
+		A16E20402286A32600BA8382 /* DB */ = {
 			isa = PBXGroup;
 			children = (
 				A122FD4F2220608500121F42 /* AMCarrierStack.swift */,
 			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		A16E20442286B0A500BA8382 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				A16E2053228841A700BA8382 /* Entries */,
+				A16E20452286B0AE00BA8382 /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		A16E20452286B0AE00BA8382 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				A16E20462286B0C300BA8382 /* UseCaseProvide.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		A16E204A2286DE4500BA8382 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				A16E205E228847E200BA8382 /* NetworkPlatform */,
+				A16E205D228847C800BA8382 /* RealmPlatform */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		A16E20522288408200BA8382 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A16E20422286B05100BA8382 /* Application.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		A16E2053228841A700BA8382 /* Entries */ = {
+			isa = PBXGroup;
+			children = (
+				A16E2054228841B700BA8382 /* Carrier.swift */,
+				A16E2056228841FA00BA8382 /* Package.swift */,
+			);
+			path = Entries;
+			sourceTree = "<group>";
+		};
+		A16E2058228845E100BA8382 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A16E2059228845EF00BA8382 /* RMCarrier.swift */,
+				A16E205B2288465B00BA8382 /* RMPackage.swift */,
+			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		A16E205D228847C800BA8382 /* RealmPlatform */ = {
+			isa = PBXGroup;
+			children = (
+				CC1451C7228982880029DA0F /* UseCases */,
+				CC1451C422897E920029DA0F /* Convertion */,
+				CC1451C12289762E0029DA0F /* Utility */,
+				A16E2058228845E100BA8382 /* Entities */,
+				A16E204B2286DE5600BA8382 /* Repository.swift */,
+			);
+			path = RealmPlatform;
+			sourceTree = "<group>";
+		};
+		A16E205E228847E200BA8382 /* NetworkPlatform */ = {
+			isa = PBXGroup;
+			children = (
+				BA18BD15221C1C660062159E /* APIRouter.swift */,
+				BA18BD17221C410F0062159E /* APIClient.swift */,
+			);
+			path = NetworkPlatform;
 			sourceTree = "<group>";
 		};
 		A18841C92201C8F4009EC62E /* Main */ = {
@@ -410,6 +494,9 @@
 		A1A47DE521E1E9EA0067D46B /* Amatda-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				A16E20522288408200BA8382 /* Application */,
+				A16E204A2286DE4500BA8382 /* Repository */,
+				A16E20442286B0A500BA8382 /* Domain */,
 				A13A74472216F27A0062A9E8 /* Resource */,
 				A13F22CD21FF642C006675FC /* Common */,
 				A10D31A521F45F63006132C5 /* ViewController */,
@@ -464,15 +551,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		BA18BD14221C1B6B0062159E /* API */ = {
-			isa = PBXGroup;
-			children = (
-				BA18BD15221C1C660062159E /* APIRouter.swift */,
-				BA18BD17221C410F0062159E /* APIClient.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 		BAD622C121EC73D100BA2C27 /* Animate */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +559,34 @@
 				BAD622C321EC73FD00BA2C27 /* AMPresentAnimateViewController.swift */,
 			);
 			path = Animate;
+			sourceTree = "<group>";
+		};
+		CC1451C12289762E0029DA0F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				CC1451C2228976400029DA0F /* Realm+Ext.swift */,
+				CC5F7312228AA78D00A1A2E7 /* Observable+Ext.swift */,
+				CC86CBC4228BA5CD00648209 /* Sequence+.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		CC1451C422897E920029DA0F /* Convertion */ = {
+			isa = PBXGroup;
+			children = (
+				CC1451C522897EB30029DA0F /* RealmRepresentable.swift */,
+				CC5F7314228AB9FA00A1A2E7 /* DomainConvertibleType.swift */,
+			);
+			path = Convertion;
+			sourceTree = "<group>";
+		};
+		CC1451C7228982880029DA0F /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				CC1451C8228985630029DA0F /* UseCaseProvider.swift */,
+				CC5F7316228ACB6600A1A2E7 /* CarrierUseCase.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 		E3C609FD7019AA4CF740C6AC /* Pods */ = {
@@ -508,7 +614,7 @@
 				A1A47DE021E1E9EA0067D46B /* Frameworks */,
 				A1A47DE121E1E9EA0067D46B /* Resources */,
 				D3E0A91528C50555C48B3DB9 /* [CP] Embed Pods Frameworks */,
-				D39ED3904CFFBB3521CECC6A /* [CP] Copy Pods Resources */,
+				B64EA07DD5C6D9D3F06CD43F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -527,8 +633,8 @@
 				A1A47DF321E1E9EC0067D46B /* Sources */,
 				A1A47DF421E1E9EC0067D46B /* Frameworks */,
 				A1A47DF521E1E9EC0067D46B /* Resources */,
-				0C7530E163288D635F1601D0 /* [CP] Embed Pods Frameworks */,
-				4767C2585FCBF39FE6382431 /* [CP] Copy Pods Resources */,
+				8188630A854815ABFCFD8583 /* [CP] Embed Pods Frameworks */,
+				63B9471892B2097C2DA43E07 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -548,8 +654,8 @@
 				A1A47DFE21E1E9EC0067D46B /* Sources */,
 				A1A47DFF21E1E9EC0067D46B /* Frameworks */,
 				A1A47E0021E1E9EC0067D46B /* Resources */,
-				D83BA4A278DBF8B540ECA9FC /* [CP] Embed Pods Frameworks */,
-				3C59D4233C9DDABEA509114C /* [CP] Copy Pods Resources */,
+				57CB6375D3A11105660B8C60 /* [CP] Embed Pods Frameworks */,
+				7769C2D783436EE66E7DD043 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -643,21 +749,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0C7530E163288D635F1601D0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSTests/Pods-Amatda-iOSTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		39CE304ED4E23D71BE99B76A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -674,36 +765,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3C59D4233C9DDABEA509114C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSUITests/Pods-Amatda-iOSUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4767C2585FCBF39FE6382431 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSTests/Pods-Amatda-iOSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		55B9CB9708719FE277E92115 /* [CP] Check Pods Manifest.lock */ = {
@@ -724,6 +785,51 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		57CB6375D3A11105660B8C60 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSUITests/Pods-Amatda-iOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63B9471892B2097C2DA43E07 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSTests/Pods-Amatda-iOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7769C2D783436EE66E7DD043 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSUITests/Pods-Amatda-iOSUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		812F73098B8BF5B7CEAD71A8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -742,7 +848,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D39ED3904CFFBB3521CECC6A /* [CP] Copy Pods Resources */ = {
+		8188630A854815ABFCFD8583 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSTests/Pods-Amatda-iOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B64EA07DD5C6D9D3F06CD43F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -771,9 +892,10 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -788,9 +910,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -801,21 +924,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOS/Pods-Amatda-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D83BA4A278DBF8B540ECA9FC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSUITests/Pods-Amatda-iOSUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -823,11 +931,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A16E20432286B05100BA8382 /* Application.swift in Sources */,
 				A1A2C941221DB124004BEB75 /* CarrierInfo.swift in Sources */,
 				BABB4F0D21F811FF00616FD7 /* AMViewAnimatable.swift in Sources */,
+				A16E205A228845EF00BA8382 /* RMCarrier.swift in Sources */,
 				BAD622C521EC73FD00BA2C27 /* AMPresentAnimateSetting.swift in Sources */,
 				A10D31A221F31718006132C5 /* AMViewControllerUISetAble.swift in Sources */,
 				A122FD522220DEEF00121F42 /* AMMenuCell.swift in Sources */,
+				CC1451C3228976400029DA0F /* Realm+Ext.swift in Sources */,
+				CC1451C622897EB30029DA0F /* RealmRepresentable.swift in Sources */,
+				A16E204C2286DE5600BA8382 /* Repository.swift in Sources */,
 				A1511C6D2217D67E0051FA25 /* AMMakeCarrierViewController.swift in Sources */,
 				A1F4C29122462229003953F2 /* AMEditViewController.swift in Sources */,
 				A1511CBB221990040051FA25 /* AMCarrierOptionViewController.swift in Sources */,
@@ -836,33 +949,42 @@
 				BAD622C621EC73FD00BA2C27 /* AMPresentAnimateViewController.swift in Sources */,
 				A10D31AA21F4620E006132C5 /* AMBaseView.swift in Sources */,
 				A1A2C948221F1AAF004BEB75 /* AMPackageCell.swift in Sources */,
+				A16E20472286B0C300BA8382 /* UseCaseProvide.swift in Sources */,
 				A1A47DE921E1E9EA0067D46B /* AMMainViewController.swift in Sources */,
 				A10D31A821F46156006132C5 /* AMWriteView.swift in Sources */,
 				BA18BD16221C1C660062159E /* APIRouter.swift in Sources */,
 				A10D319D21F2FA45006132C5 /* AMBaseViewController.swift in Sources */,
 				A1A47DE721E1E9EA0067D46B /* AppDelegate.swift in Sources */,
+				CC86CBC5228BA5CD00648209 /* Sequence+.swift in Sources */,
+				A16E2057228841FA00BA8382 /* Package.swift in Sources */,
 				A1511CB42217FBDC0051FA25 /* UIPageViewController+.swift in Sources */,
 				BA18BD18221C410F0062159E /* APIClient.swift in Sources */,
+				CC5F731A228ADF6000A1A2E7 /* DefaultMakeCarrierNavigator.swift in Sources */,
 				A13A74582216F3B10062A9E8 /* UIFont+.swift in Sources */,
 				A1B9793D221C709B0054EA2F /* AMPackageHeaderView.swift in Sources */,
 				A10D31A421F4574F006132C5 /* AMWriteViewController.swift in Sources */,
 				BAD622C721EC73FD00BA2C27 /* AMActionAnimate.swift in Sources */,
 				A1D89AC4221485E00036C4BC /* DLRadioButton+.swift in Sources */,
-				A16E20502286F2CA00BA8382 /* RealmRepository.swift in Sources */,
 				A13A745A2216F5B10062A9E8 /* UIColor+.swift in Sources */,
 				A1A2C946221EE8E2004BEB75 /* AMMainModel.swift in Sources */,
 				A122FD4C2220393500121F42 /* AMMenuView.swift in Sources */,
 				A1511CA92217DF4E0051FA25 /* AMMakeCityViewController.swift in Sources */,
+				CC5F7313228AA78D00A1A2E7 /* Observable+Ext.swift in Sources */,
 				A1A2C94A221F26BE004BEB75 /* UIView+.swift in Sources */,
 				A122FD502220608500121F42 /* AMCarrierStack.swift in Sources */,
 				A120640E220DAA3B001EC1EF /* AMMainHeaderView.swift in Sources */,
+				CC5F7317228ACB6600A1A2E7 /* CarrierUseCase.swift in Sources */,
+				A16E2055228841B700BA8382 /* Carrier.swift in Sources */,
 				A122FD4A222038E000121F42 /* AMMenuViewController.swift in Sources */,
 				A1206410220DB1DA001EC1EF /* AMMainHeaderLayout.swift in Sources */,
 				A13F22CF21FF643F006675FC /* AMDeviceInfo.swift in Sources */,
+				CC5F7315228AB9FA00A1A2E7 /* DomainConvertibleType.swift in Sources */,
 				A1511CB9221906D40051FA25 /* AMCarrierTimeViewController.swift in Sources */,
+				A16E205C2288465B00BA8382 /* RMPackage.swift in Sources */,
 				A1A2C938221D7C18004BEB75 /* AMAlertViewController.swift in Sources */,
 				A1511C6A2217C2660051FA25 /* String+.swift in Sources */,
 				A18841CB2201C922009EC62E /* AMMainViewModel.swift in Sources */,
+				CC1451C9228985630029DA0F /* UseCaseProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

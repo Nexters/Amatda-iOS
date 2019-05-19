@@ -11,8 +11,14 @@ import RxSwift
 import RxCocoa
 
 extension ObservableType {
-    func suppressError() -> Observable<E> {
-        return retryWhen { _ in return Observable<E>.empty()  }
+    func suppressError() -> Observable<Element> {
+        return retryWhen { _ in return Observable<Element>.empty()  }
+    }
+    
+    func asDriverOnErrorJustComplete() -> Driver<Element> {
+        return asDriver { error in
+            return Driver.empty()
+        }
     }
 }
 

@@ -13,7 +13,7 @@ import RxCocoa
 import SnapKit
 
 
-class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
+final class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
     private var pageIndex : Int = 0
     private var pageViewController : UIPageViewController!
     private(set) lazy var orderedViewControllers: [UIViewController] = {
@@ -26,13 +26,16 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
     private var progressFrontView: UIView      = UIView()
     private var zipperImageView  : UIImageView = UIImageView()
     private var disposeBag = DisposeBag()
-    
-    var cityOfCarrier     = BehaviorSubject<Int>(value: 0)
+
+    var cityOfCarrier     = BehaviorSubject<String>(value: "")
     var dayOfCarrier      = BehaviorSubject<String>(value: "")
     var timeOfCarrier     = BehaviorSubject<String>(value: "")
     var optionCarrier     = BehaviorRelay<[Int]>(value: [])
     let didTapRegister    = PublishSubject<[Int]>()
     let registerError     = PublishSubject<String>()
+    
+    var service   : CarrierCase?
+    var navigator : CreateNavigator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,35 +82,25 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
             return "\(s1) \(s2)"
         })
         
-        let requiredCarrierInfo = Observable.combineLatest(cityOfCarrier,
-                                                           date,
-                                                           optionCarrier){($0,$1,$2)}
+        let startDateAndCountryName = Observable.combineLatest(date,self.cityOfCarrier,self.optionCarrier){ Carrier(startDate:$0,countryName:$1,carrierOption: $2) }
         
-        
-        didTapRegister
-            .bind(to: optionCarrier)
+        self.didTapRegister
+            .bind(to: self.optionCarrier)
             .disposed(by: disposeBag)
         
         
         let register = didTapRegister
-            .withLatestFrom(requiredCarrierInfo)
-            .flatMapLatest{
-                APIClient.registerCarrier(countryID: $0, startDate: $1, options: $2)
-                    .do(onError:{  [weak self] _ in
-                        guard let self = self else { return }
-                        self.registerError.onNext("")
-                    }).suppressError()
-            }.asDriver(onErrorJustReturn: Carrier(carrierID: 0,
-                                                  startDate: "",
-                                                  carrierName: "",
-                                                  carrierCountryID: 0,
-                                                  countryName : cities[0]
-            ))
+            .withLatestFrom(startDateAndCountryName)
+            .debug("didTapRegister")
+            .filter{ _ in self.service != nil }
+            .flatMapLatest{ s in
+                self.service!.save(carrier: s).suppressError()
+        }.asDriverOnErrorJustComplete()
         
         
         register.drive(onNext:{ [weak self] in
             guard let self = self else { return }
-            self.showMain($0)
+            self.navigator?.toCreateCarrier(carrier: $0)
         }).disposed(by: disposeBag)
         
         
@@ -115,7 +108,6 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
             .asDriver(onErrorJustReturn: "")
             .drive(onNext:{ [weak self] _ in
                 guard let self = self else { return }
-                
                 self.showAlert(title: "오류", message: String.errorString)
         }).disposed(by: disposeBag)
     }
@@ -136,9 +128,8 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
         
         self.progressBackView.backgroundColor = UIColor(red: 240, green: 240, blue: 240)
         self.progressFrontView.backgroundColor = UIColor(red: 255, green: 87, blue: 54)
-        
         self.progressBackView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(30)
+            $0.top.equalTo(self.view.safeArea.top).offset(30)
             $0.left.equalToSuperview().offset(20)
             $0.right.equalToSuperview().offset(-20)
             $0.height.equalTo(4)
@@ -177,18 +168,6 @@ class AMMakeCarrierViewController: AMBaseViewController, AMCanShowAlert{
             
         }
     }
-    
-    
-    
-    private func showMain(_ carrier : Carrier){
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let root = mainStoryboard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
-        CarrierInfo.currentCarrierIndex = AMCarrierStack().count
-        AMCarrierStack().push(carrier)
-        root.isFirstAccess = true
-        let vc = UINavigationController(rootViewController: root)
-        appDelegate?.searchFrontViewController().present( vc, animated: true, completion: nil)
-    }
 }
 
 
@@ -200,17 +179,17 @@ extension AMMakeCarrierViewController {
         case 0:
             vc = self.storyboard?.instantiateViewController(withIdentifier: "AMMakeOptionViewController") as! AMMakeCityViewController
             (vc as! AMMakeCityViewController).superPageVC = self
-            (vc as! AMMakeCityViewController).disposeBag  = disposeBag
+            (vc as! AMMakeCityViewController).disposeBag  = self.disposeBag
             break
         case 1:
             vc = self.storyboard?.instantiateViewController(withIdentifier: "AMCarrierTimeViewController") as! AMCarrierTimeViewController
             (vc as! AMCarrierTimeViewController).superPageVC = self
-            (vc as! AMCarrierTimeViewController).disposeBag  = disposeBag
+            (vc as! AMCarrierTimeViewController).disposeBag  = self.disposeBag
             break
         case 2:
             vc = self.storyboard?.instantiateViewController(withIdentifier: "AMCarrierOptionViewController") as! AMCarrierOptionViewController
             (vc as! AMCarrierOptionViewController).superPageVC = self
-            (vc as! AMCarrierOptionViewController).disposeBag  = disposeBag
+            (vc as! AMCarrierOptionViewController).disposeBag  = self.disposeBag
             break
         default:
             break

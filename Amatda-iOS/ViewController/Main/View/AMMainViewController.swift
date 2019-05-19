@@ -7,9 +7,13 @@
 //
 
 import UIKit
+
+import RealmSwift
 import RxSwift
 import RxCocoa
 import RxDataSources
+import RxRealm
+
 
 class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, AMViewControllerBottomUISetAble, AMCanShowAlert {
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -78,6 +82,14 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
             })
             .bind(to: viewModel.completeCarrierInfo)
             .disposed(by: disposeBag)
+        
+        let realm = try! Realm()
+        let carriers = realm.objects(RMCarrier.self)
+        
+        Observable.collection(from: carriers).map{ $0.last?.countryName }.debug("RealmDebug")
+            .subscribe(onNext: {
+                print("Realm : \($0 ?? "")")
+            }).disposed(by: self.disposeBag)
     }
     
     
@@ -207,9 +219,11 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
     
     private func showMakeCariierVC(){
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let makeVC = mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController")
+        let vc = DefaultMakeCarrierNavigator(service: UseCaseProvider(), navigationController: self.navigationController!, storyBoard: mainStoryboard)
+        vc.toPost()
+//        let makeVC = mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController")
         
-        self.present(makeVC, animated: true, completion: nil)
+//        self.present(vc, animated: true, completion: nil)
     }
 }
 
@@ -224,6 +238,13 @@ extension AMMainViewController {
 
         self.showCompleteMakeCarrier()
         self.isExpanded = Array(repeating: false, count: 3)
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = DefaultMakeCarrierNavigator(service: UseCaseProvider(), navigationController: self.navigationController!, storyBoard: mainStoryboard)
+        vc.toPost()
+//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = UINavigationController(rootViewController: mainStoryboard.instantiateViewController(withIdentifier: "AMMakeCarrierViewController") as! AMMakeCarrierViewController)
+//        self.present(vc, animated: true, completion: nil)
     }
     
     

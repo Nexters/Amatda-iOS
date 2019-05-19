@@ -50,9 +50,13 @@ final class AMWriteViewController: AMPresentAnimateViewController {
     
     private func setupObservable(){
         
+//        let register = Observable.combineLatest(self.labelColorTag,
+//                                                self.checkInputText
+//                                                ) { (self.carrierItem?.carrierID ?? 0,$0,$1) }
+        
         let register = Observable.combineLatest(self.labelColorTag,
                                                 self.checkInputText
-                                                ) { (self.carrierItem?.carrierID ?? 0,$0,$1) }
+        ) { (0,$0,$1) }
         let emptyObservable = self.checkInputText.map{ $0.count == 0 }
         
         
