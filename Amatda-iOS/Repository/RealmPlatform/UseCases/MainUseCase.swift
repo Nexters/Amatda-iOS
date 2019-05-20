@@ -27,11 +27,11 @@ final class MainUseCase<Repository>: MainCase where Repository: AbstractReposito
     }
     
     func postAll() -> Observable<[Carrier]>{
-        return self.repository.queryAll()
+        return self.repository.query(withSort: "created")
     }
     
     func post(carrier:Carrier) -> Observable<[Package]> {
-        let carriers = self.repository.query(with: "carrierID == \(carrier.carrierID)")
+        let carriers = self.repository.query(withFilter: "carrierID == \(carrier.carrierID)")
         return carriers.map{ $0.last!.packages }
     }
     

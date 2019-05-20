@@ -20,6 +20,10 @@ extension ObservableType {
             return Driver.empty()
         }
     }
+    
+    func mapToVoid() -> Observable<Void> {
+        return map { _ in }
+    }
 }
 
 
@@ -32,5 +36,12 @@ extension Reactive where Base: UIViewController{
     var viewWillAppear: ControlEvent<Void>{
         let source = self.methodInvoked(#selector(Base.viewWillAppear)).map { _ in }
         return ControlEvent(events: source)
+    }
+}
+
+
+extension SharedSequenceConvertibleType {
+    func mapToVoid() -> SharedSequence<SharingStrategy, Void> {
+        return map { _ in }
     }
 }

@@ -42,6 +42,24 @@ DEPENDENCIES:
   - SnapKit
   - SwiftyJSON
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Alamofire-SwiftyJSON
+    - Differentiator
+    - DLRadioButton
+    - Kingfisher
+    - lottie-ios
+    - Realm
+    - RealmSwift
+    - RxCocoa
+    - RxDataSources
+    - RxRealm
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - SwiftyJSON
+
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
@@ -61,4 +79,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 67475733df471e92ffac96866a11c112dd06e070
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.6.1

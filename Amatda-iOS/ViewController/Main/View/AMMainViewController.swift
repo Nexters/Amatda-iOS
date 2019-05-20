@@ -68,20 +68,24 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
         }).disposed(by: self.disposeBag)
         
         
-        let input = AMMainViewModel.Input(trigger: self.rx.viewWillAppear.map{ self.carrierID }.asDriverOnErrorJustComplete(), triggerCheck: self.triggerCheck.asDriverOnErrorJustComplete())
+        let input = AMMainViewModel.Input(trigger: self.rx.viewWillAppear.map{ self.carrierID }.asDriverOnErrorJustComplete(),
+                                          triggerCheck: self.triggerCheck.asDriverOnErrorJustComplete())
         
         
         let output = viewModel.transform(input: input)
+        
         output.packages?
             .drive(self.collectionView.rx.items(dataSource: dataSource!))
             .disposed(by: self.disposeBag)
         
         
-        output.apiError
+        output.apiError?
             .drive(onNext:{ [weak self] _ in
                 guard let self = self else { return }
                 self.showAlert(title: "오류", message: String.errorString)
             }).disposed(by: self.disposeBag)
+        
+        
         
         
         self.collectionView
@@ -92,13 +96,22 @@ class AMMainViewController: AMBaseViewController, AMViewControllerNaviSetAble, A
             }).disposed(by: self.disposeBag)
         
         
-        //refac
-        self.rx.viewWillAppear.map{ self.carrierID }
-            .bind(to: viewModel.viewDidLoad)
-            .disposed(by: disposeBag)
+        let realm = try! Realm()
+        let carriers = realm.objects(RMCarrier.self)
         
-        bindInput()
-        bindOutput()
+        Observable.collection(from: carriers).map{ $0.last?.countryName }.debug("RealmDebug")
+            .subscribe(onNext: {
+                print("Realm : \($0 ?? "")")
+            }).disposed(by: self.disposeBag)
+        
+        
+//        //refac
+//        self.rx.viewWillAppear.map{ self.carrierID }
+//            .bind(to: viewModel.viewDidLoad)
+//            .disposed(by: disposeBag)
+//
+//        bindInput()
+//        bindOutput()
     }
     
     

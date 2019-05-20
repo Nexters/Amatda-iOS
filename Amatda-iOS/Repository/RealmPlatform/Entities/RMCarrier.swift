@@ -16,6 +16,7 @@ final class RMCarrier: Object{
     @objc dynamic var carrierName : String = ""
     @objc dynamic var countryName : String = ""
     @objc dynamic var carrierID   : Int = 0
+    @objc dynamic var created     : Date = Date()
     @objc dynamic var packages    : RMPackages? = nil
     
     override static func primaryKey() -> String? {
@@ -29,6 +30,7 @@ extension RMCarrier: DomainConvertibleType {
                        carrierName: carrierName,
                        countryName: countryName,
                        packages: packages!.packages.mapToDomain(),
+                       created:created,
                        carrierID: carrierID
         )
     }
@@ -50,6 +52,8 @@ extension Carrier: RealmRepresentable{
             object.startDate    = self.startDate
             object.countryName  = self.countryName
             object.carrierName  = self.carrierName
+            object.created      = self.created
+            
             if let _ = object.packages { } else{
                 object.packages = RMPackages()
             }

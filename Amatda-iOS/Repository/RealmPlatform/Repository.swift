@@ -17,7 +17,8 @@ import RxRealm
 protocol AbstractRepository {
     associatedtype T
     func queryAll() -> Observable<[T]>
-    func query(with predicateString: String) -> Observable<[T]>
+    func query(withSort sortString: String) -> Observable<[T]>
+    func query(withFilter predicateString: String) -> Observable<[T]>
     func save(entity: T) -> Observable<T>
     func delete(entity: T) -> Observable<Void>
 }
@@ -28,7 +29,7 @@ final class Repository<T:RealmRepresentable> : AbstractRepository where T == T.R
     private lazy var scheduler = ConcurrentDispatchQueueScheduler(qos: .background)
     
     private var realm:Realm{
-        return try! Realm(configuration: configuration)
+        return try! Realm(configuration: self.configuration)
     }
     
     init(configuration: Realm.Configuration) {
@@ -46,7 +47,34 @@ final class Repository<T:RealmRepresentable> : AbstractRepository where T == T.R
         }
     }
     
-    func query(with predicateString: String) -> Observable<[T]> {
+    
+    func query(withSort sortString: String) -> Observable<[T]> {
+        return Observable.deferred {
+            let realm = self.realm
+            let result = realm.objects(T.RealmType.self)
+            var hasData = false
+            
+            try! realm.write {
+                if result.count > 0 {
+                    hasData = true
+                }else{
+                    hasData = false
+                }
+            }
+            
+            guard hasData else {
+                return Observable.array(from: result).mapToDomain()
+            }
+            
+            let objects = result.sorted(byKeyPath: sortString, ascending: true)
+            return Observable.array(from: objects).mapToDomain()
+            
+            }
+            .subscribeOn(MainScheduler.instance)
+    }
+    
+    
+    func query(withFilter predicateString: String) -> Observable<[T]> {
         return Observable.deferred {
             let realm = self.realm
             let objects = realm.objects(T.RealmType.self).filter(predicateString)
@@ -54,14 +82,16 @@ final class Repository<T:RealmRepresentable> : AbstractRepository where T == T.R
             return Observable.array(from: objects)
                 .mapToDomain()
             }
-            .subscribeOn(scheduler)
+            .subscribeOn(MainScheduler.instance)
     }
+    
     
     func save(entity: T) -> Observable<T> {
         return Observable.deferred {
             return self.realm.rx.save(entity: entity)
             }.subscribeOn(self.scheduler)
     }
+    
     
     func delete(entity: T) -> Observable<Void> {
         return Observable.deferred {

@@ -17,6 +17,7 @@ final class AMMainViewModel: ViewModelType{
     }
     
     struct Output {
+        let carrier  : Driver<Carrier>?
         let packages : Driver<[SectionOfPackage]>?
         let doCheck  : Driver<Int>?
         let apiError : Driver<String>?
@@ -38,9 +39,6 @@ final class AMMainViewModel: ViewModelType{
     
     let apiError = PublishSubject<String>()
     
-//    init() {
-//        setup()
-//    }
     
     init(useCase: MainCase, navigator: AMMainNavigator) {
         self.useCase = useCase
@@ -48,75 +46,21 @@ final class AMMainViewModel: ViewModelType{
     }
     
     func transform(input: Input)->Output{
-        let packages = input.trigger.map{ _ in
-                self.useCase.postAll()
-            }.flatMapLatest{ _ in
-            APIClient.packageList(carrierID: 0, sort: 0)
-                .do(onError:{ [weak self] _ in
-                    guard let self = self else { return }
-                    self.apiError.onNext("")
-                }).suppressError()
-            }.map{
-                try PackageModel.parseJSON($0)
-            }.asDriverOnErrorJustComplete()
+        let carriers = input.trigger.debug("carriers").flatMapLatest{ _ in
+            self.useCase.postAll().asDriverOnErrorJustComplete()
+        }
         
+        let carrier = Driver.combineLatest(carriers.filter{ $0.count > 0 },
+                                           input.trigger){ carriers, index in
+            carriers[index]
+        }
+        let packages = carrier.map{ $0.parse() }
+        let doCheck  = input.triggerCheck.map{ _ in 1  }
+        let apiError = input.triggerCheck.map{ _ in "" }
         
-        let doCheck = input.triggerCheck.flatMapLatest{
-            APIClient.checkPackage(packageID: $0.packageID, check: !$0.check)
-                .do(onError:{ [weak self] _ in
-                    guard let self = self else { return }
-                    self.apiError.onNext("")
-                }).suppressError()
-            }.map{_ in 0}.asDriverOnErrorJustComplete()
-        
-        return Output(packages: packages,
-                      doCheck: doCheck)
-    }
-    
-    
-    private func setup(){
-        self.detailCarrier = self.viewDidLoad
-            .debug("detailCarrier")
-            .flatMapLatest{
-                
-                APIClient.detailCarrier(carrierID: $0)
-                    .do(onError: { [weak self] _ in
-                        guard let self = self else { return }
-                        self.apiError.onNext("")
-                    }).suppressError()
-                
-            }.map{
-                try CarrierModel.parseJSON($0)
-            }
-            .asDriver(onErrorJustReturn: CarrierModel(carrier:nil,options:nil))
-        
-        
-        
-        self.packageList = self.completeCarrierInfo
-            .flatMapLatest{ _ in
-                
-//                APIClient.packageList(carrierID: $0.carrier?.carrierID ?? 0, sort: 0)
-                APIClient.packageList(carrierID: 0, sort: 0)
-                    .do(onError:{ [weak self] _ in
-                        guard let self = self else { return }
-                        self.apiError.onNext("")
-                    }).suppressError()
-                
-            }.map{
-                try PackageModel.parseJSON($0)
-            }
-            .asDriver(onErrorJustReturn: [])
-        
-        
-        
-        
-        self.checkPackage = self.tapCheckPackage.flatMapLatest{
-            APIClient.checkPackage(packageID: $0.packageID, check: !$0.check)
-                .do(onError:{ [weak self] _ in
-                    guard let self = self else { return }
-                    self.apiError.onNext("")
-                }).suppressError()
-            }.map{_ in 0}
-            .asDriver(onErrorJustReturn: 0)
+        return Output(carrier : carrier,
+                      packages: packages,
+                      doCheck : doCheck,
+                      apiError: apiError)
     }
 }

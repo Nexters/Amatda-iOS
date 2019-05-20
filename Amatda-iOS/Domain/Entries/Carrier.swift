@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import RxDataSources
+
 
 struct Carrier {
     let startDate   : String
     let carrierName : String
     let countryName : String
     let carrierID   : Int
+    let created     : Date
     var packages    : [Package]
     
     init(startDate: String,
@@ -20,6 +23,7 @@ struct Carrier {
          countryName: String,
          carrierOption : [Int]? = nil,
          packages   : [Package] = [Package](),
+         created    : Date      = Date(),
          carrierID  : Int = Int(round(Date().timeIntervalSince1970 * 1000))
         ){
         self.startDate = startDate
@@ -27,10 +31,29 @@ struct Carrier {
         self.countryName = countryName
         self.carrierID   = carrierID
         self.packages = packages
-        
+        self.created  = created
         if let options = carrierOption {
             self.packages.append(contentsOf: getRecommandPackages(carrierOption: options))
         }
+    }
+    
+    func parse() -> [SectionOfPackage]{
+        var unCheck = [Package]()
+        var check   = [Package]()
+        
+        for package in self.packages{
+            if package.check {
+                check.append(package)
+            }else{
+                unCheck.append(package)
+            }
+        }
+        
+        return [
+            SectionOfPackage(header: "\(self.carrierID)", items: []),
+            SectionOfPackage(header: "아직 챙기지 않았어요! \(unCheck.count)/\(self.packages.count)", items: unCheck),
+            SectionOfPackage(header: "잊지 않고 챙겼어요! \(check.count)/\(self.packages.count)", items: check)
+        ]
     }
 }
 
@@ -155,5 +178,44 @@ extension Carrier{
                        packageName: name,
                        packageColor: "labelDefault",
                        check: false)
+    }
+}
+
+
+
+struct SectionOfPackage{
+    var header : String
+    var items  : [Item]
+}
+
+
+
+extension SectionOfPackage: AnimatableSectionModelType {
+    typealias Identity = String
+    typealias Item = Package
+    
+    var identity : String{
+        return header
+    }
+    
+    init(original: SectionOfPackage, items: [Item]) {
+        self = original
+        self.items = items
+    }
+}
+
+
+
+extension Package : IdentifiableType, Equatable{
+    typealias Identity = Int
+    
+    var identity: Int {
+        return packageID
+    }
+    
+    static func == (lhs: Package, rhs: Package) -> Bool {
+        return lhs.packageID == rhs.packageID
+            && lhs.packageName == rhs.packageName
+            && lhs.packageColor == rhs.packageColor
     }
 }

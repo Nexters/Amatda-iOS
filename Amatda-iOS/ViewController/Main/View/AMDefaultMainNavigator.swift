@@ -23,9 +23,10 @@ final class AMDefaultMainNavigator: AMMainNavigator{
     
     
     func toMain() -> UIViewController {
+        let mainUseCase = self.services.makeMainUseCase()
         let vc = self.storyBoard.instantiateViewController(withIdentifier: "AMMainViewController") as! AMMainViewController
         let mainViewController = UINavigationController(rootViewController: vc)
-        vc.viewModel = AMMainViewModel(useCase: self.services.makeMainUseCase(),
+        vc.viewModel = AMMainViewModel(useCase: mainUseCase,
                                        navigator: self)
         
         return mainViewController

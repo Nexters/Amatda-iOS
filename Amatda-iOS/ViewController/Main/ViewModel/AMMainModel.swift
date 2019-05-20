@@ -103,38 +103,3 @@ struct PackageModel{
     }
 }
 
-
-struct SectionOfPackage{
-    var header : String
-    var items  : [Item]
-}
-
-
-extension SectionOfPackage: AnimatableSectionModelType {
-    typealias Identity = String
-    typealias Item = Package
-    
-    var identity : String{
-        return header
-    }
-    
-    init(original: SectionOfPackage, items: [Item]) {
-        self = original
-        self.items = items
-    }
-}
-
-
-extension Package : IdentifiableType, Equatable{
-    typealias Identity = Int
-    
-    var identity: Int {
-        return packageID
-    }
-    
-    static func == (lhs: Package, rhs: Package) -> Bool {
-        return lhs.packageID == rhs.packageID
-            && lhs.packageName == rhs.packageName
-            && lhs.packageColor == rhs.packageColor
-    }
-}

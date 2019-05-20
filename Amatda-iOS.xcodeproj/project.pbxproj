@@ -623,7 +623,6 @@
 				A1A47DE021E1E9EA0067D46B /* Frameworks */,
 				A1A47DE121E1E9EA0067D46B /* Resources */,
 				D3E0A91528C50555C48B3DB9 /* [CP] Embed Pods Frameworks */,
-				B64EA07DD5C6D9D3F06CD43F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -642,8 +641,6 @@
 				A1A47DF321E1E9EC0067D46B /* Sources */,
 				A1A47DF421E1E9EC0067D46B /* Frameworks */,
 				A1A47DF521E1E9EC0067D46B /* Resources */,
-				8188630A854815ABFCFD8583 /* [CP] Embed Pods Frameworks */,
-				63B9471892B2097C2DA43E07 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -663,8 +660,6 @@
 				A1A47DFE21E1E9EC0067D46B /* Sources */,
 				A1A47DFF21E1E9EC0067D46B /* Frameworks */,
 				A1A47E0021E1E9EC0067D46B /* Resources */,
-				57CB6375D3A11105660B8C60 /* [CP] Embed Pods Frameworks */,
-				7769C2D783436EE66E7DD043 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -794,51 +789,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		57CB6375D3A11105660B8C60 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSUITests/Pods-Amatda-iOSUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		63B9471892B2097C2DA43E07 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSTests/Pods-Amatda-iOSTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7769C2D783436EE66E7DD043 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSUITests/Pods-Amatda-iOSUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		812F73098B8BF5B7CEAD71A8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -857,43 +807,13 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8188630A854815ABFCFD8583 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOSTests/Pods-Amatda-iOSTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B64EA07DD5C6D9D3F06CD43F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOS/Pods-Amatda-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D3E0A91528C50555C48B3DB9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOS/Pods-Amatda-iOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Amatda-iOS/Pods-Amatda-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
@@ -930,7 +850,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Amatda-iOS/Pods-Amatda-iOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Amatda-iOS/Pods-Amatda-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
